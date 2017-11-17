@@ -1,0 +1,532 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FE7D93391FBEFB6A008BA8CF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7D93381FBEFB6A008BA8CF /* main.m */; };
+		FE7D933C1FBEFB6A008BA8CF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7D933B1FBEFB6A008BA8CF /* AppDelegate.m */; };
+		FE7D933F1FBEFB6A008BA8CF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7D933E1FBEFB6A008BA8CF /* ViewController.m */; };
+		FE7D93421FBEFB6A008BA8CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE7D93401FBEFB6A008BA8CF /* Main.storyboard */; };
+		FE7D93441FBEFB6A008BA8CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE7D93431FBEFB6A008BA8CF /* Assets.xcassets */; };
+		FE7D93471FBEFB6A008BA8CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE7D93451FBEFB6A008BA8CF /* LaunchScreen.storyboard */; };
+		FE7D93521FBEFB6A008BA8CF /* CH_ChiJiGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7D93511FBEFB6A008BA8CF /* CH_ChiJiGameTests.m */; };
+		FE7D935D1FBEFB6B008BA8CF /* CH_ChiJiGameUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7D935C1FBEFB6B008BA8CF /* CH_ChiJiGameUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FE7D934E1FBEFB6A008BA8CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE7D932C1FBEFB6A008BA8CF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE7D93331FBEFB6A008BA8CF;
+			remoteInfo = CH_ChiJiGame;
+		};
+		FE7D93591FBEFB6B008BA8CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE7D932C1FBEFB6A008BA8CF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE7D93331FBEFB6A008BA8CF;
+			remoteInfo = CH_ChiJiGame;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FE7D93341FBEFB6A008BA8CF /* CH_ChiJiGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CH_ChiJiGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE7D93381FBEFB6A008BA8CF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FE7D933A1FBEFB6A008BA8CF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FE7D933B1FBEFB6A008BA8CF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FE7D933D1FBEFB6A008BA8CF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		FE7D933E1FBEFB6A008BA8CF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		FE7D93411FBEFB6A008BA8CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FE7D93431FBEFB6A008BA8CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FE7D93461FBEFB6A008BA8CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FE7D93481FBEFB6A008BA8CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE7D934D1FBEFB6A008BA8CF /* CH_ChiJiGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CH_ChiJiGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE7D93511FBEFB6A008BA8CF /* CH_ChiJiGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CH_ChiJiGameTests.m; sourceTree = "<group>"; };
+		FE7D93531FBEFB6A008BA8CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE7D93581FBEFB6B008BA8CF /* CH_ChiJiGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CH_ChiJiGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE7D935C1FBEFB6B008BA8CF /* CH_ChiJiGameUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CH_ChiJiGameUITests.m; sourceTree = "<group>"; };
+		FE7D935E1FBEFB6B008BA8CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FE7D93311FBEFB6A008BA8CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE7D934A1FBEFB6A008BA8CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE7D93551FBEFB6B008BA8CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FE7D932B1FBEFB6A008BA8CF = {
+			isa = PBXGroup;
+			children = (
+				FE7D93361FBEFB6A008BA8CF /* CH_ChiJiGame */,
+				FE7D93501FBEFB6A008BA8CF /* CH_ChiJiGameTests */,
+				FE7D935B1FBEFB6B008BA8CF /* CH_ChiJiGameUITests */,
+				FE7D93351FBEFB6A008BA8CF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FE7D93351FBEFB6A008BA8CF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FE7D93341FBEFB6A008BA8CF /* CH_ChiJiGame.app */,
+				FE7D934D1FBEFB6A008BA8CF /* CH_ChiJiGameTests.xctest */,
+				FE7D93581FBEFB6B008BA8CF /* CH_ChiJiGameUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FE7D93361FBEFB6A008BA8CF /* CH_ChiJiGame */ = {
+			isa = PBXGroup;
+			children = (
+				FE7D933A1FBEFB6A008BA8CF /* AppDelegate.h */,
+				FE7D933B1FBEFB6A008BA8CF /* AppDelegate.m */,
+				FE7D933D1FBEFB6A008BA8CF /* ViewController.h */,
+				FE7D933E1FBEFB6A008BA8CF /* ViewController.m */,
+				FE7D93401FBEFB6A008BA8CF /* Main.storyboard */,
+				FE7D93431FBEFB6A008BA8CF /* Assets.xcassets */,
+				FE7D93451FBEFB6A008BA8CF /* LaunchScreen.storyboard */,
+				FE7D93481FBEFB6A008BA8CF /* Info.plist */,
+				FE7D93371FBEFB6A008BA8CF /* Supporting Files */,
+			);
+			path = CH_ChiJiGame;
+			sourceTree = "<group>";
+		};
+		FE7D93371FBEFB6A008BA8CF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FE7D93381FBEFB6A008BA8CF /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FE7D93501FBEFB6A008BA8CF /* CH_ChiJiGameTests */ = {
+			isa = PBXGroup;
+			children = (
+				FE7D93511FBEFB6A008BA8CF /* CH_ChiJiGameTests.m */,
+				FE7D93531FBEFB6A008BA8CF /* Info.plist */,
+			);
+			path = CH_ChiJiGameTests;
+			sourceTree = "<group>";
+		};
+		FE7D935B1FBEFB6B008BA8CF /* CH_ChiJiGameUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FE7D935C1FBEFB6B008BA8CF /* CH_ChiJiGameUITests.m */,
+				FE7D935E1FBEFB6B008BA8CF /* Info.plist */,
+			);
+			path = CH_ChiJiGameUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FE7D93331FBEFB6A008BA8CF /* CH_ChiJiGame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE7D93611FBEFB6B008BA8CF /* Build configuration list for PBXNativeTarget "CH_ChiJiGame" */;
+			buildPhases = (
+				FE7D93301FBEFB6A008BA8CF /* Sources */,
+				FE7D93311FBEFB6A008BA8CF /* Frameworks */,
+				FE7D93321FBEFB6A008BA8CF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CH_ChiJiGame;
+			productName = CH_ChiJiGame;
+			productReference = FE7D93341FBEFB6A008BA8CF /* CH_ChiJiGame.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FE7D934C1FBEFB6A008BA8CF /* CH_ChiJiGameTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE7D93641FBEFB6B008BA8CF /* Build configuration list for PBXNativeTarget "CH_ChiJiGameTests" */;
+			buildPhases = (
+				FE7D93491FBEFB6A008BA8CF /* Sources */,
+				FE7D934A1FBEFB6A008BA8CF /* Frameworks */,
+				FE7D934B1FBEFB6A008BA8CF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE7D934F1FBEFB6A008BA8CF /* PBXTargetDependency */,
+			);
+			name = CH_ChiJiGameTests;
+			productName = CH_ChiJiGameTests;
+			productReference = FE7D934D1FBEFB6A008BA8CF /* CH_ChiJiGameTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FE7D93571FBEFB6B008BA8CF /* CH_ChiJiGameUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE7D93671FBEFB6B008BA8CF /* Build configuration list for PBXNativeTarget "CH_ChiJiGameUITests" */;
+			buildPhases = (
+				FE7D93541FBEFB6B008BA8CF /* Sources */,
+				FE7D93551FBEFB6B008BA8CF /* Frameworks */,
+				FE7D93561FBEFB6B008BA8CF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE7D935A1FBEFB6B008BA8CF /* PBXTargetDependency */,
+			);
+			name = CH_ChiJiGameUITests;
+			productName = CH_ChiJiGameUITests;
+			productReference = FE7D93581FBEFB6B008BA8CF /* CH_ChiJiGameUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FE7D932C1FBEFB6A008BA8CF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "高向楠";
+				TargetAttributes = {
+					FE7D93331FBEFB6A008BA8CF = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
+					FE7D934C1FBEFB6A008BA8CF = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = FE7D93331FBEFB6A008BA8CF;
+					};
+					FE7D93571FBEFB6B008BA8CF = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = FE7D93331FBEFB6A008BA8CF;
+					};
+				};
+			};
+			buildConfigurationList = FE7D932F1FBEFB6A008BA8CF /* Build configuration list for PBXProject "CH_ChiJiGame" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FE7D932B1FBEFB6A008BA8CF;
+			productRefGroup = FE7D93351FBEFB6A008BA8CF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FE7D93331FBEFB6A008BA8CF /* CH_ChiJiGame */,
+				FE7D934C1FBEFB6A008BA8CF /* CH_ChiJiGameTests */,
+				FE7D93571FBEFB6B008BA8CF /* CH_ChiJiGameUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FE7D93321FBEFB6A008BA8CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE7D93471FBEFB6A008BA8CF /* LaunchScreen.storyboard in Resources */,
+				FE7D93441FBEFB6A008BA8CF /* Assets.xcassets in Resources */,
+				FE7D93421FBEFB6A008BA8CF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE7D934B1FBEFB6A008BA8CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE7D93561FBEFB6B008BA8CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FE7D93301FBEFB6A008BA8CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE7D933F1FBEFB6A008BA8CF /* ViewController.m in Sources */,
+				FE7D933C1FBEFB6A008BA8CF /* AppDelegate.m in Sources */,
+				FE7D93391FBEFB6A008BA8CF /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE7D93491FBEFB6A008BA8CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE7D93521FBEFB6A008BA8CF /* CH_ChiJiGameTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE7D93541FBEFB6B008BA8CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE7D935D1FBEFB6B008BA8CF /* CH_ChiJiGameUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FE7D934F1FBEFB6A008BA8CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE7D93331FBEFB6A008BA8CF /* CH_ChiJiGame */;
+			targetProxy = FE7D934E1FBEFB6A008BA8CF /* PBXContainerItemProxy */;
+		};
+		FE7D935A1FBEFB6B008BA8CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE7D93331FBEFB6A008BA8CF /* CH_ChiJiGame */;
+			targetProxy = FE7D93591FBEFB6B008BA8CF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FE7D93401FBEFB6A008BA8CF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FE7D93411FBEFB6A008BA8CF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FE7D93451FBEFB6A008BA8CF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FE7D93461FBEFB6A008BA8CF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FE7D935F1FBEFB6B008BA8CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FE7D93601FBEFB6B008BA8CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FE7D93621FBEFB6B008BA8CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CH_ChiJiGame/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ViewLayer.CH-ChiJiGame";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FE7D93631FBEFB6B008BA8CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CH_ChiJiGame/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ViewLayer.CH-ChiJiGame";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		FE7D93651FBEFB6B008BA8CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CH_ChiJiGameTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ViewLayer.CH-ChiJiGameTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CH_ChiJiGame.app/CH_ChiJiGame";
+			};
+			name = Debug;
+		};
+		FE7D93661FBEFB6B008BA8CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CH_ChiJiGameTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ViewLayer.CH-ChiJiGameTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CH_ChiJiGame.app/CH_ChiJiGame";
+			};
+			name = Release;
+		};
+		FE7D93681FBEFB6B008BA8CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = CH_ChiJiGameUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ViewLayer.CH-ChiJiGameUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = CH_ChiJiGame;
+			};
+			name = Debug;
+		};
+		FE7D93691FBEFB6B008BA8CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = CH_ChiJiGameUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ViewLayer.CH-ChiJiGameUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = CH_ChiJiGame;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FE7D932F1FBEFB6A008BA8CF /* Build configuration list for PBXProject "CH_ChiJiGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE7D935F1FBEFB6B008BA8CF /* Debug */,
+				FE7D93601FBEFB6B008BA8CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE7D93611FBEFB6B008BA8CF /* Build configuration list for PBXNativeTarget "CH_ChiJiGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE7D93621FBEFB6B008BA8CF /* Debug */,
+				FE7D93631FBEFB6B008BA8CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FE7D93641FBEFB6B008BA8CF /* Build configuration list for PBXNativeTarget "CH_ChiJiGameTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE7D93651FBEFB6B008BA8CF /* Debug */,
+				FE7D93661FBEFB6B008BA8CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FE7D93671FBEFB6B008BA8CF /* Build configuration list for PBXNativeTarget "CH_ChiJiGameUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE7D93681FBEFB6B008BA8CF /* Debug */,
+				FE7D93691FBEFB6B008BA8CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FE7D932C1FBEFB6A008BA8CF /* Project object */;
+}
