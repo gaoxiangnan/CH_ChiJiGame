@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E2B9391B527CDF59393760E /* libPods-CH_ChiJiGame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FECBE975B799F972FF34D76 /* libPods-CH_ChiJiGame.a */; };
 		FE7D93391FBEFB6A008BA8CF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7D93381FBEFB6A008BA8CF /* main.m */; };
 		FE7D933C1FBEFB6A008BA8CF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7D933B1FBEFB6A008BA8CF /* AppDelegate.m */; };
 		FE7D933F1FBEFB6A008BA8CF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7D933E1FBEFB6A008BA8CF /* ViewController.m */; };
@@ -15,6 +16,10 @@
 		FE7D93471FBEFB6A008BA8CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE7D93451FBEFB6A008BA8CF /* LaunchScreen.storyboard */; };
 		FE7D93521FBEFB6A008BA8CF /* CH_ChiJiGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7D93511FBEFB6A008BA8CF /* CH_ChiJiGameTests.m */; };
 		FE7D935D1FBEFB6B008BA8CF /* CH_ChiJiGameUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7D935C1FBEFB6B008BA8CF /* CH_ChiJiGameUITests.m */; };
+		FE7D93781FC275E2008BA8CF /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7D93771FC275E2008BA8CF /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FE7D937B1FC27971008BA8CF /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7D937A1FC27971008BA8CF /* BaseViewController.m */; };
+		FE7D937E1FC27A17008BA8CF /* CH_TeamCreatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7D937D1FC27A17008BA8CF /* CH_TeamCreatViewController.m */; };
+		FE7D93851FC2D1E3008BA8CF /* CH_TeamCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7D93841FC2D1E3008BA8CF /* CH_TeamCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C178FDA56FD52B52C5D56C8 /* Pods-CH_ChiJiGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CH_ChiJiGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CH_ChiJiGame/Pods-CH_ChiJiGame.debug.xcconfig"; sourceTree = "<group>"; };
+		8FECBE975B799F972FF34D76 /* libPods-CH_ChiJiGame.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CH_ChiJiGame.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B22A4DE0CD94C9341B292A49 /* Pods-CH_ChiJiGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CH_ChiJiGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-CH_ChiJiGame/Pods-CH_ChiJiGame.release.xcconfig"; sourceTree = "<group>"; };
 		FE7D93341FBEFB6A008BA8CF /* CH_ChiJiGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CH_ChiJiGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE7D93381FBEFB6A008BA8CF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FE7D933A1FBEFB6A008BA8CF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +59,16 @@
 		FE7D93581FBEFB6B008BA8CF /* CH_ChiJiGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CH_ChiJiGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE7D935C1FBEFB6B008BA8CF /* CH_ChiJiGameUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CH_ChiJiGameUITests.m; sourceTree = "<group>"; };
 		FE7D935E1FBEFB6B008BA8CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE7D936A1FBEFCEA008BA8CF /* CH_ChiJiGame-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CH_ChiJiGame-Prefix.pch"; sourceTree = "<group>"; };
+		FE7D93761FC275E2008BA8CF /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		FE7D93771FC275E2008BA8CF /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		FE7D93791FC27971008BA8CF /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		FE7D937A1FC27971008BA8CF /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		FE7D937C1FC27A17008BA8CF /* CH_TeamCreatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CH_TeamCreatViewController.h; sourceTree = "<group>"; };
+		FE7D937D1FC27A17008BA8CF /* CH_TeamCreatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CH_TeamCreatViewController.m; sourceTree = "<group>"; };
+		FE7D937F1FC286C1008BA8CF /* CH_ChiJiCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CH_ChiJiCommon.h; sourceTree = "<group>"; };
+		FE7D93831FC2D1E3008BA8CF /* CH_TeamCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CH_TeamCollectionViewCell.h; sourceTree = "<group>"; };
+		FE7D93841FC2D1E3008BA8CF /* CH_TeamCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CH_TeamCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E2B9391B527CDF59393760E /* libPods-CH_ChiJiGame.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +97,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D6EFB360436DF60AC259D5E4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8FECBE975B799F972FF34D76 /* libPods-CH_ChiJiGame.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FB6EF33BB6ECB5A19E5CFD37 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0C178FDA56FD52B52C5D56C8 /* Pods-CH_ChiJiGame.debug.xcconfig */,
+				B22A4DE0CD94C9341B292A49 /* Pods-CH_ChiJiGame.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		FE7D932B1FBEFB6A008BA8CF = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +121,8 @@
 				FE7D93501FBEFB6A008BA8CF /* CH_ChiJiGameTests */,
 				FE7D935B1FBEFB6B008BA8CF /* CH_ChiJiGameUITests */,
 				FE7D93351FBEFB6A008BA8CF /* Products */,
+				FB6EF33BB6ECB5A19E5CFD37 /* Pods */,
+				D6EFB360436DF60AC259D5E4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,10 +139,17 @@
 		FE7D93361FBEFB6A008BA8CF /* CH_ChiJiGame */ = {
 			isa = PBXGroup;
 			children = (
+				FE7D936E1FBEFE47008BA8CF /* OpenSource */,
 				FE7D933A1FBEFB6A008BA8CF /* AppDelegate.h */,
 				FE7D933B1FBEFB6A008BA8CF /* AppDelegate.m */,
 				FE7D933D1FBEFB6A008BA8CF /* ViewController.h */,
 				FE7D933E1FBEFB6A008BA8CF /* ViewController.m */,
+				FE7D937C1FC27A17008BA8CF /* CH_TeamCreatViewController.h */,
+				FE7D937D1FC27A17008BA8CF /* CH_TeamCreatViewController.m */,
+				FE7D93831FC2D1E3008BA8CF /* CH_TeamCollectionViewCell.h */,
+				FE7D93841FC2D1E3008BA8CF /* CH_TeamCollectionViewCell.m */,
+				FE7D93791FC27971008BA8CF /* BaseViewController.h */,
+				FE7D937A1FC27971008BA8CF /* BaseViewController.m */,
 				FE7D93401FBEFB6A008BA8CF /* Main.storyboard */,
 				FE7D93431FBEFB6A008BA8CF /* Assets.xcassets */,
 				FE7D93451FBEFB6A008BA8CF /* LaunchScreen.storyboard */,
@@ -118,6 +163,8 @@
 			isa = PBXGroup;
 			children = (
 				FE7D93381FBEFB6A008BA8CF /* main.m */,
+				FE7D936A1FBEFCEA008BA8CF /* CH_ChiJiGame-Prefix.pch */,
+				FE7D937F1FC286C1008BA8CF /* CH_ChiJiCommon.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -140,6 +187,23 @@
 			path = CH_ChiJiGameUITests;
 			sourceTree = "<group>";
 		};
+		FE7D936E1FBEFE47008BA8CF /* OpenSource */ = {
+			isa = PBXGroup;
+			children = (
+				FE7D93751FC275E2008BA8CF /* JSONKit */,
+			);
+			path = OpenSource;
+			sourceTree = "<group>";
+		};
+		FE7D93751FC275E2008BA8CF /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				FE7D93761FC275E2008BA8CF /* JSONKit.h */,
+				FE7D93771FC275E2008BA8CF /* JSONKit.m */,
+			);
+			path = JSONKit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,9 +211,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FE7D93611FBEFB6B008BA8CF /* Build configuration list for PBXNativeTarget "CH_ChiJiGame" */;
 			buildPhases = (
+				3B5357D59276E524F5D68D5F /* [CP] Check Pods Manifest.lock */,
 				FE7D93301FBEFB6A008BA8CF /* Sources */,
 				FE7D93311FBEFB6A008BA8CF /* Frameworks */,
 				FE7D93321FBEFB6A008BA8CF /* Resources */,
+				8CBC1FFDE97C037F3C7908C4 /* [CP] Embed Pods Frameworks */,
+				AAF1743FFAAD14646471826A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -268,13 +335,71 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3B5357D59276E524F5D68D5F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CH_ChiJiGame-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8CBC1FFDE97C037F3C7908C4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CH_ChiJiGame/Pods-CH_ChiJiGame-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AAF1743FFAAD14646471826A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CH_ChiJiGame/Pods-CH_ChiJiGame-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CH_ChiJiGame/Pods-CH_ChiJiGame-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FE7D93301FBEFB6A008BA8CF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE7D937E1FC27A17008BA8CF /* CH_TeamCreatViewController.m in Sources */,
 				FE7D933F1FBEFB6A008BA8CF /* ViewController.m in Sources */,
+				FE7D937B1FC27971008BA8CF /* BaseViewController.m in Sources */,
 				FE7D933C1FBEFB6A008BA8CF /* AppDelegate.m in Sources */,
+				FE7D93781FC275E2008BA8CF /* JSONKit.m in Sources */,
+				FE7D93851FC2D1E3008BA8CF /* CH_TeamCollectionViewCell.m in Sources */,
 				FE7D93391FBEFB6A008BA8CF /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,8 +549,11 @@
 		};
 		FE7D93621FBEFB6B008BA8CF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C178FDA56FD52B52C5D56C8 /* Pods-CH_ChiJiGame.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CH_ChiJiGame/CH_ChiJiGame-Prefix.pch";
 				INFOPLIST_FILE = CH_ChiJiGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ViewLayer.CH-ChiJiGame";
@@ -435,8 +563,11 @@
 		};
 		FE7D93631FBEFB6B008BA8CF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B22A4DE0CD94C9341B292A49 /* Pods-CH_ChiJiGame.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CH_ChiJiGame/CH_ChiJiGame-Prefix.pch";
 				INFOPLIST_FILE = CH_ChiJiGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ViewLayer.CH-ChiJiGame";
@@ -509,6 +640,7 @@
 				FE7D93631FBEFB6B008BA8CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FE7D93641FBEFB6B008BA8CF /* Build configuration list for PBXNativeTarget "CH_ChiJiGameTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +649,7 @@
 				FE7D93661FBEFB6B008BA8CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FE7D93671FBEFB6B008BA8CF /* Build configuration list for PBXNativeTarget "CH_ChiJiGameUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +658,7 @@
 				FE7D93691FBEFB6B008BA8CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

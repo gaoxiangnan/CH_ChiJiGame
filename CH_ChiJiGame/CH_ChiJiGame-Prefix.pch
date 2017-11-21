@@ -1,0 +1,23 @@
+//
+//  CH_ChiJiGame-Prefix.pch
+//  CH_ChiJiGame
+//
+//  Created by 高向楠 on 2017/11/17.
+//  Copyright © 2017年 高向楠. All rights reserved.
+//
+
+#ifndef CH_ChiJiGame_Prefix_pch
+#define CH_ChiJiGame_Prefix_pch
+
+#import "CH_ChiJiCommon.h"
+
+#import "JSONKit.h"
+#import "MBProgressHUD.h"
+#import "MJRefresh.h"
+#import <AFNetworking.h>
+#import <Masonry.h>
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* CH_ChiJiGame_Prefix_pch */
