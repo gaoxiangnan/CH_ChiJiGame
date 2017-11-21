@@ -11,7 +11,6 @@
 
 @interface CH_TeamCreatViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property(nonatomic,strong)UICollectionView *collectionView;
-@property(nonatomic)NSMutableArray *arr;
 
 
 @end
@@ -25,11 +24,11 @@ static NSString * const reuseIdentifier = @"cell";
     bgImageView.image = [UIImage imageNamed:@"ch_backGroud.png"];
     [self.view addSubview:bgImageView];
     
-    self.arr = [[NSMutableArray alloc]initWithCapacity:0];
     
 //测试
-    [self.arr addObject:@"1"];
-    [self.arr addObject:@"2"];
+    
+    
+    
     
     [self.view addSubview:self.collectionView];
     

@@ -103,10 +103,8 @@
     [_teamCreateBtn addTarget:self action:@selector(onCreateTeamClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_teamCreateBtn];
     [_teamCreateBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self);
+        make.centerX.mas_equalTo(_imgBgV);
         make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-10);
-        make.width.mas_equalTo(50);
-        make.height.mas_equalTo(30);
     }];
     
     _memberViewBg = [[UIView alloc] init];
