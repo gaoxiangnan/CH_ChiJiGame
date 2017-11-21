@@ -24,7 +24,10 @@ static NSString * const reuseIdentifier = @"cell";
     bgImageView.image = [UIImage imageNamed:@"ch_backGroud.png"];
     [self.view addSubview:bgImageView];
     
-    
+    UIButton *textBtn = [[UIButton alloc] initWithFrame:CGRectMake(kWindowW - 50, 20, 40, 30)];
+    textBtn.backgroundColor = [UIColor redColor];
+    [textBtn addTarget:self action:@selector(onTextClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:textBtn];
 //测试
     
     
@@ -35,7 +38,10 @@ static NSString * const reuseIdentifier = @"cell";
     
     // Do any additional setup after loading the view.
 }
-
+- (void)onTextClick
+{
+    
+}
 -(UICollectionView *)collectionView
 {
     if (!_collectionView) {

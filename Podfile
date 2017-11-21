@@ -1,7 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 source 'https://github.com/Artsy/Specs.git'
 
-platform :ios, '9.0'
+platform :ios, '7.0'
 inhibit_all_warnings!
 
 
@@ -13,4 +13,6 @@ inhibit_all_warnings!
 	pod 'MJRefresh'
 	pod 'SDWebImage'
 	pod 'MBProgressHUD'
+	pod 'AMap2DMap'
+	pod 'AMapSearch'
 end
