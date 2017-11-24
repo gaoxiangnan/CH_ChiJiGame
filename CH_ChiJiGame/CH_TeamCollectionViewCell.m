@@ -140,9 +140,13 @@
 - (void)onCreateTeamClick
 {
     int i = 1;
+    if (_teamArr.count > 9) {
+        return;
+    }
     [_teamArr addObject:[NSString stringWithFormat:@"%d",i++]];
     NSLog(@"%ld",_teamArr.count);
     [self createTeamView:_teamArr];
+    
 }
 - (void)onTeamAddClick
 {

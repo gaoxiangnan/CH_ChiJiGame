@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CH_ChiJiGame/CH_TeamCollectionViewCell.m"
-            timestampString = "532928404.110355"
+            timestampString = "533184171.099398"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "-onCreateTeamClick"
             landmarkType = "7">
          </BreakpointContent>
