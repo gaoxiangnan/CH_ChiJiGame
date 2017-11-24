@@ -284,7 +284,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    NSLog(@"123123123123123123");
     self.IDtext.delegate = self;
     self.PassWordtext.delegate = self;
     
