@@ -8,9 +8,16 @@
 
 #import "CH_TeamCreatViewController.h"
 #import "CH_TeamCollectionViewCell.h"
+#import "CH_GameShowViewController.h"
 
 @interface CH_TeamCreatViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+{
+    NSInteger CountDown;
+    NSTimer *CountDownTimer;
+}
 @property(nonatomic,strong)UICollectionView *collectionView;
+@property(nonatomic,strong)UILabel *CountDowLabel;
+@property(nonatomic,strong)UIImageView  *CountDimg,*CountDowimg;
 
 
 @end
@@ -24,10 +31,6 @@ static NSString * const reuseIdentifier = @"cell";
     bgImageView.image = [UIImage imageNamed:@"ch_backGroud.png"];
     [self.view addSubview:bgImageView];
     
-    UIButton *textBtn = [[UIButton alloc] initWithFrame:CGRectMake(kWindowW - 50, 20, 40, 30)];
-    textBtn.backgroundColor = [UIColor redColor];
-    [textBtn addTarget:self action:@selector(onTextClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:textBtn];
 //测试
     
     
@@ -35,13 +38,19 @@ static NSString * const reuseIdentifier = @"cell";
     
     [self.view addSubview:self.collectionView];
     
+    [self.view addSubview:self.CountDimg];
+    [self.view addSubview:self.CountDowimg];
+    [self.view addSubview:self.CountDowLabel];
+    [self adap];
+    
     
     // Do any additional setup after loading the view.
 }
-- (void)onTextClick
-{
-    
-}
+//- (void)onTextClick
+//{
+//    CH_GameShowViewController *gameShowVC = [[CH_GameShowViewController alloc]init];
+//    [self.navigationController pushViewController:gameShowVC animated:YES];
+//}
 -(UICollectionView *)collectionView
 {
     if (!_collectionView) {
@@ -71,20 +80,65 @@ static NSString * const reuseIdentifier = @"cell";
     }
     return _collectionView;
 }
-// 设置headerView和footerView的
-//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-//{
-//    UICollectionReusableView *reusableView = nil;
-//    if (kind == UICollectionElementKindSectionFooter)
-//    {
-//        UICollectionReusableView *footerview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterView" forIndexPath:indexPath];
-//        footerview.backgroundColor = [UIColor purpleColor];
-//        footerview.alpha = 0.3;
-//        reusableView = footerview;
-//    }
-//    return reusableView;
-//}
-
+-(UILabel *)CountDowLabel
+{
+    if (!_CountDowLabel) {
+        _CountDowLabel = [[UILabel alloc]init];
+        CountDown = 5;// 倒计时秒数
+        CountDownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(TimerAction:) userInfo:nil repeats:YES];
+        NSString *str_hour = [NSString stringWithFormat:@"%02ld",CountDown/3600];//时
+        NSString *str_minute = [NSString stringWithFormat:@"%02ld",(CountDown%3600)/60];//分
+        NSString *str_second = [NSString stringWithFormat:@"%02ld",CountDown%60];//秒
+        NSString *format_time = [NSString stringWithFormat:@"%@:%@:%@",str_hour,str_minute,str_second];
+        NSLog(@"time:%@",format_time);
+        _CountDowLabel.text = [NSString stringWithFormat:@"倒计时  %@",format_time];
+        _CountDowLabel.font = [UIFont boldSystemFontOfSize:20];
+        _CountDowLabel.textAlignment = NSTextAlignmentCenter;
+        _CountDowLabel.font = [UIFont fontWithName:@"Arial Rounded MT Bold" size:16.0f];
+        _CountDowLabel.textColor = [UIColor whiteColor];
+    }
+    return _CountDowLabel;
+}
+-(UIImageView *)CountDimg
+{
+    if (!_CountDimg) {
+        _CountDimg = [[UIImageView alloc]init];
+        _CountDimg.image = [UIImage imageNamed:@"time_spe"];
+    }
+    return _CountDimg;
+}
+-(UIImageView *)CountDowimg
+{
+    if (!_CountDowimg) {
+        _CountDowimg = [[UIImageView alloc]init];
+        _CountDowimg.image = [UIImage imageNamed:@"time_spe2"];
+    }
+    return _CountDowimg;
+}
+//倒计时
+-(void) TimerAction:(id)sender
+{
+    //倒计时-1
+    CountDown--;
+    NSString *str_hour = [NSString stringWithFormat:@"%02ld",CountDown/3600];
+    NSString *str_minute = [NSString stringWithFormat:@"%02ld",(CountDown%3600)/60];
+    NSString *str_second = [NSString stringWithFormat:@"%02ld",CountDown%60];
+    NSString *format_time = [NSString stringWithFormat:@"%@:%@:%@",str_hour,str_minute,str_second];
+    //修改倒计时标签现实内容
+    
+    _CountDowLabel.text=[NSString stringWithFormat:@"倒计时   %@",format_time];
+    //当倒计时到0时，做需要的操作，比如验证码过期不能提交
+    if(CountDown==0){
+        CH_GameShowViewController *gameShowVC = [[CH_GameShowViewController alloc]init];
+        [self.navigationController pushViewController:gameShowVC animated:YES];
+    }
+}
+-(void)adap
+{
+    _CountDowimg.sd_layout.topSpaceToView(self.view, 20).rightSpaceToView(self.view, 110).heightIs(3.8f).widthIs(112);
+    _CountDimg.sd_layout.topEqualToView(_CountDowimg).leftSpaceToView(self.view, 110).heightIs(3.8f).widthIs(112);
+    _CountDowLabel.sd_layout.topSpaceToView(self.view, 16).leftSpaceToView(self.view, 270).heightIs(10).widthIs(200);
+}
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     

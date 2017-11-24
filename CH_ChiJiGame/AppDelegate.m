@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import <AMapFoundationKit/AMapFoundationKit.h>
 
 @interface AppDelegate ()
 
@@ -17,6 +18,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [AMapServices sharedServices].apiKey = @"126d00dd0290ba2af28de523fe30cc37";
+    
     ViewController *vc = [[ViewController alloc]init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
     navigationController.navigationBarHidden = YES;
@@ -27,7 +31,22 @@
     // Override point for customization after application launch.
     return YES;
 }
+#pragma mark 支持窗口翻转
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(nullable UIWindow *)window
 
+{
+    
+    if (_allowRtation == YES) {
+        
+        return UIInterfaceOrientationMaskLandscapeRight;
+        
+    }else{
+        
+        return (UIInterfaceOrientationMaskPortrait);
+        
+    }
+    
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

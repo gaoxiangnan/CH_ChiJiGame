@@ -130,7 +130,7 @@
 {
     for (int i = 0; i < arr.count; i++) {
         UIButton *memberBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [memberBtn setBackgroundImage:[UIImage imageNamed:@"Image"] forState:UIControlStateNormal];
+        [memberBtn setBackgroundImage:[UIImage imageNamed:@"Image-1"] forState:UIControlStateNormal];
         memberBtn.frame = CGRectMake(5+45*(i%5), 0+(i/5)*45, 40, 40);
         [_memberViewBg addSubview:memberBtn];
     }

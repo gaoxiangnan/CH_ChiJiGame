@@ -13,6 +13,6 @@ inhibit_all_warnings!
 	pod 'MJRefresh'
 	pod 'SDWebImage'
 	pod 'MBProgressHUD'
-	pod 'AMap2DMap'
-	pod 'AMapSearch'
+	pod 'AMapLocation'
+	pod 'AMapNavi'
 end
