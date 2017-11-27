@@ -10,6 +10,7 @@
 		5E2B9391B527CDF59393760E /* libPods-CH_ChiJiGame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FECBE975B799F972FF34D76 /* libPods-CH_ChiJiGame.a */; };
 		FE2CEFC01FCBE09C0078CE32 /* CH_NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2CEFBF1FCBE09C0078CE32 /* CH_NetWorkManager.m */; };
 		FE2CEFCC1FCC09D90078CE32 /* NSString+Option.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2CEFCB1FCC09D90078CE32 /* NSString+Option.m */; };
+		FE2CEFD01FCC10250078CE32 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2CEFCF1FCC10250078CE32 /* UserModel.m */; };
 		FE647A5B1FC3FA640016F3E4 /* CH_GameShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE647A5A1FC3FA640016F3E4 /* CH_GameShowViewController.m */; };
 		FE647A601FC51BA20016F3E4 /* CH_MemberMessView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE647A5F1FC51BA20016F3E4 /* CH_MemberMessView.m */; };
 		FE647A621FC545500016F3E4 /* mystyle_sdk_1511329093_0100.data in Resources */ = {isa = PBXBuildFile; fileRef = FE647A611FC545500016F3E4 /* mystyle_sdk_1511329093_0100.data */; };
@@ -56,6 +57,8 @@
 		FE2CEFBF1FCBE09C0078CE32 /* CH_NetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CH_NetWorkManager.m; sourceTree = "<group>"; };
 		FE2CEFCA1FCC09D90078CE32 /* NSString+Option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Option.h"; sourceTree = "<group>"; };
 		FE2CEFCB1FCC09D90078CE32 /* NSString+Option.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Option.m"; sourceTree = "<group>"; };
+		FE2CEFCE1FCC10250078CE32 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		FE2CEFCF1FCC10250078CE32 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		FE647A591FC3FA640016F3E4 /* CH_GameShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CH_GameShowViewController.h; sourceTree = "<group>"; };
 		FE647A5A1FC3FA640016F3E4 /* CH_GameShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CH_GameShowViewController.m; sourceTree = "<group>"; };
 		FE647A5C1FC40EC20016F3E4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -142,6 +145,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FE2CEFCD1FCC10140078CE32 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FE2CEFCE1FCC10250078CE32 /* UserModel.h */,
+				FE2CEFCF1FCC10250078CE32 /* UserModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		FE7D932B1FBEFB6A008BA8CF = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +179,7 @@
 		FE7D93361FBEFB6A008BA8CF /* CH_ChiJiGame */ = {
 			isa = PBXGroup;
 			children = (
+				FE2CEFCD1FCC10140078CE32 /* Model */,
 				FE7D936E1FBEFE47008BA8CF /* OpenSource */,
 				FE7D933A1FBEFB6A008BA8CF /* AppDelegate.h */,
 				FE7D933B1FBEFB6A008BA8CF /* AppDelegate.m */,
@@ -449,6 +462,7 @@
 				FE7D937B1FC27971008BA8CF /* BaseViewController.m in Sources */,
 				FE647A601FC51BA20016F3E4 /* CH_MemberMessView.m in Sources */,
 				FE7D933C1FBEFB6A008BA8CF /* AppDelegate.m in Sources */,
+				FE2CEFD01FCC10250078CE32 /* UserModel.m in Sources */,
 				FE647A6A1FC679940016F3E4 /* LLPulseAnimation.m in Sources */,
 				FE7D93781FC275E2008BA8CF /* JSONKit.m in Sources */,
 				FE7D93851FC2D1E3008BA8CF /* CH_TeamCollectionViewCell.m in Sources */,
