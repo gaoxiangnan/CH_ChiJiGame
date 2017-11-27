@@ -125,8 +125,8 @@ static NSString * const reuseIdentifier = @"cell";
     _CountDowLabel.text=[NSString stringWithFormat:@"倒计时   %@",format_time];
     //当倒计时到0时，做需要的操作，比如验证码过期不能提交
     if(CountDown==0){
-//        CH_GameShowViewController *gameShowVC = [[CH_GameShowViewController alloc]init];
-//        [self.navigationController pushViewController:gameShowVC animated:YES];
+        CH_GameShowViewController *gameShowVC = [[CH_GameShowViewController alloc]init];
+        [self.navigationController pushViewController:gameShowVC animated:YES];
     }
 }
 -(void)adap
