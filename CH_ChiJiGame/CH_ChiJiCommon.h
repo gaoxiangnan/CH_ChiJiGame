@@ -12,6 +12,8 @@
 
 #endif /* CH_ChiJiCommon_h */
 
+#define BaseURL @"jdsc.codechm.com"
+
 //通过RGB设置颜色
 #define kRGBColor(R,G,B)        [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1.0]
 #define kColorWithRGB(r, g, b, a) \
