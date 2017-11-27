@@ -309,7 +309,7 @@
 				TargetAttributes = {
 					FE7D93331FBEFB6A008BA8CF = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 397LA78VAT;
+						DevelopmentTeam = WEDT4D5V4Q;
 						ProvisioningStyle = Automatic;
 					};
 					FE7D934C1FBEFB6A008BA8CF = {
@@ -597,7 +597,7 @@
 			baseConfigurationReference = 0C178FDA56FD52B52C5D56C8 /* Pods-CH_ChiJiGame.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 397LA78VAT;
+				DEVELOPMENT_TEAM = WEDT4D5V4Q;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CH_ChiJiGame/CH_ChiJiGame-Prefix.pch";
 				INFOPLIST_FILE = CH_ChiJiGame/Info.plist;
@@ -613,7 +613,7 @@
 			baseConfigurationReference = B22A4DE0CD94C9341B292A49 /* Pods-CH_ChiJiGame.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 397LA78VAT;
+				DEVELOPMENT_TEAM = WEDT4D5V4Q;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CH_ChiJiGame/CH_ChiJiGame-Prefix.pch";
 				INFOPLIST_FILE = CH_ChiJiGame/Info.plist;
