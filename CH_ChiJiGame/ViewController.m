@@ -27,7 +27,50 @@
 @end
 
 @implementation ViewController
-
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    NSLog(@"123123123123123123");
+    self.IDtext.delegate = self;
+    self.PassWordtext.delegate = self;
+    
+    [self.view addSubview:self.backgroundimg];
+    
+    [self.view addSubview:self.backGround];
+    
+    [self.view addSubview:self.iconimg];
+    
+    [self.view addSubview:self.img];
+    
+    [self.img addSubview:self.IDLabel];
+    
+    [self.img addSubview:self.IDtext];
+    
+    [self.view addSubview:self.icodeimg];
+    
+    [self.icodeimg addSubview:self.PassWordtext];
+    
+    [self.icodeimg addSubview:self.PassWordLabel];
+    
+    [self.view addSubview:self.buttonimg];
+    
+    [self.buttonimg addSubview:self.icodeBtn];
+    
+    [self.view addSubview:self.Loginimg];
+    
+    [self.Loginimg addSubview:self.LoginBtn];
+    
+    
+    AppDelegate * appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    appDelegate.allowRtation = YES;//(以上2行代码,可以理解为打开横屏开关)
+    
+    [self setNewOrientation:YES];//调用转屏代码
+    
+    
+    [self adaptation];
+    
+    
+}
 #pragma 背景图
 -(UIImageView *)backgroundimg{
     
@@ -282,48 +325,7 @@
     [self presentViewController:alert animated:YES completion:nil];
     
 }
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    NSLog(@"123123123123123123");
-    self.IDtext.delegate = self;
-    self.PassWordtext.delegate = self;
-    
-    [self.view addSubview:self.backgroundimg];
-    
-    [self.view addSubview:self.backGround];
-    
-    [self.view addSubview:self.iconimg];
-    
-    [self.view addSubview:self.img];
-    
-    [self.img addSubview:self.IDLabel];
-    
-    [self.img addSubview:self.IDtext];
-    
-    [self.view addSubview:self.icodeimg];
-    
-    [self.icodeimg addSubview:self.PassWordtext];
-    
-    [self.icodeimg addSubview:self.PassWordLabel];
-    
-    [self.view addSubview:self.buttonimg];
-    
-    [self.buttonimg addSubview:self.icodeBtn];
-    
-    [self.view addSubview:self.Loginimg];
-    
-    [self.Loginimg addSubview:self.LoginBtn];
-    
-    
-        AppDelegate * appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    
-        appDelegate.allowRtation = YES;//(以上2行代码,可以理解为打开横屏开关)
-    
-        [self setNewOrientation:YES];//调用转屏代码
-    
-    
-    [self adaptation];
-}
+
 
 
 #pragma 旋转屏幕

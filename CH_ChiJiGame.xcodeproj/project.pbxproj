@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5E2B9391B527CDF59393760E /* libPods-CH_ChiJiGame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FECBE975B799F972FF34D76 /* libPods-CH_ChiJiGame.a */; };
+		FE2CEFC01FCBE09C0078CE32 /* CH_NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2CEFBF1FCBE09C0078CE32 /* CH_NetWorkManager.m */; };
 		FE647A5B1FC3FA640016F3E4 /* CH_GameShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE647A5A1FC3FA640016F3E4 /* CH_GameShowViewController.m */; };
 		FE647A601FC51BA20016F3E4 /* CH_MemberMessView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE647A5F1FC51BA20016F3E4 /* CH_MemberMessView.m */; };
 		FE647A621FC545500016F3E4 /* mystyle_sdk_1511329093_0100.data in Resources */ = {isa = PBXBuildFile; fileRef = FE647A611FC545500016F3E4 /* mystyle_sdk_1511329093_0100.data */; };
@@ -50,6 +51,8 @@
 		0C178FDA56FD52B52C5D56C8 /* Pods-CH_ChiJiGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CH_ChiJiGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CH_ChiJiGame/Pods-CH_ChiJiGame.debug.xcconfig"; sourceTree = "<group>"; };
 		8FECBE975B799F972FF34D76 /* libPods-CH_ChiJiGame.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CH_ChiJiGame.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B22A4DE0CD94C9341B292A49 /* Pods-CH_ChiJiGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CH_ChiJiGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-CH_ChiJiGame/Pods-CH_ChiJiGame.release.xcconfig"; sourceTree = "<group>"; };
+		FE2CEFBE1FCBE09C0078CE32 /* CH_NetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CH_NetWorkManager.h; sourceTree = "<group>"; };
+		FE2CEFBF1FCBE09C0078CE32 /* CH_NetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CH_NetWorkManager.m; sourceTree = "<group>"; };
 		FE647A591FC3FA640016F3E4 /* CH_GameShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CH_GameShowViewController.h; sourceTree = "<group>"; };
 		FE647A5A1FC3FA640016F3E4 /* CH_GameShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CH_GameShowViewController.m; sourceTree = "<group>"; };
 		FE647A5C1FC40EC20016F3E4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -180,6 +183,8 @@
 				FE647A641FC5528B0016F3E4 /* CH_TeamMesView.m */,
 				FE7D93791FC27971008BA8CF /* BaseViewController.h */,
 				FE7D937A1FC27971008BA8CF /* BaseViewController.m */,
+				FE2CEFBE1FCBE09C0078CE32 /* CH_NetWorkManager.h */,
+				FE2CEFBF1FCBE09C0078CE32 /* CH_NetWorkManager.m */,
 				FE647A611FC545500016F3E4 /* mystyle_sdk_1511329093_0100.data */,
 				FE7D93401FBEFB6A008BA8CF /* Main.storyboard */,
 				FE7D93431FBEFB6A008BA8CF /* Assets.xcassets */,
@@ -446,6 +451,7 @@
 				FE647A6B1FC679940016F3E4 /* LLRadarView.m in Sources */,
 				FE647A651FC5528B0016F3E4 /* CH_TeamMesView.m in Sources */,
 				FE7D93391FBEFB6A008BA8CF /* main.m in Sources */,
+				FE2CEFC01FCBE09C0078CE32 /* CH_NetWorkManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
