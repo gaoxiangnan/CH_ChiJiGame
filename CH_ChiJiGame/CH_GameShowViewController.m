@@ -18,6 +18,7 @@
 @interface CH_GameShowViewController ()<MAMapViewDelegate,AMapLocationManagerDelegate>
 {
     NSInteger _touchCount;
+    NSTimer *Timer;
 }
 
 @property (strong,nonatomic) MAMapView *mapView;
@@ -89,13 +90,26 @@
     __weak typeof(self) weakSelf = self;
     _teamMes = [[CH_TeamMesView alloc]initWithFrame:CGRectMake(0, kWindowH - (kWindowH*85/375), kWindowW, (kWindowH*85/375))];
     _teamMes.sleuthBlock = ^(){
-        CH_VictoryViewController *vc = [[CH_VictoryViewController alloc]init];
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+       
+        UIImageView *img= [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"shengli"]];
+        img.frame = weakSelf.view.frame;
+        img.backgroundColor = [UIColor colorWithRed:16/225.0f green:16/225.0f blue:16/225.0f alpha:.6f];
+        [weakSelf.view addSubview:img];
+        
+        Timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(doTimer) userInfo:nil repeats:NO];
+        //[[NSRunLoop mainRunLoop] addTimer:Timer forMode:NSDefaultRunLoopMode];
+        
     };
     [self.view addSubview:_teamMes];
     
     
     // Do any additional setup after loading the view.
+}
+-(void)doTimer
+{
+    CH_VictoryViewController *vc = [[CH_VictoryViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    [Timer invalidate];
 }
 -(void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location{
     //输出的是模拟器的坐标
