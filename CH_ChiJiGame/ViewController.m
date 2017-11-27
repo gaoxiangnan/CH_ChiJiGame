@@ -69,11 +69,6 @@
     
     [self adaptation];
     
-//    [CH_NetWorkManager getWithURLString:@"jdsc.codechm.com" parameters:nil success:^(NSDictionary *data) {
-//        
-//    } failure:^(NSError *error) {
-//        
-//    }];
     
 }
 #pragma 背景图
@@ -331,30 +326,32 @@
 
 -(void)LoginBtnAction
 {
-    if (_IDtext.text.length ==0) {
-        [self creatAlert:@"登录失败，输入手机号"];
-    }else
-    {
-        NSString *string = [NSString stringWithFormat:@"miganchuanmei%@",_IDtext.text];
-        [CH_NetWorkManager getWithURLString:@"checkCode" parameters:@{@"token":[NSString md5:string],@"code":_PassWordtext.text} success:^(NSDictionary *data) {
-            if ([[data objectForKey:@"code"]isEqualToString:@"200"]) {
-                CH_TeamCreatViewController *chVC = [[CH_TeamCreatViewController alloc]init];
-                [self.navigationController pushViewController:chVC animated:YES];
-                NSLog(@"%@",[data objectForKey:@"message"]);
-                NSLog(@"%@",data);
-            }else
-            {
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:[data objectForKey:@"message"] preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                }];
-                [alert addAction:action];
-                [self presentViewController:alert animated:YES completion:nil];
-            }
-        } failure:^(NSError *error) {
-            
-        }];
-    }
-    
+//    if (_IDtext.text.length ==0) {
+//        [self creatAlert:@"登录失败，输入手机号"];
+//    }else
+//    {
+//        NSString *string = [NSString stringWithFormat:@"miganchuanmei%@",_IDtext.text];
+//        [CH_NetWorkManager getWithURLString:@"checkCode" parameters:@{@"token":[NSString md5:string],@"code":_PassWordtext.text} success:^(NSDictionary *data) {
+//            if ([[data objectForKey:@"code"]isEqualToString:@"200"]) {
+//                CH_TeamCreatViewController *chVC = [[CH_TeamCreatViewController alloc]init];
+//                [self.navigationController pushViewController:chVC animated:YES];
+//                NSLog(@"%@",[data objectForKey:@"message"]);
+//                NSLog(@"%@",data);
+//            }else
+//            {
+//                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:[data objectForKey:@"message"] preferredStyle:UIAlertControllerStyleAlert];
+//                UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                }];
+//                [alert addAction:action];
+//                [self presentViewController:alert animated:YES completion:nil];
+//            }
+//        } failure:^(NSError *error) {
+//            
+//        }];
+//    }
+//    
+    CH_TeamCreatViewController *chVC = [[CH_TeamCreatViewController alloc]init];
+    [self.navigationController pushViewController:chVC animated:YES];
     
 }
 -(void)creatAlert:(NSString *)string{

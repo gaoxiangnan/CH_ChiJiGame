@@ -31,9 +31,6 @@ static NSString * const reuseIdentifier = @"cell";
     bgImageView.image = [UIImage imageNamed:@"ch_backGroud.png"];
     [self.view addSubview:bgImageView];
     
-//测试
-    
-    
     
     
     [self.view addSubview:self.collectionView];
@@ -45,6 +42,9 @@ static NSString * const reuseIdentifier = @"cell";
     
     [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:nil success:^(NSDictionary *data) {
         NSLog(@"%@",data);
+        if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
+            
+        }
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
