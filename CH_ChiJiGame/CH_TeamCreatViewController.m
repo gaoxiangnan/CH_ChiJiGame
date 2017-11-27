@@ -121,19 +121,27 @@ static NSString * const reuseIdentifier = @"cell";
     NSString *str_second = [NSString stringWithFormat:@"%02ld",CountDown%60];
     NSString *format_time = [NSString stringWithFormat:@"%@:%@:%@",str_hour,str_minute,str_second];
     //修改倒计时标签现实内容
-    
     _CountDowLabel.text=[NSString stringWithFormat:@"倒计时   %@",format_time];
+    
     //当倒计时到0时，做需要的操作，比如验证码过期不能提交
-    UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"kaishiyouxi"]];
+    if (CountDown == 0) {
+
+    
+    UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"start_game"]];
     img.frame = self.view.frame;
     img.backgroundColor = [UIColor colorWithRed:16/225.0f green:16/225.0f blue:16/225.0f alpha:.6f];
     [self.view addSubview:img];
+        
     [CountDownTimer invalidate];
     //中断后重新开始计时
     CountDownTimer = nil;//实际测试中，不置nil也正常运行，还是保持规范性
     CountDownTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(doTimer) userInfo:nil repeats:NO];
-    [[NSRunLoop mainRunLoop] addTimer:CountDownTimer forMode:NSDefaultRunLoopMode];
+        [[NSRunLoop mainRunLoop] addTimer:CountDownTimer forMode:NSDefaultRunLoopMode];
+    
+    }
+    
 }
+
 -(void)doTimer
 {
     CH_GameShowViewController *vc = [[CH_GameShowViewController alloc]init];
