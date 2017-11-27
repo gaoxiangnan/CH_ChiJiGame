@@ -30,8 +30,9 @@
     /**
      *  请求超时的时间
      */
-    NSString *url = [NSString stringWithFormat:@"%@/%@",BaseURL,urlString];
-    manager.requestSerializer.timeoutInterval = 3;
+    NSString *url = [[NSString stringWithFormat:@"%@/%@",BaseURL,urlString] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"`#%^{}\"[]|\\<> "].invertedSet];
+    NSLog(@"%@",url);
+    manager.requestSerializer.timeoutInterval = 1;
     [manager GET:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (successBlock) {
             NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];

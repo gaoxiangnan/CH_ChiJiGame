@@ -43,7 +43,11 @@ static NSString * const reuseIdentifier = @"cell";
     [self.view addSubview:self.CountDowLabel];
     [self adap];
     
-    
+    [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:nil success:^(NSDictionary *data) {
+        NSLog(@"%@",data);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
     // Do any additional setup after loading the view.
 }
 

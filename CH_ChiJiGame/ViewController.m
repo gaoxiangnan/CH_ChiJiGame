@@ -69,11 +69,11 @@
     
     [self adaptation];
     
-    [CH_NetWorkManager getWithURLString:@"jdsc.codechm.com" parameters:nil success:^(NSDictionary *data) {
-        
-    } failure:^(NSError *error) {
-        
-    }];
+//    [CH_NetWorkManager getWithURLString:@"jdsc.codechm.com" parameters:nil success:^(NSDictionary *data) {
+//        
+//    } failure:^(NSError *error) {
+//        
+//    }];
     
 }
 #pragma 背景图
