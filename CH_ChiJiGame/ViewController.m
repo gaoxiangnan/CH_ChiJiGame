@@ -335,8 +335,8 @@
         [self creatAlert:@"登录失败，输入手机号"];
     }else
     {
-        
-        [CH_NetWorkManager getWithURLString:@"checkCode" parameters:@{@"token":@"8d1dd9db7d026f38ece40cea86abe92b",@"code":_PassWordtext.text} success:^(NSDictionary *data) {
+        NSString *string = [NSString stringWithFormat:@"miganchuanmei%@",_IDtext.text];
+        [CH_NetWorkManager getWithURLString:@"checkCode" parameters:@{@"token":[NSString md5:string],@"code":_PassWordtext.text} success:^(NSDictionary *data) {
             if ([[data objectForKey:@"code"]isEqualToString:@"200"]) {
                 CH_TeamCreatViewController *chVC = [[CH_TeamCreatViewController alloc]init];
                 [self.navigationController pushViewController:chVC animated:YES];

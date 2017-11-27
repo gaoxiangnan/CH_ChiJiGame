@@ -11,6 +11,6 @@
 
 @interface NSString (Option)
 
-+ (NSString *) md5:(NSString *) input
++ (NSString *) md5:(NSString *) input;
 
 @end
