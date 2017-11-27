@@ -32,4 +32,8 @@ green:((float)((rgbValue & 0x00FF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0x0000FF))/255.0 \
 alpha:alphaValue]//16进制颜色转换
 
-
+#ifdef DEBUG_MODE
+#define NPrintLog(FORMAT, ...) printf("%s:%d\t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#else
+#define NPrintLog(...)
+#endif
