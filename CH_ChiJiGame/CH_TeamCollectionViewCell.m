@@ -86,9 +86,9 @@
 }
 - (void)createTeamPlaceHoldView:(TeamModel *)teamModel
 {
-    NSLog(@"teamModel.team_user is %@",teamModel.team_user);
+    NSLog(@"teamModel.team_user is %@",teamModel.userlist);
     
-    _teamArr = teamModel.team_user;
+    _teamArr = teamModel.userlist;
     
     
     _teamTitleLb = [[UILabel alloc]init];

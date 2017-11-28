@@ -17,11 +17,11 @@
         [self setValuesForKeysWithDictionary:dic];
         //创建一个可变数组加载soldarray
         NSMutableArray *soldArray = [NSMutableArray array];
-        for (NSDictionary *dic in self.team_user) {
+        for (NSDictionary *dic in self.userlist) {
             UserModel *model = [[UserModel alloc]initWithDic:dic];
             [soldArray addObject:model];
         }
-        self.team_user = soldArray;
+        self.userlist = soldArray;
     }
     return self;
 }

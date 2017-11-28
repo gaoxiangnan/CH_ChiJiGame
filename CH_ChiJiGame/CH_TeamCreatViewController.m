@@ -51,9 +51,6 @@ static NSString * const reuseIdentifier = @"cell";
                 TeamModel *teamModel = [[TeamModel alloc]initWithDic:dic];
                 [_teamArr addObject:teamModel];
             }
-//            TeamModel *teamModel = [[TeamModel alloc]init];
-//            NSInteger index = _teamArr.count- 1;
-//            [_teamArr insertObject:teamModel atIndex:index];
             [_collectionView reloadData];
         }
     } failure:^(NSError *error) {
@@ -85,7 +82,6 @@ static NSString * const reuseIdentifier = @"cell";
         _collectionView.showsVerticalScrollIndicator = NO;
         
         [self.collectionView registerClass:[CH_TeamCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-//        [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterView"];
         
         
     }
