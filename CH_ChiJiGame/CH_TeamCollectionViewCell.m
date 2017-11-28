@@ -75,15 +75,15 @@
     
     
 }
-- (void)changeCellOutView:(BOOL)last
+- (void)translateData:(TeamModel *)teamModel changeCellOutView:(BOOL)last
 {
     if (last == YES) {
         [self lastCellViewUpdata];
     }else{
-        [self createTeamPlaceHoldView];
+        [self createTeamPlaceHoldView:teamModel];
     }
 }
-- (void)createTeamPlaceHoldView
+- (void)createTeamPlaceHoldView:(TeamModel *)teamModel
 {
     _teamTitleLb = [[UILabel alloc]init];
     _teamTitleLb.text = @"猎鹰突击小分队";

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TeamModel.h"
 
 @interface CH_TeamCollectionViewCell : UICollectionViewCell
-- (void)changeCellOutView:(BOOL)last;
+- (void)translateData:(TeamModel *)teamModel changeCellOutView:(BOOL)last;
 @end

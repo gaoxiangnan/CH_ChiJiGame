@@ -18,6 +18,7 @@
 @property(nonatomic,strong)UICollectionView *collectionView;
 @property(nonatomic,strong)UILabel *CountDowLabel;
 @property(nonatomic,strong)UIImageView  *CountDimg,*CountDowimg;
+@property (nonatomic, strong) NSMutableArray *teamArr;
 
 
 @end
@@ -26,6 +27,8 @@ static NSString * const reuseIdentifier = @"cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _teamArr = [[NSMutableArray alloc]initWithCapacity:0];
     
     UIImageView *bgImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
     bgImageView.image = [UIImage imageNamed:@"ch_backGroud.png"];
@@ -43,7 +46,12 @@ static NSString * const reuseIdentifier = @"cell";
     [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:nil success:^(NSDictionary *data) {
         NSLog(@"%@",data);
         if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
-            
+            NSArray *dataArr = [data objectForKey:@"data"];
+            for (int i = 0; i < dataArr.count; i++) {
+                TeamModel *teamModel = [[TeamModel alloc]initWithDic:[dataArr objectAtIndex:i]];
+                [_teamArr addObject:teamModel];
+            }
+            [_collectionView reloadData];
         }
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
@@ -164,9 +172,9 @@ static NSString * const reuseIdentifier = @"cell";
     
     CH_TeamCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     if (indexPath.row == 3) {
-        [cell changeCellOutView:YES];
+        [cell translateData:nil changeCellOutView:YES];
     }else{
-        [cell changeCellOutView:NO];
+        [cell translateData:nil changeCellOutView:YES];
     }
     
     
