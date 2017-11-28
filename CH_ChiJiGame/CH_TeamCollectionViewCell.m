@@ -7,6 +7,9 @@
 //
 
 #import "CH_TeamCollectionViewCell.h"
+#import <SDWebImage/UIButton+WebCache.h>
+#import "UserModel.h"
+
 @interface CH_TeamCollectionViewCell()
 @property (nonatomic, strong) UIImageView * imgBgV;
 @property(nonatomic,strong)UIImageView *imgNumV;
@@ -18,7 +21,7 @@
 @property (nonatomic, strong) UIButton *teamAddBtn;
 
 
-@property (nonatomic, strong) NSMutableArray *teamArr;
+@property (nonatomic, strong) NSArray *teamArr;
 
 @end
 @implementation CH_TeamCollectionViewCell
@@ -26,8 +29,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-        _teamArr = [[NSMutableArray alloc]initWithCapacity:0];
         
         _imgBgV = [[UIImageView alloc]initWithFrame:CGRectMake(10, 30, 240, 220)];
         _imgBgV.image = [UIImage imageNamed:@"ch_team_bg"];
@@ -85,8 +86,13 @@
 }
 - (void)createTeamPlaceHoldView:(TeamModel *)teamModel
 {
+    NSLog(@"teamModel.team_user is %@",teamModel.team_user);
+    
+    _teamArr = teamModel.team_user;
+    
+    
     _teamTitleLb = [[UILabel alloc]init];
-    _teamTitleLb.text = @"猎鹰突击小分队";
+    _teamTitleLb.text = teamModel.name;
     _teamTitleLb.textColor = [UIColor yellowColor];
     _teamTitleLb.font = [UIFont systemFontOfSize:17 weight:UIFontWeightBold];
     _teamTitleLb.textAlignment = NSTextAlignmentLeft;
@@ -124,13 +130,15 @@
         [_memberViewBg addSubview:bgMember];
     }
 
+    [self createTeamView:_teamArr];
     
 }
-- (void)createTeamView:(NSMutableArray *)arr
+- (void)createTeamView:(NSArray *)arr
 {
     for (int i = 0; i < arr.count; i++) {
+        UserModel *model = [arr objectAtIndex:i];
         UIButton *memberBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [memberBtn setBackgroundImage:[UIImage imageNamed:@"Image-1"] forState:UIControlStateNormal];
+        [memberBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:model.picurl] forState:UIControlStateNormal];
         memberBtn.frame = CGRectMake(5+45*(i%5), 0+(i/5)*45, 40, 40);
         [_memberViewBg addSubview:memberBtn];
     }
@@ -139,12 +147,9 @@
 }
 - (void)onCreateTeamClick
 {
-    int i = 1;
     if (_teamArr.count > 9) {
         return;
     }
-    [_teamArr addObject:[NSString stringWithFormat:@"%d",i++]];
-    NSLog(@"%ld",_teamArr.count);
     [self createTeamView:_teamArr];
     
 }

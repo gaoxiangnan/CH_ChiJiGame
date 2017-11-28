@@ -47,8 +47,8 @@ static NSString * const reuseIdentifier = @"cell";
         NSLog(@"%@",data);
         if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
             NSArray *dataArr = [data objectForKey:@"data"];
-            for (int i = 0; i < dataArr.count; i++) {
-                TeamModel *teamModel = [[TeamModel alloc]initWithDic:[dataArr objectAtIndex:i]];
+            for (NSDictionary *dic in dataArr) {
+                TeamModel *teamModel = [[TeamModel alloc]initWithDic:dic];
                 [_teamArr addObject:teamModel];
             }
             [_collectionView reloadData];
@@ -156,9 +156,8 @@ static NSString * const reuseIdentifier = @"cell";
 
 -(void)doTimer
 {
-    CH_GameShowViewController *vc = [[CH_GameShowViewController alloc]init];
-    //        [self presentViewController:vc animated:YES completion:nil];
-    [self.navigationController pushViewController:vc animated:YES];
+//    CH_GameShowViewController *vc = [[CH_GameShowViewController alloc]init];
+//    [self.navigationController pushViewController:vc animated:YES];
     [CountDownTimer invalidate];
 }
 -(void)adap
@@ -172,9 +171,9 @@ static NSString * const reuseIdentifier = @"cell";
     
     CH_TeamCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     if (indexPath.row == 3) {
-        [cell translateData:nil changeCellOutView:YES];
+        [cell translateData:[_teamArr objectAtIndex:indexPath.row] changeCellOutView:YES];
     }else{
-        [cell translateData:nil changeCellOutView:YES];
+        [cell translateData:[_teamArr objectAtIndex:indexPath.row] changeCellOutView:NO];
     }
     
     
@@ -189,7 +188,7 @@ static NSString * const reuseIdentifier = @"cell";
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 4;
+    return _teamArr.count;
 }
 
 
