@@ -86,7 +86,6 @@
 }
 - (void)createTeamPlaceHoldView:(TeamModel *)teamModel
 {
-    NSLog(@"teamModel.team_user is %@",teamModel.userlist);
     
     _teamArr = teamModel.userlist;
     

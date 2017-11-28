@@ -42,8 +42,15 @@ static NSString * const reuseIdentifier = @"cell";
     [self.view addSubview:self.CountDowimg];
     [self.view addSubview:self.CountDowLabel];
     [self adap];
-//    [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:@{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:Token] } success:^(NSDictionary *data) {
-    [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:@{@"token":[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]} success:^(NSDictionary *data) {
+    [self updateNetData];
+
+    // Do any additional setup after loading the view.
+}
+- (void)updateNetData
+{
+    [_teamArr removeAllObjects];
+    //    [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:@{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:Token] } success:^(NSDictionary *data) {
+    [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]]} success:^(NSDictionary *data) {
         NSLog(@"%@",data);
         if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
             NSArray *dataArr = [data objectForKey:@"data"];
@@ -51,14 +58,15 @@ static NSString * const reuseIdentifier = @"cell";
                 TeamModel *teamModel = [[TeamModel alloc]initWithDic:dic];
                 [_teamArr addObject:teamModel];
             }
+            TeamModel *teamModel = [[TeamModel alloc]init];
+            NSInteger index = _teamArr.count;
+            [_teamArr insertObject:teamModel atIndex:index];
             [_collectionView reloadData];
         }
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
-    // Do any additional setup after loading the view.
 }
-
 -(UICollectionView *)collectionView
 {
     if (!_collectionView) {
@@ -81,8 +89,7 @@ static NSString * const reuseIdentifier = @"cell";
         _collectionView.dataSource = self;
         _collectionView.showsVerticalScrollIndicator = NO;
         
-        [self.collectionView registerClass:[CH_TeamCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-        
+        [_collectionView registerClass:[CH_TeamCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
         
     }
     return _collectionView;
@@ -197,22 +204,40 @@ static NSString * const reuseIdentifier = @"cell";
     if ((indexPath.row == _teamArr.count - 1)) {
         NSLog(@"点击最后一个cell，执行添加操作");
         
-        //初始化一个新的cell模型；
-        TeamModel *cel = [[TeamModel alloc] init];
+//        //初始化一个新的cell模型；
+//        TeamModel *cel = [[TeamModel alloc] init];
+//        cel.name = @"林更新";
+//        cel.id = [NSString stringWithFormat:@"%ld",_teamArr.count - 1];
+//        cel.userlist = nil;
+//        
+////        //获取当前的cell数组；
+////        self.dataCellArray = sec.cellArray;
+//        
+//        //把新创建的cell插入到最后一个之前；
+//        [_teamArr insertObject:cel atIndex:_teamArr.count - 1];
+//        
+//        NPrintLog(@"%@",_teamArr);
+//        
+//        //更新UI；
+//        [_collectionView reloadData];
+        [self setRoom];
         
-//        //获取当前的cell数组；
-//        self.dataCellArray = sec.cellArray;
-        
-        //把新创建的cell插入到最后一个之前；
-        [_teamArr insertObject:cel atIndex:_teamArr.count - 1];
-        
-        //更新UI；
-        [self.collectionView reloadData];
         
     }else{
         NSLog(@"第%ld个section,点击图片%ld",indexPath.section,indexPath.row);
     }  
     
+}
+- (void)setRoom
+{
+    [CH_NetWorkManager getWithURLString:@"setRoom" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]]} success:^(NSDictionary *data) {
+        NSLog(@"%@",data);
+        if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
+            [self updateNetData];
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 - (CGSize)sizeForChildContentContainer:(nonnull id<UIContentContainer>)container withParentContainerSize:(CGSize)parentSize
 {
