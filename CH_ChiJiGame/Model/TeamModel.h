@@ -12,6 +12,7 @@
 @interface TeamModel : NSObject
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *id;
-@property (nonatomic, copy) UserModel *team_user;
+@property (nonatomic, strong) NSArray *team_user;
+- (instancetype)initWithDic:(NSDictionary *)dic;
 
 @end

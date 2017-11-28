@@ -7,7 +7,22 @@
 //
 
 #import "TeamModel.h"
+#import "UserModel.h"
 
 @implementation TeamModel
-
+- (instancetype)initWithDic:(NSDictionary *)dic
+{
+    self = [super init];
+    if (self) {
+        [self setValuesForKeysWithDictionary:dic];
+        //创建一个可变数组加载soldarray
+        NSMutableArray *soldArray = [NSMutableArray array];
+        for (NSDictionary *dic in self.team_user) {
+            UserModel *model = [[UserModel alloc]initWithDic:dic];
+            [soldArray addObject:model];
+        }
+        self.team_user = soldArray;
+    }
+    return self;
+}
 @end

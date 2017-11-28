@@ -21,5 +21,5 @@
 @property (nonatomic, copy) NSString *uid;
 @property (nonatomic, copy) NSString *uname;
 
-
+- (instancetype)initWithDic:(NSDictionary *)dic;
 @end
