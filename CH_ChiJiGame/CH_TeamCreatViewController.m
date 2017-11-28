@@ -42,8 +42,8 @@ static NSString * const reuseIdentifier = @"cell";
     [self.view addSubview:self.CountDowimg];
     [self.view addSubview:self.CountDowLabel];
     [self adap];
-    
-    [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:nil success:^(NSDictionary *data) {
+//    [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:@{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:Token] } success:^(NSDictionary *data) {
+    [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:@{@"token":[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]} success:^(NSDictionary *data) {
         NSLog(@"%@",data);
         if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
             NSArray *dataArr = [data objectForKey:@"data"];
@@ -51,6 +51,9 @@ static NSString * const reuseIdentifier = @"cell";
                 TeamModel *teamModel = [[TeamModel alloc]initWithDic:dic];
                 [_teamArr addObject:teamModel];
             }
+//            TeamModel *teamModel = [[TeamModel alloc]init];
+//            NSInteger index = _teamArr.count- 1;
+//            [_teamArr insertObject:teamModel atIndex:index];
             [_collectionView reloadData];
         }
     } failure:^(NSError *error) {
@@ -170,7 +173,7 @@ static NSString * const reuseIdentifier = @"cell";
 {
     
     CH_TeamCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    if (indexPath.row == 3) {
+    if (indexPath.row == _teamArr.count - 1) {
         [cell translateData:[_teamArr objectAtIndex:indexPath.row] changeCellOutView:YES];
     }else{
         [cell translateData:[_teamArr objectAtIndex:indexPath.row] changeCellOutView:NO];
@@ -191,7 +194,30 @@ static NSString * const reuseIdentifier = @"cell";
     return _teamArr.count;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
 
+    if ((indexPath.row == _teamArr.count - 1)) {
+        NSLog(@"点击最后一个cell，执行添加操作");
+        
+        //初始化一个新的cell模型；
+        TeamModel *cel = [[TeamModel alloc] init];
+        
+//        //获取当前的cell数组；
+//        self.dataCellArray = sec.cellArray;
+        
+        //把新创建的cell插入到最后一个之前；
+        [_teamArr insertObject:cel atIndex:_teamArr.count - 1];
+        
+        //更新UI；
+        [self.collectionView reloadData];
+        
+    }else{
+        NSLog(@"第%ld个section,点击图片%ld",indexPath.section,indexPath.row);
+    }  
+    
+}
 - (CGSize)sizeForChildContentContainer:(nonnull id<UIContentContainer>)container withParentContainerSize:(CGSize)parentSize
 {
     return CGSizeMake(240, 220);

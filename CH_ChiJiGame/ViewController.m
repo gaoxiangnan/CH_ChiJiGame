@@ -331,6 +331,9 @@
 //    }else
 //    {
 //        NSString *string = [NSString stringWithFormat:@"miganchuanmei%@",_IDtext.text];
+//        
+//        [[NSUserDefaults standardUserDefaults] setObject:string forKey:Token];
+//        
 //        [CH_NetWorkManager getWithURLString:@"checkCode" parameters:@{@"token":[NSString md5:string],@"code":_PassWordtext.text} success:^(NSDictionary *data) {
 //            if ([[data objectForKey:@"code"]isEqualToString:@"200"]) {
 //                CH_TeamCreatViewController *chVC = [[CH_TeamCreatViewController alloc]init];
@@ -349,7 +352,7 @@
 //            
 //        }];
 //    }
-//    
+    
     CH_TeamCreatViewController *chVC = [[CH_TeamCreatViewController alloc]init];
     [self.navigationController pushViewController:chVC animated:YES];
     

@@ -37,3 +37,5 @@ alpha:alphaValue]//16进制颜色转换
 //#else
 //#define NPrintLog(...)
 //#endif
+
+#define Token @"token"
