@@ -138,7 +138,8 @@
     for (int i = 0; i < arr.count; i++) {
         UserModel *model = [arr objectAtIndex:i];
         UIButton *memberBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [memberBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:model.picurl] forState:UIControlStateNormal];
+        [memberBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseURL,model.picurl]] forState:UIControlStateNormal];
+        NPrintLog(@"%@",model.picurl);
         memberBtn.frame = CGRectMake(5+45*(i%5), 0+(i/5)*45, 40, 40);
         [_memberViewBg addSubview:memberBtn];
     }
