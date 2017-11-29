@@ -126,7 +126,6 @@
 {
     if (!_livesNumLb) {
         _livesNumLb = [UILabel new];
-//        _livesNumLb.text = @"场内存活：59";
         _livesNumLb.textColor = [UIColor yellowColor];
         _livesNumLb.textAlignment = NSTextAlignmentLeft;
 //        _livesNumLb.font = [UIFont systemFontOfSize:16 weight:UIFontWeightRegular];
@@ -139,7 +138,6 @@
 {
     if (!_bloodNumLb) {
         _bloodNumLb = [UILabel new];
-        _bloodNumLb.text = @"血量：59/100";
         _bloodNumLb.textColor = [UIColor yellowColor];
         _bloodNumLb.textAlignment = NSTextAlignmentLeft;
         _bloodNumLb.font = [UIFont systemFontOfSize:16 weight:UIFontWeightRegular];
