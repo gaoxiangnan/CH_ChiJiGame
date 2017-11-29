@@ -73,19 +73,7 @@ static NSString * const reuseIdentifier = @"cell";
     //    [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:@{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:Token] } success:^(NSDictionary *data) {
     [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]]} success:^(NSDictionary *data) {
         NSLog(@"%@",data);
-        if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
-            [_teamArr removeAllObjects];
-            NSArray *dataArr = [data objectForKey:@"data"];
-            for (NSDictionary *dic in dataArr) {
-                TeamModel *teamModel = [[TeamModel alloc]initWithDic:dic];
-                [_teamArr addObject:teamModel];
-            }
-            TeamModel *teamModel = [[TeamModel alloc]init];
-            NSInteger index = _teamArr.count;
-            [_teamArr insertObject:teamModel atIndex:index];
-            
-            [_collectionView reloadData];
-        }
+        [self relodDataUpdate:data];
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
@@ -155,31 +143,31 @@ static NSString * const reuseIdentifier = @"cell";
 //倒计时
 -(void) TimerAction:(id)sender
 {
-    //倒计时-1
-    CountDown--;
-    NSString *str_hour = [NSString stringWithFormat:@"%02ld",CountDown/3600];
-    NSString *str_minute = [NSString stringWithFormat:@"%02ld",(CountDown%3600)/60];
-    NSString *str_second = [NSString stringWithFormat:@"%02ld",CountDown%60];
-    NSString *format_time = [NSString stringWithFormat:@"%@:%@:%@",str_hour,str_minute,str_second];
-    //修改倒计时标签现实内容
-    _CountDowLabel.text=[NSString stringWithFormat:@"倒计时   %@",format_time];
-    
-    //当倒计时到0时，做需要的操作，比如验证码过期不能提交
-    if (CountDown == 0) {
-
-    
-    UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"start_game"]];
-    img.frame = self.view.frame;
-    img.backgroundColor = [UIColor colorWithRed:16/225.0f green:16/225.0f blue:16/225.0f alpha:.6f];
-    [self.view addSubview:img];
-        
-    [CountDownTimer invalidate];
-    //中断后重新开始计时
-    CountDownTimer = nil;//实际测试中，不置nil也正常运行，还是保持规范性
-    CountDownTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(doTimer) userInfo:nil repeats:NO];
-        [[NSRunLoop mainRunLoop] addTimer:CountDownTimer forMode:NSDefaultRunLoopMode];
-    
-    }
+//    //倒计时-1
+//    CountDown--;
+//    NSString *str_hour = [NSString stringWithFormat:@"%02ld",CountDown/3600];
+//    NSString *str_minute = [NSString stringWithFormat:@"%02ld",(CountDown%3600)/60];
+//    NSString *str_second = [NSString stringWithFormat:@"%02ld",CountDown%60];
+//    NSString *format_time = [NSString stringWithFormat:@"%@:%@:%@",str_hour,str_minute,str_second];
+//    //修改倒计时标签现实内容
+//    _CountDowLabel.text=[NSString stringWithFormat:@"倒计时   %@",format_time];
+//    
+//    //当倒计时到0时，做需要的操作，比如验证码过期不能提交
+//    if (CountDown == 0) {
+//
+//    
+//    UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"start_game"]];
+//    img.frame = self.view.frame;
+//    img.backgroundColor = [UIColor colorWithRed:16/225.0f green:16/225.0f blue:16/225.0f alpha:.6f];
+//    [self.view addSubview:img];
+//        
+//    [CountDownTimer invalidate];
+//    //中断后重新开始计时
+//    CountDownTimer = nil;//实际测试中，不置nil也正常运行，还是保持规范性
+//    CountDownTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(doTimer) userInfo:nil repeats:NO];
+//        [[NSRunLoop mainRunLoop] addTimer:CountDownTimer forMode:NSDefaultRunLoopMode];
+//    
+//    }
     
 }
 
@@ -254,12 +242,29 @@ static NSString * const reuseIdentifier = @"cell";
 {
     [CH_NetWorkManager getWithURLString:@"setRoom" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]]} success:^(NSDictionary *data) {
         NSLog(@"%@",data);
-        if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
-            [self updateNetData];
-        }
+        [self relodDataUpdate:data];
+        
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
+}
+- (void)relodDataUpdate:(NSDictionary *)dic
+{
+    NPrintLog(@"%@",dic);
+    if ([[dic objectForKey:@"code"] isEqualToString:@"200"]) {
+        [_teamArr removeAllObjects];
+        NSArray *dataArr = [dic objectForKey:@"data"];
+        for (NSDictionary *dic in dataArr) {
+            TeamModel *teamModel = [[TeamModel alloc]initWithDic:dic];
+            [_teamArr addObject:teamModel];
+        }
+        TeamModel *teamModel = [[TeamModel alloc]init];
+        NSInteger index = _teamArr.count;
+        [_teamArr insertObject:teamModel atIndex:index];
+        
+        [_collectionView reloadData];
+        
+    }
 }
 - (CGSize)sizeForChildContentContainer:(nonnull id<UIContentContainer>)container withParentContainerSize:(CGSize)parentSize
 {

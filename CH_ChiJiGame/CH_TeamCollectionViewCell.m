@@ -85,6 +85,7 @@
 }
 - (void)translateData:(TeamModel *)teamModel changeCellOutView:(BOOL)last
 {
+    
     if (last == YES) {
         _teamAddBtn.hidden = NO;
         _teamCreatLb.hidden = NO;
@@ -155,6 +156,7 @@
 }
 - (void)createTeamView:(NSArray *)arr
 {
+    NPrintLog(@"%@",arr);
     if (arr.count > 0) {
         for (int i = 0; i < arr.count; i++) {
             UserModel *model = [arr objectAtIndex:i];
