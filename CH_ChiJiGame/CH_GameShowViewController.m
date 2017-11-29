@@ -20,6 +20,7 @@
 {
     NSInteger _touchCount;
     NSTimer *Timer;
+    dispatch_source_t _timer;
 }
 
 @property (strong,nonatomic) MAMapView *mapView;
@@ -33,6 +34,8 @@
 
 @property (nonatomic,strong) CH_MemberMessView *memberMes;
 @property (nonatomic,strong) CH_TeamMesView *teamMes;
+
+@property (nonatomic, strong) NSMutableArray *circleArr;
 @end
 
 @implementation CH_GameShowViewController
@@ -40,6 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _touchCount = 0;
+    _circleArr = [[NSMutableArray alloc]initWithCapacity:0];
     
     _mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
     _mapView.delegate  = self;
@@ -59,7 +63,13 @@
     ///把地图添加至view
     [self.view addSubview:_mapView];
     
-//    [self safetyCircleUpdate];
+    [self safetyCircleUpdate];
+    
+    //固定范围
+    PointModel *model1 = [[PointModel alloc]initWithDic:@{@"point":@"116.669052,40.28629",@"radius":@"400"}];
+    CLLocationCoordinate2D Cllo = CLLocationCoordinate2DMake( [model1.lat floatValue],[model1.lng floatValue]);
+    MACircle *circle = [MACircle circleWithCenterCoordinate:Cllo radius:[model1.radius floatValue]];
+    [self.mapView setVisibleMapRect:circle.boundingMapRect];
     
 //初始化安全区域
     [self safetyCircleArea];
@@ -73,7 +83,7 @@
     __weak typeof(self) weakSelf = self;
     _teamMes = [[CH_TeamMesView alloc]initWithFrame:CGRectMake(0, kWindowH - (kWindowH*85/375), kWindowW, (kWindowH*85/375))];
     _teamMes.sleuthBlock = ^(){
-       
+        
         UIImageView *img= [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"shengli"]];
         img.frame = weakSelf.view.frame;
         img.backgroundColor = [UIColor colorWithRed:16/225.0f green:16/225.0f blue:16/225.0f alpha:.6f];
@@ -97,47 +107,80 @@
     
     
     [self addCircleReionForCoordinateCurrent:modelCur future:modelFut];
+    
+    [self start];
 }
-//- (void)safetyCircleUpdate
-//{
-//    [CH_NetWorkManager getWithURLString:@"plan/lun_suo_circle" parameters:nil success:^(NSDictionary *data) {
-//        NPrintLog(@"%@",data);
-//        if ([[data objectForKey:@"code"]isEqualToString:@"200"]) {
-//            NSString *locaString = [[data objectForKey:@"circle"] objectForKey:@"point"];
-//            NSArray *arr = [locaString componentsSeparatedByString:@","];
-//            double lat = (double)[[arr firstObject] doubleValue];
-//            double lng = (double)[[arr lastObject] doubleValue];
-//            double radius = (double)[[[data objectForKey:@"circle"] objectForKey:@"radius"] doubleValue];
-//            MACircle *cicrle = [MACircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(lng, lat) radius:radius];
-//            [_mapView addOverlay: cicrle];
-////            [self addCircleReionForCoordinate:coordinate2D];
-//        }
-//        
-//        
-//        
-//    } failure:^(NSError *error) {
-//        
-//    }];
-//}
+- (void)safetyCircleUpdate
+{
+    [CH_NetWorkManager getWithURLString:@"plan/lun_suo_circle" parameters:nil success:^(NSDictionary *data) {
+        if ([[data objectForKey:@"code"]isEqualToString:@"200"]) {
+            NPrintLog(@"%@",data);
+            [_circleArr removeAllObjects];
+            NSArray *circleArr = [[data objectForKey:@"data"] objectForKey:@"circle"];
+            
+            
+            for (NSDictionary *dic in circleArr) {
+                PointModel *model = [[PointModel alloc]initWithDic:dic];
+                [_circleArr addObject:model];
+            }
+            
+            if (circleArr.count > 1) {
+                [self addCircleReionForCoordinateCurrent:[_circleArr firstObject] future:[_circleArr lastObject]];
+            }else{
+                [self addCircleReionForCoordinateCurrent:[_circleArr firstObject] future:nil];
+                dispatch_source_cancel(_timer);
+            }
+            
+        }  
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+- (void)start
+{
+    // GCD定时器
+    //    static dispatch_source_t _timer;
+    NSTimeInterval period = 1.0; //设置时间间隔
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), period * NSEC_PER_SEC, 0); //每秒执行
+    // 事件回调
+    dispatch_source_set_event_handler(_timer, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self safetyCircleUpdate];
+        });
+    });
+    
+    // 开启定时器
+    dispatch_resume(_timer);
+}
+
 
 - (void)addCircleReionForCoordinateCurrent:(PointModel *)CurModel future:(PointModel *)FutModel
 {
+    
+    [self.mapView removeOverlays:self.mapView.overlays];
+    
     
     CLLocationCoordinate2D currentCllo = CLLocationCoordinate2DMake( [CurModel.lat floatValue],[CurModel.lng floatValue]);
     CLLocationCoordinate2D futureCllo = CLLocationCoordinate2DMake( [FutModel.lat floatValue],[FutModel.lng floatValue]);
     
     //创建圆形地理围栏
-    AMapLocationCircleRegion *cirRegion200 = [[AMapLocationCircleRegion alloc] initWithCenter:currentCllo radius:[CurModel.radius floatValue] identifier:@"circleRegion200"];
+    AMapLocationCircleRegion *currentCirRegion = [[AMapLocationCircleRegion alloc] initWithCenter:currentCllo radius:[CurModel.radius floatValue] identifier:@"circleRegion200"];
     
-    AMapLocationCircleRegion *cirRegion300 = [[AMapLocationCircleRegion alloc] initWithCenter:futureCllo radius:[FutModel.radius floatValue] identifier:@"circleRegion300"];
+    AMapLocationCircleRegion *futureCirRegion = [[AMapLocationCircleRegion alloc] initWithCenter:futureCllo radius:[FutModel.radius floatValue] identifier:@"circleRegion300"];
+    
+    NPrintLog(@"CurModel is %f",[CurModel.radius floatValue]);
+    NPrintLog(@"FutModel is%f",[FutModel.radius floatValue]);
     
     //添加地理围栏
-    [self.locationManager startMonitoringForRegion:cirRegion200];
-    [self.locationManager startMonitoringForRegion:cirRegion300];
+    [self.locationManager startMonitoringForRegion:currentCirRegion];
+    [self.locationManager startMonitoringForRegion:futureCirRegion];
     
     //保存地理围栏
-    [self.regions addObject:cirRegion200];
-    [self.regions addObject:cirRegion300];
+    [self.regions addObject:currentCirRegion];
+    [self.regions addObject:futureCirRegion];
     
     //添加地理围栏对应的Overlay，方便查看
     MACircle *circle200 = [MACircle circleWithCenterCoordinate:currentCllo radius:[CurModel.radius floatValue]];
@@ -147,7 +190,10 @@
     [self.mapView addOverlay:circle200];
     [self.mapView addOverlay:circle300];
     
-    [self.mapView setVisibleMapRect:circle200.boundingMapRect];
+    
+    
+//    NPrintLog(@"%ld",self.mapView.overlays.count);
+
 }
 
 -(void)doTimer
@@ -163,8 +209,7 @@
         
         CLLocationCoordinate2D coordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
         _currentCoordinate = coordinate2D;
-        NPrintLog(@"%@",[data objectForKey:@"data"]);
-        NPrintLog(@"%@",[data objectForKey:@"message"]);
+//        NPrintLog(@"%@",[data objectForKey:@"data"]);
     } failure:^(NSError *error) {
         
     }];
@@ -209,7 +254,6 @@
             _teamMes.frame = CGRectMake(0, kWindowH - (kWindowH*85/375), kWindowW, (kWindowH*85/375));
         }];
     }
-    NSLog(@"我点击了地图 %ld",_touchCount);
 }
 
 
