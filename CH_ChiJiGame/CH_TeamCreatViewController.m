@@ -72,7 +72,6 @@ static NSString * const reuseIdentifier = @"cell";
     
     //    [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:@{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:Token] } success:^(NSDictionary *data) {
     [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]]} success:^(NSDictionary *data) {
-        NSLog(@"%@",data);
         [self relodDataUpdate:data];
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
@@ -187,6 +186,14 @@ static NSString * const reuseIdentifier = @"cell";
 {
     
     CH_TeamCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    cell.changeTeam = ^(NSString *teamId) {
+        [CH_NetWorkManager getWithURLString:@"changeTeam" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]],@"team":teamId} success:^(NSDictionary *data) {
+            [self relodDataUpdate:data];
+            
+        } failure:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
+    };
     if (indexPath.row == _teamArr.count - 1) {
         [cell translateData:[_teamArr objectAtIndex:indexPath.row] changeCellOutView:YES];
     }else{
@@ -241,7 +248,6 @@ static NSString * const reuseIdentifier = @"cell";
 - (void)setRoom
 {
     [CH_NetWorkManager getWithURLString:@"setRoom" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]]} success:^(NSDictionary *data) {
-        NSLog(@"%@",data);
         [self relodDataUpdate:data];
         
     } failure:^(NSError *error) {

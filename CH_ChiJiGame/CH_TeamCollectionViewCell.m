@@ -151,7 +151,6 @@
 }
 - (void)createTeamView:(NSArray *)arr
 {
-    NPrintLog(@"%@",arr);
     
     [_memberViewBg.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
