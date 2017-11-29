@@ -7,6 +7,8 @@
 //
 
 #import "CH_MemberMessView.h"
+#import "UIImageView+WebCache.h"
+
 @interface CH_MemberMessView()
 @property (nonatomic, strong) UIImageView *headerBgImgV;
 @property (nonatomic, strong) UIButton *headerImgBtn;
@@ -31,6 +33,7 @@
     [self addSubview:self.headerBgImgV];
     [_headerBgImgV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.mas_equalTo(self).mas_offset(5);
+        make.width.height.mas_equalTo(70);
     }];
     
     [self addSubview:self.headerImgBtn];
@@ -150,6 +153,8 @@
     _memberNameLb.text = [[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"uname"];
     _bloodNumLb.text = [NSString stringWithFormat:@"血量：%@/100",[[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"health"]];//@"血量：59/100";
     NSString *livesNumStr = [NSString stringWithFormat:@"场内存活：%@",[[dic objectForKey:@"data"] objectForKey:@"people"]];//@"场内存活：59";
+    
+    [_headerBgImgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseURL,[[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"picurl"]]] placeholderImage:[UIImage imageNamed:@"Image-1"]];
     
     NSMutableAttributedString *attrS = [[NSMutableAttributedString alloc]initWithString:livesNumStr];
     [attrS addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:18 weight:UIFontWeightSemibold] range:NSMakeRange(5, 2)];
