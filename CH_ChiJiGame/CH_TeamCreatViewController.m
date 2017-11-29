@@ -9,11 +9,13 @@
 #import "CH_TeamCreatViewController.h"
 #import "CH_TeamCollectionViewCell.h"
 #import "CH_GameShowViewController.h"
+#import<libkern/OSAtomic.h>
 
 @interface CH_TeamCreatViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
     NSInteger CountDown;
     NSTimer *CountDownTimer;
+    dispatch_source_t _timer;
 }
 @property(nonatomic,strong)UICollectionView *collectionView;
 @property(nonatomic,strong)UILabel *CountDowLabel;
@@ -28,6 +30,7 @@ static NSString * const reuseIdentifier = @"cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self start];
     [self updateNetData];
     
     _teamArr = [[NSMutableArray alloc]initWithCapacity:0];
@@ -64,9 +67,30 @@ static NSString * const reuseIdentifier = @"cell";
     [self.view addSubview:self.CountDowLabel];
     [self adap];
     
-
+    
+    
     // Do any additional setup after loading the view.
 }
+- (void)start
+{
+    // GCD定时器
+//    static dispatch_source_t _timer;
+    NSTimeInterval period = 4.0; //设置时间间隔
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), period * NSEC_PER_SEC, 0); //每秒执行
+    // 事件回调
+    dispatch_source_set_event_handler(_timer, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self updateNetData];
+            NSLog(@"Count");
+        });
+    });
+    
+    // 开启定时器
+    dispatch_resume(_timer);
+}
+
 - (void)updateNetData
 {
     
@@ -77,33 +101,7 @@ static NSString * const reuseIdentifier = @"cell";
         NSLog(@"%@",error);
     }];
 }
-//-(UICollectionView *)collectionView
-//{
-//    if (!_collectionView) {
-//        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
-//        
-//        flowLayout.itemSize = CGSizeMake(240, 250);
-//        
-//        [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-//        
-//        flowLayout.minimumLineSpacing = 10;
-//        
-//        flowLayout.minimumInteritemSpacing = 0;
-//        
-////        flowLayout.footerReferenceSize = CGSizeMake(240, 250);
-//        
-//        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 70, self.view.frame.size.width, 270) collectionViewLayout:flowLayout];
-//        
-//        _collectionView.backgroundColor = [UIColor clearColor];
-//        _collectionView.delegate = self;
-//        _collectionView.dataSource = self;
-//        _collectionView.showsVerticalScrollIndicator = NO;
-//        
-//        [_collectionView registerClass:[CH_TeamCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-//        
-//    }
-//    return _collectionView;
-//}
+
 -(UILabel *)CountDowLabel
 {
     if (!_CountDowLabel) {
@@ -172,6 +170,7 @@ static NSString * const reuseIdentifier = @"cell";
 
 -(void)doTimer
 {
+    dispatch_source_cancel(_timer);
 //    CH_GameShowViewController *vc = [[CH_GameShowViewController alloc]init];
 //    [self.navigationController pushViewController:vc animated:YES];
     [CountDownTimer invalidate];
@@ -187,7 +186,9 @@ static NSString * const reuseIdentifier = @"cell";
     
     CH_TeamCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.changeTeam = ^(NSString *teamId) {
+        dispatch_source_cancel(_timer);
         [CH_NetWorkManager getWithURLString:@"changeTeam" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]],@"team":teamId} success:^(NSDictionary *data) {
+            dispatch_resume(_timer);
             [self relodDataUpdate:data];
             
         } failure:^(NSError *error) {
@@ -240,6 +241,7 @@ static NSString * const reuseIdentifier = @"cell";
         [self setRoom];
         
         
+        
     }else{
         NSLog(@"第%ld个section,点击图片%ld",indexPath.section,indexPath.row);
     }  
@@ -247,7 +249,9 @@ static NSString * const reuseIdentifier = @"cell";
 }
 - (void)setRoom
 {
+    dispatch_source_cancel(_timer);
     [CH_NetWorkManager getWithURLString:@"setRoom" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]]} success:^(NSDictionary *data) {
+        dispatch_resume(_timer);
         [self relodDataUpdate:data];
         
     } failure:^(NSError *error) {
