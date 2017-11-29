@@ -14,6 +14,7 @@
 #import "LLRadarView.h"
 #import <AMapNaviKit/AMapNaviKit.h>
 #import "CH_VictoryViewController.h"
+#import "PointModel.h"
 
 @interface CH_GameShowViewController ()<MAMapViewDelegate,AMapLocationManagerDelegate>
 {
@@ -52,14 +53,16 @@
     [self.locationManager startUpdatingLocation];
 
     NSString *path = [NSString stringWithFormat:@"%@/mystyle_sdk_1511329093_0100.data", [NSBundle mainBundle].bundlePath];
-    NSLog(@"%@",[NSBundle mainBundle].bundlePath);
     NSData *data = [NSData dataWithContentsOfFile:path];
     [_mapView setCustomMapStyleWithWebData:data];
     [_mapView setCustomMapStyleEnabled:YES];
     ///把地图添加至view
     [self.view addSubview:_mapView];
     
-    [self safetyCircleUpdate];
+//    [self safetyCircleUpdate];
+    
+//初始化安全区域
+    [self safetyCircleArea];
     
 //地图上的View
     _memberMes = [[CH_MemberMessView alloc]initWithFrame:CGRectMake(10, 10, kWindowW-20, 75)];
@@ -86,38 +89,47 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)safetyCircleUpdate
+//初始化安全区
+- (void)safetyCircleArea
 {
-    [CH_NetWorkManager getWithURLString:@"plan/lun_suo_circle" parameters:nil success:^(NSDictionary *data) {
-        NPrintLog(@"%@",data);
-        if ([[data objectForKey:@"code"]isEqualToString:@"200"]) {
-            NSString *locaString = [[data objectForKey:@"circle"] objectForKey:@"point"];
-            NSArray *arr = [locaString componentsSeparatedByString:@","];
-            double lat = (double)[[arr firstObject] doubleValue];
-            double lng = (double)[[arr lastObject] doubleValue];
-            double radius = (double)[[[data objectForKey:@"circle"] objectForKey:@"radius"] doubleValue];
-            MACircle *cicrle = [MACircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(lng, lat) radius:radius];
-            [_mapView addOverlay: cicrle];
-//            [self addCircleReionForCoordinate:coordinate2D];
-        }
-        
-        
-        
-    } failure:^(NSError *error) {
-        
-    }];
-}
-
-- (void)addCircleReionForCoordinate:(CLLocationCoordinate2D)coordinate
-{
-    //创建圆形地理围栏
-    AMapLocationCircleRegion *cirRegion200 = [[AMapLocationCircleRegion alloc] initWithCenter:coordinate
-                                                                                       radius:200.0
-                                                                                   identifier:@"circleRegion200"];
+    PointModel *modelCur = [_pointArr firstObject];
+    PointModel *modelFut = [_pointArr lastObject];
     
-    AMapLocationCircleRegion *cirRegion300 = [[AMapLocationCircleRegion alloc] initWithCenter:coordinate
-                                                                                       radius:300.0
-                                                                                   identifier:@"circleRegion300"];
+    
+    [self addCircleReionForCoordinateCurrent:modelCur future:modelFut];
+}
+//- (void)safetyCircleUpdate
+//{
+//    [CH_NetWorkManager getWithURLString:@"plan/lun_suo_circle" parameters:nil success:^(NSDictionary *data) {
+//        NPrintLog(@"%@",data);
+//        if ([[data objectForKey:@"code"]isEqualToString:@"200"]) {
+//            NSString *locaString = [[data objectForKey:@"circle"] objectForKey:@"point"];
+//            NSArray *arr = [locaString componentsSeparatedByString:@","];
+//            double lat = (double)[[arr firstObject] doubleValue];
+//            double lng = (double)[[arr lastObject] doubleValue];
+//            double radius = (double)[[[data objectForKey:@"circle"] objectForKey:@"radius"] doubleValue];
+//            MACircle *cicrle = [MACircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(lng, lat) radius:radius];
+//            [_mapView addOverlay: cicrle];
+////            [self addCircleReionForCoordinate:coordinate2D];
+//        }
+//        
+//        
+//        
+//    } failure:^(NSError *error) {
+//        
+//    }];
+//}
+
+- (void)addCircleReionForCoordinateCurrent:(PointModel *)CurModel future:(PointModel *)FutModel
+{
+    
+    CLLocationCoordinate2D currentCllo = CLLocationCoordinate2DMake( [CurModel.lat floatValue],[CurModel.lng floatValue]);
+    CLLocationCoordinate2D futureCllo = CLLocationCoordinate2DMake( [FutModel.lat floatValue],[FutModel.lng floatValue]);
+    
+    //创建圆形地理围栏
+    AMapLocationCircleRegion *cirRegion200 = [[AMapLocationCircleRegion alloc] initWithCenter:currentCllo radius:[CurModel.radius floatValue] identifier:@"circleRegion200"];
+    
+    AMapLocationCircleRegion *cirRegion300 = [[AMapLocationCircleRegion alloc] initWithCenter:futureCllo radius:[FutModel.radius floatValue] identifier:@"circleRegion300"];
     
     //添加地理围栏
     [self.locationManager startMonitoringForRegion:cirRegion200];
@@ -128,14 +140,14 @@
     [self.regions addObject:cirRegion300];
     
     //添加地理围栏对应的Overlay，方便查看
-    MACircle *circle200 = [MACircle circleWithCenterCoordinate:coordinate radius:200.0];
+    MACircle *circle200 = [MACircle circleWithCenterCoordinate:currentCllo radius:[CurModel.radius floatValue]];
     circle200.title = @"currentSafety";
-    MACircle *circle300 = [MACircle circleWithCenterCoordinate:coordinate radius:300.0];
+    MACircle *circle300 = [MACircle circleWithCenterCoordinate:futureCllo radius:[FutModel.radius floatValue]];
     circle300.title = @"futureSafety";
     [self.mapView addOverlay:circle200];
     [self.mapView addOverlay:circle300];
     
-    [self.mapView setVisibleMapRect:circle300.boundingMapRect];
+    [self.mapView setVisibleMapRect:circle200.boundingMapRect];
 }
 
 -(void)doTimer
@@ -171,10 +183,10 @@
         MACircleRenderer *circleRenderer = [[MACircleRenderer alloc] initWithCircle:overlay];
         circleRenderer.lineWidth    = 5.f;
         if ([overlay.title isEqualToString:@"currentSafety"]) {
-            circleRenderer.strokeColor  = [UIColor redColor];//圈的颜色
+            circleRenderer.strokeColor  = [UIColor blueColor];//圈的颜色
             circleRenderer.fillColor    = [UIColor colorWithRed:0 green:0 blue:0.0 alpha:0.3];//填充颜色
         }else{
-            circleRenderer.strokeColor  = [UIColor blueColor];//圈的颜色
+            circleRenderer.strokeColor  = [UIColor redColor];//圈的颜色
             circleRenderer.fillColor    = [UIColor colorWithRed:0 green:0 blue:0.0 alpha:0.3];//填充颜色
         }
         return circleRenderer;
