@@ -109,7 +109,9 @@ static NSString * const reuseIdentifier = @"cell";
 {
     if (!_CountDowLabel) {
         _CountDowLabel = [[UILabel alloc]init];
-        CountDown = 5;// 倒计时秒数
+        CountDown = _piontSecond;// 倒计时秒数
+        
+        
         CountDownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(TimerAction:) userInfo:nil repeats:YES];
         NSString *str_hour = [NSString stringWithFormat:@"%02ld",CountDown/3600];//时
         NSString *str_minute = [NSString stringWithFormat:@"%02ld",(CountDown%3600)/60];//分

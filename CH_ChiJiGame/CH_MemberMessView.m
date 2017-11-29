@@ -147,8 +147,7 @@
 - (void)updateMemberData:(NSDictionary *)dic
 {
     NPrintLog(@"%@",dic);
-    NSDictionary *dict = [dic objectForKey:@"data"];
-    if (!dict) {
+    if ([[dic objectForKey:@"data"] length] == 0) {
         
     }else{
         _teamNameLb.text = [[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"team_name"];

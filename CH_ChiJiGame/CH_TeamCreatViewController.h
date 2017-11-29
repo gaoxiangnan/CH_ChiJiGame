@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface CH_TeamCreatViewController : BaseViewController
-
+@property(nonatomic,assign)NSInteger piontSecond;
 @end

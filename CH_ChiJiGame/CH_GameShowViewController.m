@@ -85,7 +85,7 @@
     _memberMes.alpha = 0.5;
     [self.view addSubview:_memberMes];
 //地图下的View
-    __weak typeof(self) weakSelf = self;
+//    __weak typeof(self) weakSelf = self;
     _teamMes = [[CH_TeamMesView alloc]initWithFrame:CGRectMake(0, kWindowH - (kWindowH*85/375), kWindowW, (kWindowH*85/375))];
     _teamMes.sleuthBlock = ^(){
         
@@ -212,40 +212,43 @@
 }
 -(void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location{
     //输出的是模拟器的坐标
-    NPrintLog(@"-=-=-=-=-==%f %f",location.coordinate.latitude,location.coordinate.longitude);
     [CH_NetWorkManager postWithURLString:@"plan/setCoordinate" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]],@"lng":[NSString stringWithFormat:@"%f",location.coordinate.longitude],@"lat":[NSString stringWithFormat:@"%f",location.coordinate.latitude]} success:^(NSDictionary *data) {
         [_memberMes updateMemberData:data];
         CLLocationCoordinate2D coordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
         _currentCoordinate = coordinate2D;
         NPrintLog(@"%@",data);
-        
-        NSArray *playerArr = [[data objectForKey:@"data"] objectForKey:@"list"];
-        NSMutableArray *coordinates = [NSMutableArray array];
-        
-        [_playerArr removeAllObjects];
-        for (NSDictionary *dic in playerArr) {
+        if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
+            NSArray *playerArr = [[data objectForKey:@"data"] objectForKey:@"list"];
+            NSMutableArray *coordinates = [NSMutableArray array];
             
-            PlayerModel *model = [[PlayerModel alloc] initWithDic:dic];
-            [_playerArr addObject:model];
-            CLLocationCoordinate2D coor = CLLocationCoordinate2DMake([model.lat doubleValue], [model.lng doubleValue]);
-            MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
-            pointAnnotation.coordinate = coor;
-        
-            [pointAnnotation setTitle:[NSString stringWithFormat:@"%@", @"1"]];
-            [pointAnnotation setSubtitle:[NSString stringWithFormat:@"%@", @"2"]];
+            [_playerArr removeAllObjects];
+            for (NSDictionary *dic in playerArr) {
+                
+                PlayerModel *model = [[PlayerModel alloc] initWithDic:dic];
+                [_playerArr addObject:model];
+                CLLocationCoordinate2D coor = CLLocationCoordinate2DMake([model.lat doubleValue], [model.lng doubleValue]);
+                MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
+                pointAnnotation.coordinate = coor;
+                
+                [pointAnnotation setTitle:[NSString stringWithFormat:@"%@", @"1"]];
+                [pointAnnotation setSubtitle:[NSString stringWithFormat:@"%@", @"2"]];
+                
+                [coordinates addObject:pointAnnotation];
+                
+                //将大头针添加到地图中
+                //        [self.mapView addAnnotation:pointAnnotation];
+                
+                //默认选中气泡
+                //        [self.mapView selectAnnotation:pointAnnotation animated:YES];
+                
+            }
+            [self.mapView addAnnotations:coordinates];
             
-            [coordinates addObject:pointAnnotation];
-        
-        //将大头针添加到地图中
-//        [self.mapView addAnnotation:pointAnnotation];
-        
-        //默认选中气泡
-//        [self.mapView selectAnnotation:pointAnnotation animated:YES];
-            
+            [_teamMes updatePlayerLives:_playerArr];
+        }else{
+            [self.locationManager stopUpdatingLocation];
         }
-        [self.mapView addAnnotations:coordinates];
         
-        [_teamMes updatePlayerLives:_playerArr];
     } failure:^(NSError *error) {
         
     }];
@@ -348,14 +351,7 @@
                 
                 [alert addAction:ac];
                 [self presentViewController:alert animated:YES completion:nil];
-                
-               
-                
-                
-                
-                
-                
-                
+                         
             }
         } failure:^(NSError *error) {
             

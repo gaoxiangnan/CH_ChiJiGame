@@ -12,6 +12,9 @@
 #import "AppDelegate.h"
 
 @interface ViewController ()<UITextFieldDelegate>
+{
+    NSInteger seconds;
+}
 #pragma 背景图
 @property(nonatomic,strong)UIImageView *backgroundimg,*backGround;
 #pragma 图标
@@ -272,7 +275,7 @@
                     
                 }else{
                     
-                    int seconds = time % 60;
+                    __block int seconds = time % 60;
                     dispatch_async(dispatch_get_main_queue(), ^{
                         
                         //设置按钮显示读秒效果
@@ -326,32 +329,56 @@
 
 -(void)LoginBtnAction
 {
-//    if (_IDtext.text.length ==0) {
-//        [self creatAlert:@"登录失败，输入手机号"];
-//    }else
-//    {
-//        NSString *string = [NSString stringWithFormat:@"miganchuanmei%@",_IDtext.text];
-//        
-//        [[NSUserDefaults standardUserDefaults] setObject:string forKey:Token];
-//        
-//        [CH_NetWorkManager getWithURLString:@"checkCode" parameters:@{@"token":[NSString md5:string],@"code":_PassWordtext.text} success:^(NSDictionary *data) {
-//            if ([[data objectForKey:@"code"]isEqualToString:@"200"]) {
-//                CH_TeamCreatViewController *chVC = [[CH_TeamCreatViewController alloc]init];
-//                [self.navigationController pushViewController:chVC animated:YES];
-//                NSLog(@"%@",[data objectForKey:@"message"]);
-//                NSLog(@"%@",data);
-//            }else
-//            {
-//                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:[data objectForKey:@"message"] preferredStyle:UIAlertControllerStyleAlert];
-//                UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//                }];
-//                [alert addAction:action];
-//                [self presentViewController:alert animated:YES completion:nil];
-//            }
-//        } failure:^(NSError *error) {
-//            
-//        }];
-//    }
+    if (_IDtext.text.length ==0) {
+        [self creatAlert:@"登录失败，输入手机号"];
+    }else
+    {
+        NSString *string = [NSString stringWithFormat:@"miganchuanmei%@",_IDtext.text];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:string forKey:Token];
+        
+        [CH_NetWorkManager getWithURLString:@"checkCode" parameters:@{@"token":[NSString md5:string],@"code":_PassWordtext.text} success:^(NSDictionary *data) {
+            if ([[data objectForKey:@"code"]isEqualToString:@"200"]) {
+                //获取当前时间戳
+                NSDate *date = [NSDate date];
+                NSString *string = [NSString stringWithFormat:@"%ld",(long)[date timeIntervalSince1970]];
+                NSString *endTimestamp = [NSString stringWithFormat:@"%@",[[data objectForKey:@"data"]objectForKey:@"match_start_time"]];
+                
+                
+                NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateStyle:NSDateFormatterMediumStyle];
+                [formatter setTimeStyle:NSDateFormatterShortStyle];
+                [formatter setDateFormat:@"yyyy-MM-dd-HH:MM:ss"];//@"yyyy-MM-dd-HHMMss"
+                
+                NSDate* beginDate = [NSDate dateWithTimeIntervalSince1970:[string doubleValue]];
+                NSString *dateString = [formatter stringFromDate:beginDate];
+                NSLog(@"开始时间: %@", dateString);
+                
+                NSDate *endDate = [NSDate dateWithTimeIntervalSince1970:[endTimestamp doubleValue]];
+                NSString *dateString2 = [formatter stringFromDate:endDate];
+                NSLog(@"结束时间: %@", dateString2);
+                
+                seconds = [date timeIntervalSinceDate:endDate];
+                NSLog(@"两个时间相隔：%ld", (long)seconds);
+                
+                CH_TeamCreatViewController *chVC = [[CH_TeamCreatViewController alloc]init];
+                chVC.piontSecond = seconds;
+                [self.navigationController pushViewController:chVC animated:YES];
+                
+                NSLog(@"%@",[data objectForKey:@"message"]);
+                NSLog(@"%@",data);
+            }else
+            {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:[data objectForKey:@"message"] preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                }];
+                [alert addAction:action];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+        } failure:^(NSError *error) {
+            
+        }];
+    }
     
     CH_TeamCreatViewController *chVC = [[CH_TeamCreatViewController alloc]init];
     [self.navigationController pushViewController:chVC animated:YES];
