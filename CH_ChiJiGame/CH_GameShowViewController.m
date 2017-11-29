@@ -113,8 +113,16 @@
 }
 -(void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location{
     //输出的是模拟器的坐标
-    CLLocationCoordinate2D coordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
-    _currentCoordinate = coordinate2D;
+    
+    [CH_NetWorkManager postWithURLString:@"plan/setCoordinate" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]],@"lng":[NSString stringWithFormat:@"%f",location.coordinate.longitude],@"lat":[NSString stringWithFormat:@"%f",location.coordinate.latitude]} success:^(NSDictionary *data) {
+        CLLocationCoordinate2D coordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+        _currentCoordinate = coordinate2D;
+        NPrintLog(@"%@",[data objectForKey:@"data"]);
+        NPrintLog(@"%@",[data objectForKey:@"message"]);
+    } failure:^(NSError *error) {
+        
+    }];
+    
 //    _mapView.centerCoordinate = coordinate2D;
 }
 - (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error{
