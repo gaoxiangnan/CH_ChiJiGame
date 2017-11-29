@@ -155,31 +155,31 @@ static NSString * const reuseIdentifier = @"cell";
 //倒计时
 -(void) TimerAction:(id)sender
 {
-//    //倒计时-1
-//    CountDown--;
-//    NSString *str_hour = [NSString stringWithFormat:@"%02ld",CountDown/3600];
-//    NSString *str_minute = [NSString stringWithFormat:@"%02ld",(CountDown%3600)/60];
-//    NSString *str_second = [NSString stringWithFormat:@"%02ld",CountDown%60];
-//    NSString *format_time = [NSString stringWithFormat:@"%@:%@:%@",str_hour,str_minute,str_second];
-//    //修改倒计时标签现实内容
-//    _CountDowLabel.text=[NSString stringWithFormat:@"倒计时   %@",format_time];
-//    
-//    //当倒计时到0时，做需要的操作，比如验证码过期不能提交
-//    if (CountDown == 0) {
-//
-//    
-//    UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"start_game"]];
-//    img.frame = self.view.frame;
-//    img.backgroundColor = [UIColor colorWithRed:16/225.0f green:16/225.0f blue:16/225.0f alpha:.6f];
-//    [self.view addSubview:img];
-//        
-//    [CountDownTimer invalidate];
-//    //中断后重新开始计时
-//    CountDownTimer = nil;//实际测试中，不置nil也正常运行，还是保持规范性
-//    CountDownTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(doTimer) userInfo:nil repeats:NO];
-//        [[NSRunLoop mainRunLoop] addTimer:CountDownTimer forMode:NSDefaultRunLoopMode];
-//    
-//    }
+    //倒计时-1
+    CountDown--;
+    NSString *str_hour = [NSString stringWithFormat:@"%02ld",CountDown/3600];
+    NSString *str_minute = [NSString stringWithFormat:@"%02ld",(CountDown%3600)/60];
+    NSString *str_second = [NSString stringWithFormat:@"%02ld",CountDown%60];
+    NSString *format_time = [NSString stringWithFormat:@"%@:%@:%@",str_hour,str_minute,str_second];
+    //修改倒计时标签现实内容
+    _CountDowLabel.text=[NSString stringWithFormat:@"倒计时   %@",format_time];
+    
+    //当倒计时到0时，做需要的操作，比如验证码过期不能提交
+    if (CountDown == 0) {
+
+    
+    UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"start_game"]];
+    img.frame = self.view.frame;
+    img.backgroundColor = [UIColor colorWithRed:16/225.0f green:16/225.0f blue:16/225.0f alpha:.6f];
+    [self.view addSubview:img];
+        
+    [CountDownTimer invalidate];
+    //中断后重新开始计时
+    CountDownTimer = nil;//实际测试中，不置nil也正常运行，还是保持规范性
+    CountDownTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(doTimer) userInfo:nil repeats:NO];
+        [[NSRunLoop mainRunLoop] addTimer:CountDownTimer forMode:NSDefaultRunLoopMode];
+    
+    }
     
 }
 
@@ -218,7 +218,6 @@ static NSString * const reuseIdentifier = @"cell";
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    NSLog(@"%@",_teamArr);
     return _teamArr.count;
 }
 
@@ -229,22 +228,21 @@ static NSString * const reuseIdentifier = @"cell";
     if ((indexPath.row == _teamArr.count - 1)) {
         NSLog(@"点击最后一个cell，执行添加操作");
         
-        //初始化一个新的cell模型；
-        TeamModel *model = [[TeamModel alloc] init];
-        model.name = @"林更新";
-        model.id = [NSString stringWithFormat:@"%ld",_teamArr.count - 1];
-        model.userlist = [NSArray array];
+//        //初始化一个新的cell模型；
+//        TeamModel *model = [[TeamModel alloc] init];
+//        model.name = @"林更新";
+//        model.id = [NSString stringWithFormat:@"%ld",_teamArr.count - 1];
+//        model.userlist = [NSArray array];
+//        
+//        
+//        //把新创建的cell插入到最后一个之前；
+//        [_teamArr insertObject:model atIndex:_teamArr.count - 1];
+//        
+//        
+//        //更新UI；
+//        [_collectionView reloadData];
         
-        
-        //把新创建的cell插入到最后一个之前；
-        [_teamArr insertObject:model atIndex:_teamArr.count - 1];
-        
-        NPrintLog(@"%@",_teamArr);
-        
-        //更新UI；
-        [_collectionView reloadData];
-        
-//        [self setRoom];
+        [self setRoom];
         
         
     }else{
