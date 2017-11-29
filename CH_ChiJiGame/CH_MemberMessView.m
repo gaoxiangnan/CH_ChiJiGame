@@ -90,7 +90,7 @@
 {
     if (!_memberNameLb) {
         _memberNameLb = [UILabel new];
-        _memberNameLb.text = @"猎鹰007";
+        
         _memberNameLb.textColor = [UIColor whiteColor];
         _memberNameLb.textAlignment = NSTextAlignmentLeft;
         _memberNameLb.font = [UIFont systemFontOfSize:18 weight:UIFontWeightRegular];
@@ -101,7 +101,7 @@
 {
     if (!_teamNameLb) {
         _teamNameLb = [UILabel new];
-        _teamNameLb.text = @"猎鹰突击小分队";
+        
         _teamNameLb.textColor = [UIColor yellowColor];
         _teamNameLb.textAlignment = NSTextAlignmentLeft;
         _teamNameLb.font = [UIFont systemFontOfSize:17 weight:UIFontWeightRegular];
@@ -128,12 +128,7 @@
         _livesNumLb.textAlignment = NSTextAlignmentLeft;
 //        _livesNumLb.font = [UIFont systemFontOfSize:16 weight:UIFontWeightRegular];
         
-        NSString *livesNumStr = @"场内存活：59";
         
-        NSMutableAttributedString *attrS = [[NSMutableAttributedString alloc]initWithString:livesNumStr];
-        [attrS addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14 weight:UIFontWeightSemibold] range:NSMakeRange(5, 2)];
-        [attrS addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:18 weight:UIFontWeightSemibold] range:NSMakeRange(0, 4)];
-        _livesNumLb.attributedText = attrS;
     }
     return _livesNumLb;
 }
@@ -141,12 +136,25 @@
 {
     if (!_bloodNumLb) {
         _bloodNumLb = [UILabel new];
-        _bloodNumLb.text = @"场内存活：59";
+        _bloodNumLb.text = @"血量：59/100";
         _bloodNumLb.textColor = [UIColor yellowColor];
         _bloodNumLb.textAlignment = NSTextAlignmentLeft;
         _bloodNumLb.font = [UIFont systemFontOfSize:16 weight:UIFontWeightRegular];
     }
     return _bloodNumLb;
+}
+- (void)updateMemberData:(NSDictionary *)dic
+{
+    NPrintLog(@"%@",dic);
+    _teamNameLb.text = [[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"team_name"];
+    _memberNameLb.text = [[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"uname"];
+    _bloodNumLb.text = [NSString stringWithFormat:@"血量：%@/100",[[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"health"]];//@"血量：59/100";
+    NSString *livesNumStr = [NSString stringWithFormat:@"场内存活：%@",[[dic objectForKey:@"data"] objectForKey:@"people"]];//@"场内存活：59";
+    
+    NSMutableAttributedString *attrS = [[NSMutableAttributedString alloc]initWithString:livesNumStr];
+    [attrS addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:18 weight:UIFontWeightSemibold] range:NSMakeRange(5, 2)];
+    [attrS addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14 weight:UIFontWeightSemibold] range:NSMakeRange(0, 4)];
+    _livesNumLb.attributedText = attrS;
 }
 /*
 // Only override drawRect: if you perform custom drawing.

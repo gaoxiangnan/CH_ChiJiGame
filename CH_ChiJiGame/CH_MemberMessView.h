@@ -10,4 +10,5 @@
 
 @interface CH_MemberMessView : UIView
 
+- (void)updateMemberData:(NSDictionary *)dic;
 @end

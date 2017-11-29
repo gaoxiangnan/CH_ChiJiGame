@@ -7,6 +7,10 @@
 //
 
 #import "CH_TeamMesView.h"
+#import "PlayerModel.h"
+#import <SDWebImage/UIButton+WebCache.h>
+
+
 @interface CH_TeamMesView()
 @property (nonatomic, strong) UIImageView *bgImgV;
 @property (nonatomic, strong) UIImageView *numImgV;
@@ -103,24 +107,35 @@
     if (!_memberView) {
         _memberView = [UIView new];
         _memberView.backgroundColor = [UIColor clearColor];
-        UIImage *img = [UIImage imageNamed:@"Image-1"];
-        UIImage *placeImg = [UIImage imageNamed:@"ch_teamView_memberClose_img"];
-        NSLog(@"%f",(kWindowW));
-        for (int i = 0; i < 10; i++) {
-            UIButton *memberBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [memberBtn setBackgroundImage:img forState:UIControlStateNormal];
-            memberBtn.frame = CGRectMake(0+i*(img.size.width+(5*kWindowW/667)), (7*kWindowH/375), img.size.width, img.size.height);
-            [_memberView addSubview:memberBtn];
-            
-            UIImageView *placeImgV = [[UIImageView alloc]init];
-            placeImgV.frame = CGRectMake(0+i*(img.size.width+(5*kWindowW/667)), 0, img.size.width, placeImg.size.height);
-            placeImgV.image = placeImg;
-            [_memberView addSubview:placeImgV];
-            
-            
-        }
+        
     }
     return _memberView;
+}
+- (void)updatePlayerLives:(NSArray *)arr
+{
+    NPrintLog(@"======%ld",arr.count);
+    UIImage *img = [UIImage imageNamed:@"Image-1"];
+    UIImage *placeImg = [UIImage imageNamed:@"ch_teamView_memberClose_img"];
+    for (int i = 0; i < arr.count; i++) {
+        PlayerModel *model = [arr objectAtIndex:i];
+        UIButton *memberBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        [memberBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseURL,model.picurl]] forState:UIControlStateNormal];
+        memberBtn.frame = CGRectMake(0+i*(img.size.width+(5*kWindowW/667)), (7*kWindowH/375), img.size.width, img.size.height);
+        [_memberView addSubview:memberBtn];
+        
+        UIImageView *placeImgV = [[UIImageView alloc]init];
+        placeImgV.frame = CGRectMake(0+i*(img.size.width+(5*kWindowW/667)), 0, img.size.width, placeImg.size.height);
+        if ([model.status isEqualToString:@"0"]) {//0 是死亡
+            placeImgV.image = placeImg;
+        }else{
+            placeImgV.image = nil;
+        }
+        
+        [_memberView addSubview:placeImgV];
+        
+        
+    }
 }
 - (void)onSleuthClick
 {

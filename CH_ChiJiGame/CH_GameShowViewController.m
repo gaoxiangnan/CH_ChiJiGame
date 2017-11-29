@@ -15,6 +15,7 @@
 #import <AMapNaviKit/AMapNaviKit.h>
 #import "CH_VictoryViewController.h"
 #import "PointModel.h"
+#import "PlayerModel.h"
 
 @interface CH_GameShowViewController ()<MAMapViewDelegate,AMapLocationManagerDelegate>
 {
@@ -36,6 +37,7 @@
 @property (nonatomic,strong) CH_TeamMesView *teamMes;
 
 @property (nonatomic, strong) NSMutableArray *circleArr;
+@property (nonatomic, strong) NSMutableArray *playerArr;
 @end
 
 @implementation CH_GameShowViewController
@@ -44,6 +46,7 @@
     [super viewDidLoad];
     _touchCount = 0;
     _circleArr = [[NSMutableArray alloc]initWithCapacity:0];
+    _playerArr = [[NSMutableArray alloc]initWithCapacity:0];
     
     _mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
     _mapView.delegate  = self;
@@ -60,6 +63,8 @@
     NSData *data = [NSData dataWithContentsOfFile:path];
     [_mapView setCustomMapStyleWithWebData:data];
     [_mapView setCustomMapStyleEnabled:YES];
+    _mapView.showsUserLocation = YES;
+    _mapView.userTrackingMode = MAUserTrackingModeFollow;
     ///把地图添加至view
     [self.view addSubview:_mapView];
     
@@ -114,7 +119,6 @@
 {
     [CH_NetWorkManager getWithURLString:@"plan/lun_suo_circle" parameters:nil success:^(NSDictionary *data) {
         if ([[data objectForKey:@"code"]isEqualToString:@"200"]) {
-            NPrintLog(@"%@",data);
             [_circleArr removeAllObjects];
             NSArray *circleArr = [[data objectForKey:@"data"] objectForKey:@"circle"];
             
@@ -171,8 +175,6 @@
     
     AMapLocationCircleRegion *futureCirRegion = [[AMapLocationCircleRegion alloc] initWithCenter:futureCllo radius:[FutModel.radius floatValue] identifier:@"circleRegion300"];
     
-    NPrintLog(@"CurModel is %f",[CurModel.radius floatValue]);
-    NPrintLog(@"FutModel is%f",[FutModel.radius floatValue]);
     
     //添加地理围栏
     [self.locationManager startMonitoringForRegion:currentCirRegion];
@@ -190,9 +192,6 @@
     [self.mapView addOverlay:circle200];
     [self.mapView addOverlay:circle300];
     
-    
-    
-//    NPrintLog(@"%ld",self.mapView.overlays.count);
 
 }
 
@@ -206,20 +205,80 @@
     //输出的是模拟器的坐标
     
     [CH_NetWorkManager postWithURLString:@"plan/setCoordinate" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]],@"lng":[NSString stringWithFormat:@"%f",location.coordinate.longitude],@"lat":[NSString stringWithFormat:@"%f",location.coordinate.latitude]} success:^(NSDictionary *data) {
-        
+        [_memberMes updateMemberData:data];
         CLLocationCoordinate2D coordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
         _currentCoordinate = coordinate2D;
-//        NPrintLog(@"%@",[data objectForKey:@"data"]);
+        NPrintLog(@"%@",data);
+        
+        NSArray *playerArr = [[data objectForKey:@"data"] objectForKey:@"list"];
+        NSMutableArray *coordinates = [NSMutableArray array];
+        
+        [_playerArr removeAllObjects];
+        for (NSDictionary *dic in playerArr) {
+            
+            PlayerModel *model = [[PlayerModel alloc] initWithDic:dic];
+            [_playerArr addObject:model];
+            CLLocationCoordinate2D coor = CLLocationCoordinate2DMake([model.lat doubleValue], [model.lng doubleValue]);
+            MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
+            pointAnnotation.coordinate = coor;
+        
+            [pointAnnotation setTitle:[NSString stringWithFormat:@"%@", @"1"]];
+            [pointAnnotation setSubtitle:[NSString stringWithFormat:@"%@", @"2"]];
+            
+            [coordinates addObject:pointAnnotation];
+        
+        //将大头针添加到地图中
+//        [self.mapView addAnnotation:pointAnnotation];
+        
+        //默认选中气泡
+//        [self.mapView selectAnnotation:pointAnnotation animated:YES];
+            
+        }
+        [self.mapView addAnnotations:coordinates];
+        
+        [_teamMes updatePlayerLives:_playerArr];
     } failure:^(NSError *error) {
         
     }];
     
 }
+- (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id <MAAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[MAUserLocation class]]) {
+        return nil;
+    }
+    if ([annotation isKindOfClass:[MAPointAnnotation class]])
+    {
+        static NSString *pointReuseIndetifier = @"pointReuseIndetifier";
+        
+        MAPinAnnotationView *annotationView = (MAPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndetifier];
+        if (annotationView == nil)
+        {
+            annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndetifier];
+        }
+        
+        annotationView.canShowCallout   = YES;
+        annotationView.animatesDrop     = NO;
+        annotationView.draggable        = NO;
+        annotationView.pinColor         = MAPinAnnotationColorPurple;
+        
+        return annotationView;
+    }
+    
+    return nil;
+    
+    
+    
+}
+
+
+
 - (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error{
     //定位错误
     NSLog(@"定位失败");
     NSLog(@"%s, amapLocationManager = %@, error = %@", __func__, [manager class], error);
 }
+
 //围栏颜色和围栏填充颜色
 - (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id <MAOverlay>)overlay
 {

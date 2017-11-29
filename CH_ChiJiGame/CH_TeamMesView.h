@@ -11,4 +11,6 @@ typedef void (^SleuthBlock)();
 @interface CH_TeamMesView : UIView
 @property (nonatomic, copy)SleuthBlock sleuthBlock;
 
+- (void)updatePlayerLives:(NSArray *)arr;
+
 @end
