@@ -171,7 +171,8 @@ static NSString * const reuseIdentifier = @"cell";
                 }
                 [self doTimer];
             }else if ([[data objectForKey:@"code"] isEqualToString:@"201"]){
-                
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:[data objectForKey:@"message"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
             }
         } failure:^(NSError *error) {
             
@@ -202,9 +203,9 @@ static NSString * const reuseIdentifier = @"cell";
     
     CH_TeamCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.changeTeam = ^(NSString *teamId) {
-        dispatch_source_cancel(_timer);
+//        dispatch_source_cancel(_timer);
         [CH_NetWorkManager getWithURLString:@"changeTeam" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]],@"team":teamId} success:^(NSDictionary *data) {
-            dispatch_resume(_timer);
+//            dispatch_resume(_timer);
             [self relodDataUpdate:data];
             
         } failure:^(NSError *error) {

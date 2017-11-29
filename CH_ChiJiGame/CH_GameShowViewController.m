@@ -89,16 +89,7 @@
     _teamMes = [[CH_TeamMesView alloc]initWithFrame:CGRectMake(0, kWindowH - (kWindowH*85/375), kWindowW, (kWindowH*85/375))];
     _teamMes.sleuthBlock = ^(){
         
-        
-        
-        
-        
-        UIImageView *img= [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"shengli"]];
-        img.frame = weakSelf.view.frame;
-        img.backgroundColor = [UIColor colorWithRed:16/225.0f green:16/225.0f blue:16/225.0f alpha:.6f];
-        [weakSelf.view addSubview:img];
-        
-        Timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(doTimer) userInfo:nil repeats:NO];
+
         //[[NSRunLoop mainRunLoop] addTimer:Timer forMode:NSDefaultRunLoopMode];
         
     };
@@ -141,6 +132,18 @@
             
         }else if ([[data objectForKey:@"code"]isEqualToString:@"199"]){
             //比赛结束
+            dispatch_source_cancel(_timer);
+            
+            UIImageView *img= [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"shengli"]];
+            img.frame = self.view.frame;
+            img.backgroundColor = [UIColor colorWithRed:16/225.0f green:16/225.0f blue:16/225.0f alpha:.6f];
+            [self.view addSubview:img];
+            
+//            Timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(doTimer) userInfo:nil repeats:NO];
+            
+            
+            
+            
         }
     } failure:^(NSError *error) {
         
@@ -332,6 +335,27 @@
         [CH_NetWorkManager getWithURLString:@"/admin/match/endGame" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]]} success:^(NSDictionary *data) {
             if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
                 //出圈死亡
+                
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"游戏结束" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *ac = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *  action) {
+                    
+                    UIImageView *vwww = [[UIImageView alloc]initWithFrame:self.view.frame];
+                    vwww.image = [UIImage imageNamed:@"失败"];
+                    vwww.backgroundColor = [UIColor colorWithRed:16/225.0f green:16/225.0f blue:16/225.0f alpha:.6f];
+                    [self.view addSubview:vwww];
+                    
+                }];
+                
+                [alert addAction:ac];
+                [self presentViewController:alert animated:YES completion:nil];
+                
+               
+                
+                
+                
+                
+                
+                
             }
         } failure:^(NSError *error) {
             

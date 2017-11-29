@@ -147,17 +147,19 @@
 - (void)updateMemberData:(NSDictionary *)dic
 {
     NPrintLog(@"%@",dic);
-    _teamNameLb.text = [[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"team_name"];
-    _memberNameLb.text = [[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"uname"];
-    _bloodNumLb.text = [NSString stringWithFormat:@"血量：%@/100",[[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"health"]];//@"血量：59/100";
-    NSString *livesNumStr = [NSString stringWithFormat:@"场内存活：%@",[[dic objectForKey:@"data"] objectForKey:@"people"]];//@"场内存活：59";
+    NSDictionary *dict = [dic objectForKey:@"data"];
+    if (!dict) {
+        
+    }else{
+        _teamNameLb.text = [[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"team_name"];
+        _memberNameLb.text = [[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"uname"];
+        _bloodNumLb.text = [NSString stringWithFormat:@"血量：%@/100",[[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"health"]];//@"血量：59/100";
+        _livesNumLb.text = [NSString stringWithFormat:@"场内存活：%@",[[dic objectForKey:@"data"] objectForKey:@"people"]];//@"场内存活：59";
+        
+        [_headerBgImgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseURL,[[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"picurl"]]] placeholderImage:[UIImage imageNamed:@"Image-1"]];
+    }
     
-    [_headerBgImgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseURL,[[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"picurl"]]] placeholderImage:[UIImage imageNamed:@"Image-1"]];
     
-    NSMutableAttributedString *attrS = [[NSMutableAttributedString alloc]initWithString:livesNumStr];
-    [attrS addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:18 weight:UIFontWeightSemibold] range:NSMakeRange(5, 2)];
-    [attrS addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14 weight:UIFontWeightSemibold] range:NSMakeRange(0, 4)];
-    _livesNumLb.attributedText = attrS;
 }
 /*
 // Only override drawRect: if you perform custom drawing.
