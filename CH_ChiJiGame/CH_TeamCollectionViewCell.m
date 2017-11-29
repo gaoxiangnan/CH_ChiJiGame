@@ -24,6 +24,7 @@
 
 
 @property (nonatomic, strong) NSArray *teamArr;
+@property (nonatomic, strong) TeamModel *teamModel;
 
 @end
 @implementation CH_TeamCollectionViewCell
@@ -85,7 +86,7 @@
 }
 - (void)translateData:(TeamModel *)teamModel changeCellOutView:(BOOL)last
 {
-    
+    _teamModel = teamModel;
     if (last == YES) {
         _teamAddBtn.hidden = NO;
         _teamCreatLb.hidden = NO;
@@ -110,7 +111,6 @@
 }
 - (void)createTeamPlaceHoldView
 {
-
     _teamTitleLb = [[UILabel alloc]init];
     _teamTitleLb.textColor = [UIColor yellowColor];
     _teamTitleLb.font = [UIFont systemFontOfSize:17 weight:UIFontWeightBold];
@@ -144,12 +144,7 @@
         
     }];
     
-    for (int i = 0; i < 10; i++) {
-        UIImageView *bgMember = [[UIImageView alloc]init];
-        bgMember.image = [UIImage imageNamed:@"ch_member_content"];
-        bgMember.frame = CGRectMake(5+45*(i%5), 0+(i/5)*45, 40, 40);
-        [_memberViewBg addSubview:bgMember];
-    }
+    
 
     
     
@@ -157,23 +152,22 @@
 - (void)createTeamView:(NSArray *)arr
 {
     NPrintLog(@"%@",arr);
-    if (arr.count > 0) {
-        for (int i = 0; i < arr.count; i++) {
-            UserModel *model = [arr objectAtIndex:i];
-            
-            UIButton *memberBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [memberBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseURL,model.picurl]] forState:UIControlStateNormal];
-            memberBtn.frame = CGRectMake(5+45*(i%5), 0+(i/5)*45, 40, 40);
-            [_memberViewBg addSubview:memberBtn];
-        }
-    }else{
-        [_memberViewBg.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        for (int i = 0; i < 10; i++) {
-            UIImageView *bgMember = [[UIImageView alloc]init];
-            bgMember.image = [UIImage imageNamed:@"ch_member_content"];
-            bgMember.frame = CGRectMake(5+45*(i%5), 0+(i/5)*45, 40, 40);
-            [_memberViewBg addSubview:bgMember];
-        }
+    
+    [_memberViewBg.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    for (int i = 0; i < 10; i++) {
+        UIImageView *bgMember = [[UIImageView alloc]init];
+        bgMember.image = [UIImage imageNamed:@"ch_member_content"];
+        bgMember.frame = CGRectMake(5+45*(i%5), 0+(i/5)*45, 40, 40);
+        [_memberViewBg addSubview:bgMember];
+    }
+    for (int i = 0; i < arr.count; i++) {
+        UserModel *model = [arr objectAtIndex:i];
+        
+        UIButton *memberBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [memberBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseURL,model.picurl]] forState:UIControlStateNormal];
+        memberBtn.frame = CGRectMake(5+45*(i%5), 0+(i/5)*45, 40, 40);
+        [_memberViewBg addSubview:memberBtn];
     }
     
     
@@ -181,11 +175,9 @@
 }
 - (void)onCreateTeamClick
 {
-    if (_teamArr.count > 9) {
-        return;
+    if (_changeTeam) {
+        _changeTeam(_teamModel.id);
     }
-    [self createTeamView:_teamArr];
-    
 }
 - (void)onTeamAddClick
 {

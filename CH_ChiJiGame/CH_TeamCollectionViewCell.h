@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "TeamModel.h"
-
+typedef void (^ChangeTeamBlock)(NSString *);
 @interface CH_TeamCollectionViewCell : UICollectionViewCell
+
+@property (nonatomic, copy) ChangeTeamBlock changeTeam;
 - (void)translateData:(TeamModel *)teamModel changeCellOutView:(BOOL)last;
 - (void)teamNum:(NSInteger)index;
 @end
