@@ -135,7 +135,9 @@
                 dispatch_source_cancel(_timer);
             }
             
-        }  
+        }else if ([[data objectForKey:@"code"]isEqualToString:@"199"]){
+            //比赛结束
+        }
     } failure:^(NSError *error) {
         
     }];
@@ -315,7 +317,28 @@
     }
 }
 
+- (void)amapLocationManager:(AMapLocationManager *)manager didEnterRegion:(AMapLocationRegion *)region
+{
+    NSLog(@"进入围栏:%@", region);
+}
 
+- (void)amapLocationManager:(AMapLocationManager *)manager didExitRegion:(AMapLocationRegion *)region
+{
+    if ([region.identifier isEqualToString:@"circleRegion200"]) {
+        [CH_NetWorkManager getWithURLString:@"/admin/match/endGame" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]]} success:^(NSDictionary *data) {
+            if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
+                //出圈死亡
+            }
+        } failure:^(NSError *error) {
+            
+        }];
+    }
+    NSLog(@"走出围栏:%@", region);
+}
+- (void)amapLocationManager:(AMapLocationManager *)manager didStartMonitoringForRegion:(AMapLocationRegion *)region
+{
+    NSLog(@"didStartMonitoringForRegion:%@", region);
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
