@@ -11,4 +11,5 @@
 
 @interface CH_TeamCollectionViewCell : UICollectionViewCell
 - (void)translateData:(TeamModel *)teamModel changeCellOutView:(BOOL)last;
+- (void)teamNum:(NSInteger)index;
 @end

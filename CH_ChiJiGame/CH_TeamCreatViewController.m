@@ -204,6 +204,7 @@ static NSString * const reuseIdentifier = @"cell";
     }else{
         [cell translateData:[_teamArr objectAtIndex:indexPath.row] changeCellOutView:NO];
     }
+    [cell teamNum:indexPath.row];
     
     
     return cell;

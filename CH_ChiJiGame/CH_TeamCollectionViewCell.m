@@ -11,6 +11,7 @@
 #import "UserModel.h"
 
 @interface CH_TeamCollectionViewCell()
+@property (nonatomic, strong) NSArray *imgArr;
 @property (nonatomic, strong) UIImageView * imgBgV;
 @property(nonatomic,strong)UIImageView *imgNumV;
 
@@ -35,10 +36,11 @@
         _imgBgV.image = [UIImage imageNamed:@"ch_team_bg"];
         [self addSubview:_imgBgV];
         
+        _imgArr = [NSArray arrayWithObjects:@"ch_img_1",@"ch_img_2",@"ch_img_3",@"ch_img_4",@"ch_img_5",@"ch_img_6",@"ch_img_7",@"ch_img_8",@"ch_img_9", nil];
+        
         CGFloat hei = 70.0;
         UIImage *img = [UIImage imageNamed:@"ch_img_1"];
         _imgNumV = [[UIImageView alloc]init];
-        _imgNumV.image = img;
         [self addSubview:self.imgNumV];
         [_imgNumV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(30);
@@ -83,8 +85,6 @@
 }
 - (void)translateData:(TeamModel *)teamModel changeCellOutView:(BOOL)last
 {
-    NPrintLog(@"======== %@",teamModel.userlist);
-    NPrintLog(@"======== %@",teamModel.name);
     if (last == YES) {
         _teamAddBtn.hidden = NO;
         _teamCreatLb.hidden = NO;
@@ -102,6 +102,10 @@
         [self createTeamView:teamModel.userlist];
         
     }
+}
+- (void)teamNum:(NSInteger)index
+{
+    _imgNumV.image = [UIImage imageNamed:[_imgArr objectAtIndex:index]];
 }
 - (void)createTeamPlaceHoldView
 {
