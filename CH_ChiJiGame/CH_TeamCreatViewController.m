@@ -28,6 +28,8 @@ static NSString * const reuseIdentifier = @"cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self updateNetData];
+    
     _teamArr = [[NSMutableArray alloc]initWithCapacity:0];
     
     UIImageView *bgImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
@@ -35,24 +37,44 @@ static NSString * const reuseIdentifier = @"cell";
     [self.view addSubview:bgImageView];
     
     
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
     
-    [self.view addSubview:self.collectionView];
+    flowLayout.itemSize = CGSizeMake(240, 250);
+    
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+    
+    flowLayout.minimumLineSpacing = 10;
+    
+    flowLayout.minimumInteritemSpacing = 0;
+    
+    //        flowLayout.footerReferenceSize = CGSizeMake(240, 250);
+    
+    _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 70, self.view.frame.size.width, 270) collectionViewLayout:flowLayout];
+    
+    _collectionView.backgroundColor = [UIColor clearColor];
+    _collectionView.delegate = self;
+    _collectionView.dataSource = self;
+    _collectionView.showsVerticalScrollIndicator = NO;
+    
+    [_collectionView registerClass:[CH_TeamCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [self.view addSubview:_collectionView];
     
     [self.view addSubview:self.CountDimg];
     [self.view addSubview:self.CountDowimg];
     [self.view addSubview:self.CountDowLabel];
     [self adap];
-    [self updateNetData];
+    
 
     // Do any additional setup after loading the view.
 }
 - (void)updateNetData
 {
-    [_teamArr removeAllObjects];
+    
     //    [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:@{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:Token] } success:^(NSDictionary *data) {
     [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]]} success:^(NSDictionary *data) {
         NSLog(@"%@",data);
         if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
+            [_teamArr removeAllObjects];
             NSArray *dataArr = [data objectForKey:@"data"];
             for (NSDictionary *dic in dataArr) {
                 TeamModel *teamModel = [[TeamModel alloc]initWithDic:dic];
@@ -61,39 +83,40 @@ static NSString * const reuseIdentifier = @"cell";
             TeamModel *teamModel = [[TeamModel alloc]init];
             NSInteger index = _teamArr.count;
             [_teamArr insertObject:teamModel atIndex:index];
+            
             [_collectionView reloadData];
         }
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
 }
--(UICollectionView *)collectionView
-{
-    if (!_collectionView) {
-        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
-        
-        flowLayout.itemSize = CGSizeMake(240, 250);
-        
-        [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-        
-        flowLayout.minimumLineSpacing = 10;
-        
-        flowLayout.minimumInteritemSpacing = 0;
-        
-//        flowLayout.footerReferenceSize = CGSizeMake(240, 250);
-        
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 70, self.view.frame.size.width, 270) collectionViewLayout:flowLayout];
-        
-        _collectionView.backgroundColor = [UIColor clearColor];
-        _collectionView.delegate = self;
-        _collectionView.dataSource = self;
-        _collectionView.showsVerticalScrollIndicator = NO;
-        
-        [_collectionView registerClass:[CH_TeamCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-        
-    }
-    return _collectionView;
-}
+//-(UICollectionView *)collectionView
+//{
+//    if (!_collectionView) {
+//        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
+//        
+//        flowLayout.itemSize = CGSizeMake(240, 250);
+//        
+//        [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+//        
+//        flowLayout.minimumLineSpacing = 10;
+//        
+//        flowLayout.minimumInteritemSpacing = 0;
+//        
+////        flowLayout.footerReferenceSize = CGSizeMake(240, 250);
+//        
+//        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 70, self.view.frame.size.width, 270) collectionViewLayout:flowLayout];
+//        
+//        _collectionView.backgroundColor = [UIColor clearColor];
+//        _collectionView.delegate = self;
+//        _collectionView.dataSource = self;
+//        _collectionView.showsVerticalScrollIndicator = NO;
+//        
+//        [_collectionView registerClass:[CH_TeamCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+//        
+//    }
+//    return _collectionView;
+//}
 -(UILabel *)CountDowLabel
 {
     if (!_CountDowLabel) {
@@ -194,6 +217,7 @@ static NSString * const reuseIdentifier = @"cell";
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    NSLog(@"%@",_teamArr);
     return _teamArr.count;
 }
 
@@ -204,23 +228,22 @@ static NSString * const reuseIdentifier = @"cell";
     if ((indexPath.row == _teamArr.count - 1)) {
         NSLog(@"点击最后一个cell，执行添加操作");
         
-//        //初始化一个新的cell模型；
-//        TeamModel *cel = [[TeamModel alloc] init];
-//        cel.name = @"林更新";
-//        cel.id = [NSString stringWithFormat:@"%ld",_teamArr.count - 1];
-//        cel.userlist = nil;
-//        
-////        //获取当前的cell数组；
-////        self.dataCellArray = sec.cellArray;
-//        
-//        //把新创建的cell插入到最后一个之前；
-//        [_teamArr insertObject:cel atIndex:_teamArr.count - 1];
-//        
-//        NPrintLog(@"%@",_teamArr);
-//        
-//        //更新UI；
-//        [_collectionView reloadData];
-        [self setRoom];
+        //初始化一个新的cell模型；
+        TeamModel *model = [[TeamModel alloc] init];
+        model.name = @"林更新";
+        model.id = [NSString stringWithFormat:@"%ld",_teamArr.count - 1];
+        model.userlist = [NSArray array];
+        
+        
+        //把新创建的cell插入到最后一个之前；
+        [_teamArr insertObject:model atIndex:_teamArr.count - 1];
+        
+        NPrintLog(@"%@",_teamArr);
+        
+        //更新UI；
+        [_collectionView reloadData];
+        
+//        [self setRoom];
         
         
     }else{

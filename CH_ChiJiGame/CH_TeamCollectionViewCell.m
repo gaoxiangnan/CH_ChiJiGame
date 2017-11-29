@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UIView *memberViewBg;
 
 @property (nonatomic, strong) UIButton *teamAddBtn;
+@property (nonatomic, strong) UILabel *teamCreatLb;
 
 
 @property (nonatomic, strong) NSArray *teamArr;
@@ -46,6 +47,8 @@
             make.height.mas_equalTo(hei);
         }];
         
+        [self createTeamPlaceHoldView];
+        [self lastCellViewUpdata];
         
     }
     return self;
@@ -56,6 +59,7 @@
     UIImage *btnImg = [UIImage imageNamed:@"ch_teamAdd_btn"];
     [_teamAddBtn setBackgroundImage:btnImg forState:UIControlStateNormal];
     [_teamAddBtn addTarget:self action:@selector(onTeamAddClick) forControlEvents:UIControlEventTouchUpInside];
+    _teamAddBtn.hidden = YES;
     [self addSubview:_teamAddBtn];
     [_teamAddBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(_imgBgV);
@@ -63,13 +67,14 @@
         make.height.mas_equalTo(100);
     }];
     
-    UILabel *teamCreatLb = [[UILabel alloc]init];
-    teamCreatLb.text = @"创建组队";
-    teamCreatLb.textColor = [UIColor yellowColor];
-    teamCreatLb.font = [UIFont systemFontOfSize:17 weight:UIFontWeightBold];
-    teamCreatLb.textAlignment = NSTextAlignmentLeft;
-    [self addSubview:teamCreatLb];
-    [teamCreatLb mas_makeConstraints:^(MASConstraintMaker *make) {
+    _teamCreatLb = [[UILabel alloc]init];
+    _teamAddBtn.hidden = YES;
+    _teamCreatLb.text = @"创建组队";
+    _teamCreatLb.textColor = [UIColor yellowColor];
+    _teamCreatLb.font = [UIFont systemFontOfSize:17 weight:UIFontWeightBold];
+    _teamCreatLb.textAlignment = NSTextAlignmentLeft;
+    [self addSubview:_teamCreatLb];
+    [_teamCreatLb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(_teamAddBtn);
         make.top.mas_equalTo(_teamAddBtn.mas_bottom).mas_offset(10);
     }];
@@ -78,20 +83,30 @@
 }
 - (void)translateData:(TeamModel *)teamModel changeCellOutView:(BOOL)last
 {
+    NPrintLog(@"======== %@",teamModel.userlist);
+    NPrintLog(@"======== %@",teamModel.name);
     if (last == YES) {
-        [self lastCellViewUpdata];
+        _teamAddBtn.hidden = NO;
+        _teamCreatLb.hidden = NO;
+        _teamCreateBtn.hidden = YES;
+        _memberViewBg.hidden = YES;
+        _teamTitleLb.hidden = YES;
+        
     }else{
-        [self createTeamPlaceHoldView:teamModel];
+        _teamAddBtn.hidden = YES;
+        _teamCreatLb.hidden = YES;
+        _teamCreateBtn.hidden = NO;
+        _memberViewBg.hidden = NO;
+        _teamTitleLb.hidden = NO;
+        _teamTitleLb.text = teamModel.name;
+        [self createTeamView:teamModel.userlist];
+        
     }
 }
-- (void)createTeamPlaceHoldView:(TeamModel *)teamModel
+- (void)createTeamPlaceHoldView
 {
-    
-    _teamArr = teamModel.userlist;
-    
-    
+
     _teamTitleLb = [[UILabel alloc]init];
-    _teamTitleLb.text = teamModel.name;
     _teamTitleLb.textColor = [UIColor yellowColor];
     _teamTitleLb.font = [UIFont systemFontOfSize:17 weight:UIFontWeightBold];
     _teamTitleLb.textAlignment = NSTextAlignmentLeft;
@@ -103,6 +118,7 @@
     }];
     
     _teamCreateBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _teamCreateBtn.hidden = NO;
     UIImage *btnImg = [UIImage imageNamed:@"ch_teamJoinBtn"];
     [_teamCreateBtn setBackgroundImage:btnImg forState:UIControlStateNormal];
     [_teamCreateBtn addTarget:self action:@selector(onCreateTeamClick) forControlEvents:UIControlEventTouchUpInside];
@@ -114,6 +130,7 @@
     
     _memberViewBg = [[UIView alloc] init];
     _memberViewBg.alpha = 0.3;
+    _memberViewBg.hidden = NO;
     [self addSubview:_memberViewBg];
     [_memberViewBg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.width.equalTo(self).mas_offset(15);
@@ -129,18 +146,30 @@
         [_memberViewBg addSubview:bgMember];
     }
 
-    [self createTeamView:_teamArr];
+    
     
 }
 - (void)createTeamView:(NSArray *)arr
 {
-    for (int i = 0; i < arr.count; i++) {
-        UserModel *model = [arr objectAtIndex:i];
-        UIButton *memberBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [memberBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseURL,model.picurl]] forState:UIControlStateNormal];
-        memberBtn.frame = CGRectMake(5+45*(i%5), 0+(i/5)*45, 40, 40);
-        [_memberViewBg addSubview:memberBtn];
+    if (arr.count > 0) {
+        for (int i = 0; i < arr.count; i++) {
+            UserModel *model = [arr objectAtIndex:i];
+            
+            UIButton *memberBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [memberBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseURL,model.picurl]] forState:UIControlStateNormal];
+            memberBtn.frame = CGRectMake(5+45*(i%5), 0+(i/5)*45, 40, 40);
+            [_memberViewBg addSubview:memberBtn];
+        }
+    }else{
+        [_memberViewBg.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        for (int i = 0; i < 10; i++) {
+            UIImageView *bgMember = [[UIImageView alloc]init];
+            bgMember.image = [UIImage imageNamed:@"ch_member_content"];
+            bgMember.frame = CGRectMake(5+45*(i%5), 0+(i/5)*45, 40, 40);
+            [_memberViewBg addSubview:bgMember];
+        }
     }
+    
     
     
 }
