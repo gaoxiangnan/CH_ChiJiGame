@@ -26,6 +26,8 @@
 @property (nonatomic,strong) AMapLocationManager *locationManager;
 @property (nonatomic,assign) CLLocationCoordinate2D currentCoordinate;
 
+@property (nonatomic, strong) NSMutableArray *regions;
+
 @property (nonatomic, strong) LLRadarView *radarView;
 
 @property (nonatomic,strong) CH_MemberMessView *memberMes;
@@ -37,7 +39,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _touchCount = 0;
-//    [self startLocation];
     
     _mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
     _mapView.delegate  = self;
@@ -64,22 +65,6 @@
     [self.view addSubview:_mapView];
     
     
-    //构造圆
-    MACircle *circle = [MACircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(39.9, 116.3) radius:5000];
-    
-    //在地图上添加圆
-    [_mapView addOverlay: circle];
-    
-    
-    self.radarView = [[LLRadarView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-    _radarView.center = CGPointMake(kWindowW/2, kWindowH/2);
-//    _radarView.userInteractionEnabled = NO;
-    _radarView.showCrossline = YES;
-//    _radarView.needOpacityAnimation = YES;
-    [self.view addSubview:_radarView];
-    
-    [_radarView startAnimation];
-    
     
 //地图上的View
     _memberMes = [[CH_MemberMessView alloc]initWithFrame:CGRectMake(10, 10, kWindowW-20, 75)];
@@ -105,6 +90,35 @@
     
     // Do any additional setup after loading the view.
 }
+- (void)addCircleReionForCoordinate:(CLLocationCoordinate2D)coordinate
+{
+    //创建圆形地理围栏
+    AMapLocationCircleRegion *cirRegion200 = [[AMapLocationCircleRegion alloc] initWithCenter:coordinate
+                                                                                       radius:200.0
+                                                                                   identifier:@"circleRegion200"];
+    
+    AMapLocationCircleRegion *cirRegion300 = [[AMapLocationCircleRegion alloc] initWithCenter:coordinate
+                                                                                       radius:300.0
+                                                                                   identifier:@"circleRegion300"];
+    
+    //添加地理围栏
+    [self.locationManager startMonitoringForRegion:cirRegion200];
+    [self.locationManager startMonitoringForRegion:cirRegion300];
+    
+    //保存地理围栏
+    [self.regions addObject:cirRegion200];
+    [self.regions addObject:cirRegion300];
+    
+    //添加地理围栏对应的Overlay，方便查看
+    MACircle *circle200 = [MACircle circleWithCenterCoordinate:coordinate radius:200.0];
+    circle200.title = @"currentSafety";
+    MACircle *circle300 = [MACircle circleWithCenterCoordinate:coordinate radius:300.0];
+    circle300.title = @"futureSafety";
+    [self.mapView addOverlay:circle200];
+    [self.mapView addOverlay:circle300];
+    
+    [self.mapView setVisibleMapRect:circle300.boundingMapRect];
+}
 -(void)doTimer
 {
     CH_VictoryViewController *vc = [[CH_VictoryViewController alloc]init];
@@ -115,8 +129,10 @@
     //输出的是模拟器的坐标
     
     [CH_NetWorkManager postWithURLString:@"plan/setCoordinate" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]],@"lng":[NSString stringWithFormat:@"%f",location.coordinate.longitude],@"lat":[NSString stringWithFormat:@"%f",location.coordinate.latitude]} success:^(NSDictionary *data) {
+        
         CLLocationCoordinate2D coordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
         _currentCoordinate = coordinate2D;
+//        [self addCircleReionForCoordinate:coordinate2D];
         NPrintLog(@"%@",[data objectForKey:@"data"]);
         NPrintLog(@"%@",[data objectForKey:@"message"]);
     } failure:^(NSError *error) {
@@ -130,17 +146,20 @@
     NSLog(@"定位失败");
     NSLog(@"%s, amapLocationManager = %@, error = %@", __func__, [manager class], error);
 }
-
+//围栏颜色和围栏填充颜色
 - (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id <MAOverlay>)overlay
 {
     if ([overlay isKindOfClass:[MACircle class]])
     {
         MACircleRenderer *circleRenderer = [[MACircleRenderer alloc] initWithCircle:overlay];
-        
         circleRenderer.lineWidth    = 5.f;
-        circleRenderer.strokeColor  = [UIColor colorWithRed:1.0 green:0.8 blue:0.5 alpha:0.8];//圈的颜色
-//        circleRenderer.fillColor    = [UIColor colorWithRed:1.0 green:0.8 blue:0.0 alpha:0.8];//填充颜色
-        circleRenderer.fillColor    = [UIColor clearColor];
+        if ([overlay.title isEqualToString:@"currentSafety"]) {
+            circleRenderer.strokeColor  = [UIColor redColor];//圈的颜色
+            circleRenderer.fillColor    = [UIColor colorWithRed:0 green:0 blue:0.0 alpha:0.3];//填充颜色
+        }else{
+            circleRenderer.strokeColor  = [UIColor blueColor];//圈的颜色
+            circleRenderer.fillColor    = [UIColor colorWithRed:0 green:0 blue:0.0 alpha:0.3];//填充颜色
+        }
         return circleRenderer;
     }
     return nil;
