@@ -12,6 +12,8 @@
 		FE2CEFCC1FCC09D90078CE32 /* NSString+Option.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2CEFCB1FCC09D90078CE32 /* NSString+Option.m */; };
 		FE2CEFD01FCC10250078CE32 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2CEFCF1FCC10250078CE32 /* UserModel.m */; };
 		FE2CEFD31FCC143C0078CE32 /* TeamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2CEFD21FCC143C0078CE32 /* TeamModel.m */; };
+		FE2CEFD61FCEC9DD0078CE32 /* LocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2CEFD51FCEC9DD0078CE32 /* LocationModel.m */; };
+		FE2CEFD91FCECF930078CE32 /* PointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2CEFD81FCECF930078CE32 /* PointModel.m */; };
 		FE647A5B1FC3FA640016F3E4 /* CH_GameShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE647A5A1FC3FA640016F3E4 /* CH_GameShowViewController.m */; };
 		FE647A601FC51BA20016F3E4 /* CH_MemberMessView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE647A5F1FC51BA20016F3E4 /* CH_MemberMessView.m */; };
 		FE647A621FC545500016F3E4 /* mystyle_sdk_1511329093_0100.data in Resources */ = {isa = PBXBuildFile; fileRef = FE647A611FC545500016F3E4 /* mystyle_sdk_1511329093_0100.data */; };
@@ -62,6 +64,10 @@
 		FE2CEFCF1FCC10250078CE32 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		FE2CEFD11FCC143C0078CE32 /* TeamModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamModel.h; sourceTree = "<group>"; };
 		FE2CEFD21FCC143C0078CE32 /* TeamModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamModel.m; sourceTree = "<group>"; };
+		FE2CEFD41FCEC9DD0078CE32 /* LocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationModel.h; sourceTree = "<group>"; };
+		FE2CEFD51FCEC9DD0078CE32 /* LocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationModel.m; sourceTree = "<group>"; };
+		FE2CEFD71FCECF930078CE32 /* PointModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointModel.h; sourceTree = "<group>"; };
+		FE2CEFD81FCECF930078CE32 /* PointModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointModel.m; sourceTree = "<group>"; };
 		FE647A591FC3FA640016F3E4 /* CH_GameShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CH_GameShowViewController.h; sourceTree = "<group>"; };
 		FE647A5A1FC3FA640016F3E4 /* CH_GameShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CH_GameShowViewController.m; sourceTree = "<group>"; };
 		FE647A5C1FC40EC20016F3E4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -155,6 +161,10 @@
 				FE2CEFCF1FCC10250078CE32 /* UserModel.m */,
 				FE2CEFD11FCC143C0078CE32 /* TeamModel.h */,
 				FE2CEFD21FCC143C0078CE32 /* TeamModel.m */,
+				FE2CEFD41FCEC9DD0078CE32 /* LocationModel.h */,
+				FE2CEFD51FCEC9DD0078CE32 /* LocationModel.m */,
+				FE2CEFD71FCECF930078CE32 /* PointModel.h */,
+				FE2CEFD81FCECF930078CE32 /* PointModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -473,8 +483,10 @@
 				FE7D93851FC2D1E3008BA8CF /* CH_TeamCollectionViewCell.m in Sources */,
 				FE647A6E1FC6EAC20016F3E4 /* CH_VictoryViewController.m in Sources */,
 				FE2CEFD31FCC143C0078CE32 /* TeamModel.m in Sources */,
+				FE2CEFD91FCECF930078CE32 /* PointModel.m in Sources */,
 				FE647A6B1FC679940016F3E4 /* LLRadarView.m in Sources */,
 				FE647A651FC5528B0016F3E4 /* CH_TeamMesView.m in Sources */,
+				FE2CEFD61FCEC9DD0078CE32 /* LocationModel.m in Sources */,
 				FE7D93391FBEFB6A008BA8CF /* main.m in Sources */,
 				FE2CEFC01FCBE09C0078CE32 /* CH_NetWorkManager.m in Sources */,
 				FE2CEFCC1FCC09D90078CE32 /* NSString+Option.m in Sources */,

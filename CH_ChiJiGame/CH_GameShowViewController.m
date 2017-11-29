@@ -50,21 +50,16 @@
     self.locationManager.delegate = self;
     //开启持续定位
     [self.locationManager startUpdatingLocation];
-    
-    
-    
-    
-//    mystyle_sdk_1511329093_0100
+
     NSString *path = [NSString stringWithFormat:@"%@/mystyle_sdk_1511329093_0100.data", [NSBundle mainBundle].bundlePath];
     NSLog(@"%@",[NSBundle mainBundle].bundlePath);
     NSData *data = [NSData dataWithContentsOfFile:path];
     [_mapView setCustomMapStyleWithWebData:data];
     [_mapView setCustomMapStyleEnabled:YES];
-    
     ///把地图添加至view
     [self.view addSubview:_mapView];
     
-    
+    [self safetyCircleUpdate];
     
 //地图上的View
     _memberMes = [[CH_MemberMessView alloc]initWithFrame:CGRectMake(10, 10, kWindowW-20, 75)];
@@ -90,6 +85,29 @@
     
     // Do any additional setup after loading the view.
 }
+
+- (void)safetyCircleUpdate
+{
+    [CH_NetWorkManager getWithURLString:@"plan/lun_suo_circle" parameters:nil success:^(NSDictionary *data) {
+        NPrintLog(@"%@",data);
+        if ([[data objectForKey:@"code"]isEqualToString:@"200"]) {
+            NSString *locaString = [[data objectForKey:@"circle"] objectForKey:@"point"];
+            NSArray *arr = [locaString componentsSeparatedByString:@","];
+            double lat = (double)[[arr firstObject] doubleValue];
+            double lng = (double)[[arr lastObject] doubleValue];
+            double radius = (double)[[[data objectForKey:@"circle"] objectForKey:@"radius"] doubleValue];
+            MACircle *cicrle = [MACircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(lng, lat) radius:radius];
+            [_mapView addOverlay: cicrle];
+//            [self addCircleReionForCoordinate:coordinate2D];
+        }
+        
+        
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 - (void)addCircleReionForCoordinate:(CLLocationCoordinate2D)coordinate
 {
     //创建圆形地理围栏
@@ -119,6 +137,7 @@
     
     [self.mapView setVisibleMapRect:circle300.boundingMapRect];
 }
+
 -(void)doTimer
 {
     CH_VictoryViewController *vc = [[CH_VictoryViewController alloc]init];
@@ -132,14 +151,12 @@
         
         CLLocationCoordinate2D coordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
         _currentCoordinate = coordinate2D;
-//        [self addCircleReionForCoordinate:coordinate2D];
         NPrintLog(@"%@",[data objectForKey:@"data"]);
         NPrintLog(@"%@",[data objectForKey:@"message"]);
     } failure:^(NSError *error) {
         
     }];
     
-//    _mapView.centerCoordinate = coordinate2D;
 }
 - (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error{
     //定位错误
@@ -182,26 +199,6 @@
     }
     NSLog(@"我点击了地图 %ld",_touchCount);
 }
-//- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-//{
-//    NSSet *allTouches = [event allTouches];    //返回与当前接收者有关的所有的触摸对象
-//    UITouch *touch = [allTouches anyObject];   //视图中的所有对象
-//    CGPoint point = [touch locationInView:[touch view]]; //返回触摸点在视图中的当前坐标
-//    int x = point.x;
-//    int y = point.y;
-//    NSLog(@"touch (x, y) is (%d, %d)", x, y);
-//    self.radarView.center = point;
-//}
-//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//    NSSet *allTouches = [event allTouches];    //返回与当前接收者有关的所有的触摸对象
-//    UITouch *touch = [allTouches anyObject];   //视图中的所有对象
-//    CGPoint point = [touch locationInView:[touch view]]; //返回触摸点在视图中的当前坐标
-//    int x = point.x;
-//    int y = point.y;
-//    NSLog(@"touch (x, y) is (%d, %d)", x, y);
-//    self.radarView.center = point;
-//}
 
 
 - (void)didReceiveMemoryWarning {

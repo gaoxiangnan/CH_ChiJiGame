@@ -10,4 +10,6 @@
 
 @interface CH_GameShowViewController : UIViewController
 
+@property (nonatomic,strong) NSArray *pointArr;
+
 @end
