@@ -13,6 +13,7 @@
 #endif /* CH_ChiJiCommon_h */
 
 #define BaseURL @"http://jdsc.agr666.com"
+#define Token [[NSUserDefaults standardUserDefaults] objectForKey:@"token"]
 
 //通过RGB设置颜色
 #define kRGBColor(R,G,B)        [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1.0]
@@ -38,4 +39,3 @@ alpha:alphaValue]//16进制颜色转换
 //#define NPrintLog(...)
 //#endif
 
-#define Token @"token"

@@ -115,13 +115,13 @@
 {
     if (!_timeCountDownLb) {
         _timeCountDownLb = [UILabel new];
-        _timeCountDownLb.text = @"倒计时：05:00";
         _timeCountDownLb.textColor = [UIColor yellowColor];
         _timeCountDownLb.textAlignment = NSTextAlignmentLeft;
         _timeCountDownLb.font = [UIFont systemFontOfSize:16 weight:UIFontWeightRegular];
     }
     return _timeCountDownLb;
 }
+
 - (UILabel *)livesNumLb
 {
     if (!_livesNumLb) {
@@ -147,16 +147,43 @@
 - (void)updateMemberData:(NSDictionary *)dic
 {
     NPrintLog(@"%@",dic);
-    if ([[dic objectForKey:@"data"] length] == 0) {
-        
-    }else{
+    if ([[dic objectForKey:@"code"] isEqualToString:@"200"]) {
         _teamNameLb.text = [[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"team_name"];
         _memberNameLb.text = [[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"uname"];
         _bloodNumLb.text = [NSString stringWithFormat:@"血量：%@/100",[[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"health"]];//@"血量：59/100";
         _livesNumLb.text = [NSString stringWithFormat:@"场内存活：%@",[[dic objectForKey:@"data"] objectForKey:@"people"]];//@"场内存活：59";
         
         [_headerBgImgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseURL,[[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"picurl"]]] placeholderImage:[UIImage imageNamed:@"Image-1"]];
+        
+        NSInteger CountDown = [[[dic objectForKey:@"data"] objectForKey:@"circle_time"] integerValue];
+        NSString *str_hour = [NSString stringWithFormat:@"%02ld",CountDown/3600];
+        NSString *str_minute = [NSString stringWithFormat:@"%02ld",(CountDown%3600)/60];
+        NSString *str_second = [NSString stringWithFormat:@"%02ld",CountDown%60];
+        NSString *format_time = [NSString stringWithFormat:@"%@:%@:%@",str_hour,str_minute,str_second];
+        //修改倒计时标签现实内容
+        _timeCountDownLb.text=[NSString stringWithFormat:@"倒计时：%@",format_time];
+    }else{
+        if ([[dic objectForKey:@"data"] length] == 0) {
+            
+        }else{
+            _teamNameLb.text = [[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"team_name"];
+            _memberNameLb.text = [[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"uname"];
+            _bloodNumLb.text = [NSString stringWithFormat:@"血量：%@/100",[[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"health"]];//@"血量：59/100";
+            _livesNumLb.text = [NSString stringWithFormat:@"场内存活：%@",[[dic objectForKey:@"data"] objectForKey:@"people"]];//@"场内存活：59";
+            
+            [_headerBgImgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseURL,[[[dic objectForKey:@"data"] objectForKey:@"user"] objectForKey:@"picurl"]]] placeholderImage:[UIImage imageNamed:@"Image-1"]];
+            
+            
+            NSInteger CountDown = [[[dic objectForKey:@"data"] objectForKey:@"circle_time"] integerValue];
+            NSString *str_hour = [NSString stringWithFormat:@"%02ld",CountDown/3600];
+            NSString *str_minute = [NSString stringWithFormat:@"%02ld",(CountDown%3600)/60];
+            NSString *str_second = [NSString stringWithFormat:@"%02ld",CountDown%60];
+            NSString *format_time = [NSString stringWithFormat:@"%@:%@:%@",str_hour,str_minute,str_second];
+            //修改倒计时标签现实内容
+            _timeCountDownLb.text=[NSString stringWithFormat:@"倒计时：%@",format_time];
+        }
     }
+    
     
     
 }

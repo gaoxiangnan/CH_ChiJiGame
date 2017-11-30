@@ -333,12 +333,16 @@
         [self creatAlert:@"登录失败，输入手机号"];
     }else
     {
-        NSString *string = [NSString stringWithFormat:@"miganchuanmei%@",_IDtext.text];
+//        NSString *string = [NSString stringWithFormat:@"miganchuanmei%@",_IDtext.text];
+//        
+//        [[NSUserDefaults standardUserDefaults] setObject:string forKey:Token];
         
-        [[NSUserDefaults standardUserDefaults] setObject:string forKey:Token];
-        
-        [CH_NetWorkManager getWithURLString:@"checkCode" parameters:@{@"token":[NSString md5:string],@"code":_PassWordtext.text} success:^(NSDictionary *data) {
+        [CH_NetWorkManager getWithURLString:@"checkCode" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",_IDtext.text]],@"code":_PassWordtext.text} success:^(NSDictionary *data) {
             if ([[data objectForKey:@"code"]isEqualToString:@"200"]) {
+                
+                
+                [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"miganchuanmei%@",_IDtext.text] forKey:@"token"];
+                
                 //获取当前时间戳
                 NSDate *date = [NSDate date];
                 NSString *string = [NSString stringWithFormat:@"%ld",(long)[date timeIntervalSince1970]];
@@ -358,7 +362,7 @@
                 NSString *dateString2 = [formatter stringFromDate:endDate];
                 NSLog(@"结束时间: %@", dateString2);
                 
-                seconds = [date timeIntervalSinceDate:endDate];
+                seconds = [endDate timeIntervalSinceDate:date];
                 NSLog(@"两个时间相隔：%ld", (long)seconds);
                 
                 CH_TeamCreatViewController *chVC = [[CH_TeamCreatViewController alloc]init];
@@ -366,7 +370,7 @@
                 [self.navigationController pushViewController:chVC animated:YES];
                 
                 NSLog(@"%@",[data objectForKey:@"message"]);
-                NSLog(@"%@",data);
+                NSLog(@"%@",Token);
             }else
             {
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:[data objectForKey:@"message"] preferredStyle:UIAlertControllerStyleAlert];
@@ -380,8 +384,8 @@
         }];
     }
     
-    CH_TeamCreatViewController *chVC = [[CH_TeamCreatViewController alloc]init];
-    [self.navigationController pushViewController:chVC animated:YES];
+//    CH_TeamCreatViewController *chVC = [[CH_TeamCreatViewController alloc]init];
+//    [self.navigationController pushViewController:chVC animated:YES];
     
 }
 -(void)creatAlert:(NSString *)string{

@@ -98,7 +98,7 @@ static NSString * const reuseIdentifier = @"cell";
 {
     
     //    [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:@{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:Token] } success:^(NSDictionary *data) {
-    [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]]} success:^(NSDictionary *data) {
+    [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:@{@"token":[NSString md5:Token]} success:^(NSDictionary *data) {
         [self relodDataUpdate:data];
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
@@ -110,6 +110,7 @@ static NSString * const reuseIdentifier = @"cell";
     if (!_CountDowLabel) {
         _CountDowLabel = [[UILabel alloc]init];
         CountDown = _piontSecond;// 倒计时秒数
+//        CountDown = 5;
         
         
         CountDownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(TimerAction:) userInfo:nil repeats:YES];
@@ -206,7 +207,7 @@ static NSString * const reuseIdentifier = @"cell";
     CH_TeamCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.changeTeam = ^(NSString *teamId) {
 //        dispatch_source_cancel(_timer);
-        [CH_NetWorkManager getWithURLString:@"changeTeam" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]],@"team":teamId} success:^(NSDictionary *data) {
+        [CH_NetWorkManager getWithURLString:@"changeTeam" parameters:@{@"token":[NSString md5:Token],@"team":teamId} success:^(NSDictionary *data) {
 //            dispatch_resume(_timer);
             [self relodDataUpdate:data];
             
@@ -269,7 +270,7 @@ static NSString * const reuseIdentifier = @"cell";
 - (void)setRoom
 {
     dispatch_source_cancel(_timer);
-    [CH_NetWorkManager getWithURLString:@"setRoom" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",@"18210238706"]]} success:^(NSDictionary *data) {
+    [CH_NetWorkManager getWithURLString:@"setRoom" parameters:@{@"token":[NSString md5:Token]} success:^(NSDictionary *data) {
         dispatch_resume(_timer);
         [self relodDataUpdate:data];
         
