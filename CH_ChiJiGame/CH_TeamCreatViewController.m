@@ -164,7 +164,7 @@ static NSString * const reuseIdentifier = @"cell";
 }
 - (void)startWaitGameBegin
 {
-//    [self doTimer];
+    [self doTimer];
     // GCD定时器
     static dispatch_source_t _timer;
     NSTimeInterval period = 1.0; //设置时间间隔
@@ -218,20 +218,14 @@ static NSString * const reuseIdentifier = @"cell";
     
     CH_TeamCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.changeTeam = ^(NSString *teamId) {
-//        dispatch_source_cancel(_timer);
         [CH_NetWorkManager getWithURLString:@"changeTeam" parameters:@{@"token":[NSString md5:Token],@"team":teamId} success:^(NSDictionary *data) {
-//            dispatch_resume(_timer);
             [self relodDataUpdate:data];
             
         } failure:^(NSError *error) {
             NSLog(@"%@",error);
         }];
     };
-    if (indexPath.row == _teamArr.count - 1) {
-        [cell translateData:[_teamArr objectAtIndex:indexPath.row] changeCellOutView:YES];
-    }else{
-        [cell translateData:[_teamArr objectAtIndex:indexPath.row] changeCellOutView:NO];
-    }
+    [cell translateData:[_teamArr objectAtIndex:indexPath.row] changeCellOutView:NO];
     [cell teamNum:indexPath.row];
     
     
@@ -270,7 +264,6 @@ static NSString * const reuseIdentifier = @"cell";
 }
 - (void)relodDataUpdate:(NSDictionary *)dic
 {
-//    NPrintLog(@"%@",dic);
     if ([[dic objectForKey:@"code"] isEqualToString:@"200"]) {
         [_teamArr removeAllObjects];
         NSArray *dataArr = [dic objectForKey:@"data"];
@@ -278,9 +271,6 @@ static NSString * const reuseIdentifier = @"cell";
             TeamModel *teamModel = [[TeamModel alloc]initWithDic:dic];
             [_teamArr addObject:teamModel];
         }
-        TeamModel *teamModel = [[TeamModel alloc]init];
-        NSInteger index = _teamArr.count;
-        [_teamArr insertObject:teamModel atIndex:index];
         
         [_collectionView reloadData];
         

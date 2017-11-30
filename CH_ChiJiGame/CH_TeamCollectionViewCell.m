@@ -19,8 +19,6 @@
 @property (nonatomic, strong) UIButton *teamCreateBtn;
 @property (nonatomic, strong) UIView *memberViewBg;
 
-@property (nonatomic, strong) UIButton *teamAddBtn;
-@property (nonatomic, strong) UILabel *teamCreatLb;
 
 
 @property (nonatomic, strong) NSArray *teamArr;
@@ -51,59 +49,19 @@
         }];
         
         [self createTeamPlaceHoldView];
-        [self lastCellViewUpdata];
         
     }
     return self;
 }
-- (void)lastCellViewUpdata
-{
-    _teamAddBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *btnImg = [UIImage imageNamed:@"ch_teamAdd_btn"];
-    [_teamAddBtn setBackgroundImage:btnImg forState:UIControlStateNormal];
-    [_teamAddBtn addTarget:self action:@selector(onTeamAddClick) forControlEvents:UIControlEventTouchUpInside];
-    _teamAddBtn.hidden = YES;
-    [self addSubview:_teamAddBtn];
-    [_teamAddBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.mas_equalTo(_imgBgV);
-        make.width.mas_equalTo(100);
-        make.height.mas_equalTo(100);
-    }];
-    
-    _teamCreatLb = [[UILabel alloc]init];
-    _teamAddBtn.hidden = YES;
-    _teamCreatLb.text = @"创建组队";
-    _teamCreatLb.textColor = [UIColor yellowColor];
-    _teamCreatLb.font = [UIFont systemFontOfSize:17 weight:UIFontWeightBold];
-    _teamCreatLb.textAlignment = NSTextAlignmentLeft;
-    [self addSubview:_teamCreatLb];
-    [_teamCreatLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(_teamAddBtn);
-        make.top.mas_equalTo(_teamAddBtn.mas_bottom).mas_offset(10);
-    }];
-    
-    
-}
+
 - (void)translateData:(TeamModel *)teamModel changeCellOutView:(BOOL)last
 {
     _teamModel = teamModel;
-    if (last == YES) {
-        _teamAddBtn.hidden = NO;
-        _teamCreatLb.hidden = NO;
-        _teamCreateBtn.hidden = YES;
-        _memberViewBg.hidden = YES;
-        _teamTitleLb.hidden = YES;
-        
-    }else{
-        _teamAddBtn.hidden = YES;
-        _teamCreatLb.hidden = YES;
-        _teamCreateBtn.hidden = NO;
-        _memberViewBg.hidden = NO;
-        _teamTitleLb.hidden = NO;
-        _teamTitleLb.text = teamModel.name;
-        [self createTeamView:teamModel.userlist];
-        
-    }
+//    _teamCreateBtn.hidden = NO;
+//    _memberViewBg.hidden = NO;
+//    _teamTitleLb.hidden = NO;
+    _teamTitleLb.text = teamModel.name;
+    [self createTeamView:teamModel.userlist];
 }
 - (void)teamNum:(NSInteger)index
 {
@@ -123,7 +81,6 @@
     }];
     
     _teamCreateBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _teamCreateBtn.hidden = NO;
     UIImage *btnImg = [UIImage imageNamed:@"ch_teamJoinBtn"];
     [_teamCreateBtn setBackgroundImage:btnImg forState:UIControlStateNormal];
     [_teamCreateBtn addTarget:self action:@selector(onCreateTeamClick) forControlEvents:UIControlEventTouchUpInside];

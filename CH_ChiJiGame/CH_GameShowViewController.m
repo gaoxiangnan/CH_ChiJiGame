@@ -49,13 +49,16 @@
     
     _mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
     _mapView.delegate  = self;
-    _mapView.showsCompass = NO;
+    _mapView.scrollEnabled = NO;//不支持平移
+    _mapView.showsCompass = YES;
     _mapView.showsScale = NO;
     _mapView.showsUserLocation = YES;
     _mapView.mapType = MAMapTypeSatellite;
     _mapView.userTrackingMode = MAUserTrackingModeFollow;
     self.locationManager = [[AMapLocationManager alloc] init];
     self.locationManager.delegate = self;
+    
+    [_mapView setRotationDegree:90.0f animated:YES duration:1];
     //开启持续定位
     [self.locationManager startUpdatingLocation];
 
@@ -67,8 +70,7 @@
 //    self.geoFenceManager.activeAction = AMapGeoFenceActiveActionInside | AMapGeoFenceActiveActionOutside | AMapGeoFenceActiveActionStayed; //进入，离开，停留都要进行通知
     //    self.geoFenceManager.allowsBackgroundLocationUpdates = YES;  //允许后台定位
     
-//    [self createPolygonArea];
-    
+    [self createPolygonArea];
     [self safetyCircleUpdate];
 
     
@@ -84,7 +86,7 @@
 //    __weak typeof(self) weakSelf = self;
     _teamMes = [[CH_TeamMesView alloc]initWithFrame:CGRectMake(0, kWindowH - (kWindowH*85/375), kWindowW, (kWindowH*85/375))];
     _teamMes.sleuthBlock = ^(){
-        [self createPolygonArea];
+        
     };
     [self.view addSubview:_teamMes];
     
@@ -228,14 +230,6 @@
                     [coordinates addObject:pointAnnotation];
                 }
                 
-                
-                
-                //将大头针添加到地图中
-                //        [self.mapView addAnnotation:pointAnnotation];
-                
-                //默认选中气泡
-                //        [self.mapView selectAnnotation:pointAnnotation animated:YES];
-                
             }
             [self.mapView addAnnotations:coordinates];
             
@@ -302,10 +296,10 @@
         MACircleRenderer *circleRenderer = [[MACircleRenderer alloc] initWithCircle:overlay];
         circleRenderer.lineWidth    = 5.f;
         if ([overlay.title isEqualToString:@"currentSafety"]) {
-            circleRenderer.strokeColor  = [UIColor blueColor];//圈的颜色
+            circleRenderer.strokeColor  = [UIColor redColor];//圈的颜色
             circleRenderer.fillColor    = [UIColor colorWithRed:0 green:0 blue:0.0 alpha:0.3];//填充颜色
         }else{
-            circleRenderer.strokeColor  = [UIColor redColor];//圈的颜色
+            circleRenderer.strokeColor  = [UIColor greenColor];//圈的颜色
             circleRenderer.fillColor    = [UIColor colorWithRed:0 green:0 blue:0.0 alpha:0.3];//填充颜色
         }
         return circleRenderer;
@@ -372,7 +366,7 @@
 }
 - (void)createPolygonArea
 {
-    NSInteger count = 10;
+    NSInteger count = 13;
     CLLocationCoordinate2D *coorArr = malloc(sizeof(CLLocationCoordinate2D) * count);
     
     coorArr[0] = CLLocationCoordinate2DMake(40.283155,116.668493);
