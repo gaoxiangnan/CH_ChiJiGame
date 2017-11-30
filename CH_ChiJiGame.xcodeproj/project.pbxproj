@@ -19,8 +19,6 @@
 		FE647A601FC51BA20016F3E4 /* CH_MemberMessView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE647A5F1FC51BA20016F3E4 /* CH_MemberMessView.m */; };
 		FE647A621FC545500016F3E4 /* mystyle_sdk_1511329093_0100.data in Resources */ = {isa = PBXBuildFile; fileRef = FE647A611FC545500016F3E4 /* mystyle_sdk_1511329093_0100.data */; };
 		FE647A651FC5528B0016F3E4 /* CH_TeamMesView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE647A641FC5528B0016F3E4 /* CH_TeamMesView.m */; };
-		FE647A6A1FC679940016F3E4 /* LLPulseAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = FE647A671FC679940016F3E4 /* LLPulseAnimation.m */; };
-		FE647A6B1FC679940016F3E4 /* LLRadarView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE647A691FC679940016F3E4 /* LLRadarView.m */; };
 		FE647A6E1FC6EAC20016F3E4 /* CH_VictoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE647A6D1FC6EAC20016F3E4 /* CH_VictoryViewController.m */; };
 		FE7D93391FBEFB6A008BA8CF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7D93381FBEFB6A008BA8CF /* main.m */; };
 		FE7D933C1FBEFB6A008BA8CF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7D933B1FBEFB6A008BA8CF /* AppDelegate.m */; };
@@ -79,10 +77,6 @@
 		FE647A611FC545500016F3E4 /* mystyle_sdk_1511329093_0100.data */ = {isa = PBXFileReference; lastKnownFileType = file; path = mystyle_sdk_1511329093_0100.data; sourceTree = "<group>"; };
 		FE647A631FC5528A0016F3E4 /* CH_TeamMesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CH_TeamMesView.h; sourceTree = "<group>"; };
 		FE647A641FC5528B0016F3E4 /* CH_TeamMesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CH_TeamMesView.m; sourceTree = "<group>"; };
-		FE647A661FC679940016F3E4 /* LLPulseAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLPulseAnimation.h; path = ../LLPulseAnimation.h; sourceTree = "<group>"; };
-		FE647A671FC679940016F3E4 /* LLPulseAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LLPulseAnimation.m; path = ../LLPulseAnimation.m; sourceTree = "<group>"; };
-		FE647A681FC679940016F3E4 /* LLRadarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLRadarView.h; path = ../LLRadarView.h; sourceTree = "<group>"; };
-		FE647A691FC679940016F3E4 /* LLRadarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LLRadarView.m; path = ../LLRadarView.m; sourceTree = "<group>"; };
 		FE647A6C1FC6EAC20016F3E4 /* CH_VictoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CH_VictoryViewController.h; sourceTree = "<group>"; };
 		FE647A6D1FC6EAC20016F3E4 /* CH_VictoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CH_VictoryViewController.m; sourceTree = "<group>"; };
 		FE7D93341FBEFB6A008BA8CF /* CH_ChiJiGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CH_ChiJiGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -264,10 +258,6 @@
 		FE7D936E1FBEFE47008BA8CF /* OpenSource */ = {
 			isa = PBXGroup;
 			children = (
-				FE647A661FC679940016F3E4 /* LLPulseAnimation.h */,
-				FE647A671FC679940016F3E4 /* LLPulseAnimation.m */,
-				FE647A681FC679940016F3E4 /* LLRadarView.h */,
-				FE647A691FC679940016F3E4 /* LLRadarView.m */,
 				FE7D93751FC275E2008BA8CF /* JSONKit */,
 			);
 			path = OpenSource;
@@ -352,8 +342,8 @@
 				TargetAttributes = {
 					FE7D93331FBEFB6A008BA8CF = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = WEDT4D5V4Q;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = K6F6N22E77;
+						ProvisioningStyle = Manual;
 					};
 					FE7D934C1FBEFB6A008BA8CF = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -483,13 +473,11 @@
 				FE647A601FC51BA20016F3E4 /* CH_MemberMessView.m in Sources */,
 				FE7D933C1FBEFB6A008BA8CF /* AppDelegate.m in Sources */,
 				FE2CEFD01FCC10250078CE32 /* UserModel.m in Sources */,
-				FE647A6A1FC679940016F3E4 /* LLPulseAnimation.m in Sources */,
 				FE7D93781FC275E2008BA8CF /* JSONKit.m in Sources */,
 				FE7D93851FC2D1E3008BA8CF /* CH_TeamCollectionViewCell.m in Sources */,
 				FE647A6E1FC6EAC20016F3E4 /* CH_VictoryViewController.m in Sources */,
 				FE2CEFD31FCC143C0078CE32 /* TeamModel.m in Sources */,
 				FE2CEFD91FCECF930078CE32 /* PointModel.m in Sources */,
-				FE647A6B1FC679940016F3E4 /* LLRadarView.m in Sources */,
 				FE647A651FC5528B0016F3E4 /* CH_TeamMesView.m in Sources */,
 				FE2CEFD61FCEC9DD0078CE32 /* LocationModel.m in Sources */,
 				FE7D93391FBEFB6A008BA8CF /* main.m in Sources */,
@@ -647,14 +635,16 @@
 			baseConfigurationReference = 0C178FDA56FD52B52C5D56C8 /* Pods-CH_ChiJiGame.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = WEDT4D5V4Q;
+				DEVELOPMENT_TEAM = K6F6N22E77;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CH_ChiJiGame/CH_ChiJiGame-Prefix.pch";
 				INFOPLIST_FILE = CH_ChiJiGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.CH-ChiJiGame.demo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.thetech.ailinyi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "39c30c7f-6ed2-4211-8c4a-ec72e9d63038";
+				PROVISIONING_PROFILE_SPECIFIER = AiLinYiDev;
 			};
 			name = Debug;
 		};
@@ -663,14 +653,17 @@
 			baseConfigurationReference = B22A4DE0CD94C9341B292A49 /* Pods-CH_ChiJiGame.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = WEDT4D5V4Q;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = K6F6N22E77;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CH_ChiJiGame/CH_ChiJiGame-Prefix.pch";
 				INFOPLIST_FILE = CH_ChiJiGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.CH-ChiJiGame.demo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.thetech.ailinyi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "39c30c7f-6ed2-4211-8c4a-ec72e9d63038";
+				PROVISIONING_PROFILE_SPECIFIER = AiLinYiDev;
 			};
 			name = Release;
 		};

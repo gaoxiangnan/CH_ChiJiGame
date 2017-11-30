@@ -16,7 +16,7 @@
 {
     NSInteger CountDown;
     NSTimer *CountDownTimer;
-    dispatch_source_t _timer;
+//    dispatch_source_t _timer;
 }
 @property(nonatomic,strong)UICollectionView *collectionView;
 @property(nonatomic,strong)UILabel *CountDowLabel;
@@ -77,7 +77,7 @@ static NSString * const reuseIdentifier = @"cell";
 - (void)start
 {
     // GCD定时器
-//    static dispatch_source_t _timer;
+    static dispatch_source_t _timer;
     NSTimeInterval period = 4.0; //设置时间间隔
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
@@ -91,7 +91,7 @@ static NSString * const reuseIdentifier = @"cell";
     });
     
     // 开启定时器
-    dispatch_resume(_timer);
+//    dispatch_resume(_timer);
 }
 
 - (void)updateNetData
@@ -188,7 +188,7 @@ static NSString * const reuseIdentifier = @"cell";
 
 -(void)doTimer
 {
-    dispatch_source_cancel(_timer);
+//    dispatch_source_cancel(_timer);
     
     CH_GameShowViewController *vc = [[CH_GameShowViewController alloc]init];
     vc.pointArr = [NSArray arrayWithArray:_circleArr];
@@ -242,7 +242,7 @@ static NSString * const reuseIdentifier = @"cell";
     
 
     if ((indexPath.row == _teamArr.count - 1)) {
-        NSLog(@"点击最后一个cell，执行添加操作");
+        NPrintLog(@"点击最后一个cell，执行添加操作");
         
 //        //初始化一个新的cell模型；
 //        TeamModel *model = [[TeamModel alloc] init];
@@ -263,15 +263,15 @@ static NSString * const reuseIdentifier = @"cell";
         
         
     }else{
-        NSLog(@"第%ld个section,点击图片%ld",indexPath.section,indexPath.row);
+//        NSLog(@"第%ld个section,点击图片%ld",indexPath.section,indexPath.row);
     }  
     
 }
 - (void)setRoom
 {
-    dispatch_source_cancel(_timer);
+//    dispatch_source_cancel(_timer);
     [CH_NetWorkManager getWithURLString:@"setRoom" parameters:@{@"token":[NSString md5:Token]} success:^(NSDictionary *data) {
-        dispatch_resume(_timer);
+//        dispatch_resume(_timer);
         [self relodDataUpdate:data];
         
     } failure:^(NSError *error) {

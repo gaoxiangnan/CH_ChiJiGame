@@ -11,7 +11,6 @@
 #import <AMapLocationKit/AMapLocationKit.h>
 #import "CH_MemberMessView.h"
 #import "CH_TeamMesView.h"
-#import "LLRadarView.h"
 #import <AMapNaviKit/AMapNaviKit.h>
 #import "CH_VictoryViewController.h"
 #import "PointModel.h"
@@ -31,7 +30,6 @@
 
 @property (nonatomic, strong) NSMutableArray *regions;
 
-@property (nonatomic, strong) LLRadarView *radarView;
 
 @property (nonatomic,strong) CH_MemberMessView *memberMes;
 @property (nonatomic,strong) CH_TeamMesView *teamMes;
@@ -53,6 +51,7 @@
     _mapView.showsCompass = NO;
     _mapView.showsScale = NO;
     _mapView.showsUserLocation = YES;
+    _mapView.mapType = MAMapTypeSatellite;
     _mapView.userTrackingMode = MAUserTrackingModeFollow;
     self.locationManager = [[AMapLocationManager alloc] init];
     self.locationManager.delegate = self;

@@ -81,6 +81,53 @@
             endingLineNumber = "347"
             landmarkName = "-amapLocationManager:didExitRegion:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__63-[CH_GameShowViewController amapLocationManager:didExitRegion:]_block_invoke_2"
+                  moduleName = "CH_ChiJiGame"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/takamukonokusunoki/Documents/iOS-ChiJi/appleapp/CH_ChiJiGame/CH_ChiJiGame/CH_GameShowViewController.m"
+                  timestampString = "533721056.63656"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "348"
+                  endingLineNumber = "348"
+                  offsetFromSymbolStart = "589">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_.317"
+                  moduleName = "CH_ChiJiGame"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/takamukonokusunoki/Documents/iOS-ChiJi/appleapp/CH_ChiJiGame/CH_ChiJiGame/CH_GameShowViewController.m"
+                  timestampString = "533721056.639476"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "348"
+                  endingLineNumber = "348"
+                  offsetFromSymbolStart = "51">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.318"
+                  moduleName = "CH_ChiJiGame"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/takamukonokusunoki/Documents/iOS-ChiJi/appleapp/CH_ChiJiGame/CH_ChiJiGame/CH_GameShowViewController.m"
+                  timestampString = "533721056.642435"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "348"
+                  endingLineNumber = "348"
+                  offsetFromSymbolStart = "29">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -128,6 +175,38 @@
             startingLineNumber = "166"
             endingLineNumber = "166"
             landmarkName = "-TimerAction:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CH_ChiJiGame/CH_TeamCreatViewController.m"
+            timestampString = "533720421.870768"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
+            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CH_ChiJiGame/CH_TeamCreatViewController.m"
+            timestampString = "533720869.382564"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
+            landmarkName = "-setRoom"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
