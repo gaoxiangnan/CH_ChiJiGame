@@ -58,12 +58,10 @@
     //开启持续定位
     [self.locationManager startUpdatingLocation];
 
-    NSString *path = [NSString stringWithFormat:@"%@/mystyle_sdk_1511329093_0100.data", [NSBundle mainBundle].bundlePath];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    [_mapView setCustomMapStyleWithWebData:data];
-    [_mapView setCustomMapStyleEnabled:YES];
-    _mapView.showsUserLocation = YES;
-    _mapView.userTrackingMode = MAUserTrackingModeFollow;
+//    NSString *path = [NSString stringWithFormat:@"%@/mystyle_sdk_1511329093_0100.data", [NSBundle mainBundle].bundlePath];
+//    NSData *data = [NSData dataWithContentsOfFile:path];
+//    [_mapView setCustomMapStyleWithWebData:data];
+//    [_mapView setCustomMapStyleEnabled:YES];
     ///把地图添加至view
     [self.view addSubview:_mapView];
     

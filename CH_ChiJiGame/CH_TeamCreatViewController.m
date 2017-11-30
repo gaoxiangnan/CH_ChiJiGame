@@ -263,7 +263,7 @@ static NSString * const reuseIdentifier = @"cell";
         
         
     }else{
-//        NSLog(@"第%ld个section,点击图片%ld",indexPath.section,indexPath.row);
+        NSLog(@"第%ld个section,点击图片%ld",indexPath.section,indexPath.row);
     }  
     
 }
