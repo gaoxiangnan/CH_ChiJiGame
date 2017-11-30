@@ -16,17 +16,18 @@
 #import "PointModel.h"
 #import "PlayerModel.h"
 
-@interface CH_GameShowViewController ()<MAMapViewDelegate,AMapLocationManagerDelegate>
+@interface CH_GameShowViewController ()<MAMapViewDelegate,AMapLocationManagerDelegate,AMapGeoFenceManagerDelegate>
 {
     NSInteger _touchCount;
     NSTimer *Timer;
-    dispatch_source_t _timer;
 }
 
 @property (strong,nonatomic) MAMapView *mapView;
 
 @property (nonatomic,strong) AMapLocationManager *locationManager;
 @property (nonatomic,assign) CLLocationCoordinate2D currentCoordinate;
+
+@property (nonatomic, strong) AMapGeoFenceManager *geoFenceManager;//新版围栏
 
 @property (nonatomic, strong) NSMutableArray *regions;
 
@@ -58,20 +59,18 @@
     //开启持续定位
     [self.locationManager startUpdatingLocation];
 
-//    NSString *path = [NSString stringWithFormat:@"%@/mystyle_sdk_1511329093_0100.data", [NSBundle mainBundle].bundlePath];
-//    NSData *data = [NSData dataWithContentsOfFile:path];
-//    [_mapView setCustomMapStyleWithWebData:data];
-//    [_mapView setCustomMapStyleEnabled:YES];
     ///把地图添加至view
     [self.view addSubview:_mapView];
     
-    [self safetyCircleUpdate];
+    self.geoFenceManager = [[AMapGeoFenceManager alloc] init];
+    self.geoFenceManager.delegate = self;
+//    self.geoFenceManager.activeAction = AMapGeoFenceActiveActionInside | AMapGeoFenceActiveActionOutside | AMapGeoFenceActiveActionStayed; //进入，离开，停留都要进行通知
+    //    self.geoFenceManager.allowsBackgroundLocationUpdates = YES;  //允许后台定位
     
-    //固定范围
-    PointModel *model1 = [[PointModel alloc]initWithDic:@{@"point":@"116.669052,40.28629",@"radius":@"400"}];
-    CLLocationCoordinate2D Cllo = CLLocationCoordinate2DMake( [model1.lat floatValue],[model1.lng floatValue]);
-    MACircle *circle = [MACircle circleWithCenterCoordinate:Cllo radius:[model1.radius floatValue]];
-    [self.mapView setVisibleMapRect:circle.boundingMapRect];
+//    [self createPolygonArea];
+    
+    [self safetyCircleUpdate];
+
     
 //初始化安全区域
     [self safetyCircleArea];
@@ -85,10 +84,7 @@
 //    __weak typeof(self) weakSelf = self;
     _teamMes = [[CH_TeamMesView alloc]initWithFrame:CGRectMake(0, kWindowH - (kWindowH*85/375), kWindowW, (kWindowH*85/375))];
     _teamMes.sleuthBlock = ^(){
-        
-
-        //[[NSRunLoop mainRunLoop] addTimer:Timer forMode:NSDefaultRunLoopMode];
-        
+        [self createPolygonArea];
     };
     [self.view addSubview:_teamMes];
     
@@ -124,12 +120,10 @@
                 [self addCircleReionForCoordinateCurrent:[_circleArr firstObject] future:[_circleArr lastObject]];
             }else{
                 [self addCircleReionForCoordinateCurrent:[_circleArr firstObject] future:nil];
-                dispatch_source_cancel(_timer);
             }
             
         }else if ([[data objectForKey:@"code"]isEqualToString:@"199"]){
             //比赛结束 胜利
-            dispatch_source_cancel(_timer);
             
             UIImageView *img= [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"shengli"]];
             img.frame = self.view.frame;
@@ -150,7 +144,7 @@
 - (void)start
 {
     // GCD定时器
-    //    static dispatch_source_t _timer;
+    static dispatch_source_t _timer;
     NSTimeInterval period = 1.0; //设置时间间隔
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
@@ -213,7 +207,6 @@
         [_memberMes updateMemberData:data];
         CLLocationCoordinate2D coordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
         _currentCoordinate = coordinate2D;
-        NPrintLog(@"%@",data);
         if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
             NSArray *playerArr = [[data objectForKey:@"data"] objectForKey:@"list"];
             NSMutableArray *coordinates = [NSMutableArray array];
@@ -227,10 +220,15 @@
                 MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
                 pointAnnotation.coordinate = coor;
                 
-                [pointAnnotation setTitle:[NSString stringWithFormat:@"%@", @"1"]];
-                [pointAnnotation setSubtitle:[NSString stringWithFormat:@"%@", @"2"]];
+                [pointAnnotation setTitle:[NSString stringWithFormat:@"%@", model.uname]];
                 
-                [coordinates addObject:pointAnnotation];
+                if ([[NSString stringWithFormat:@"%f",location.coordinate.latitude] isEqualToString:model.lat] && [[NSString stringWithFormat:@"%f",location.coordinate.longitude] isEqualToString:model.lng]) {
+                    NPrintLog(@"哈哈哈哈哈或或");
+                }else{
+                    [coordinates addObject:pointAnnotation];
+                }
+                
+                
                 
                 //将大头针添加到地图中
                 //        [self.mapView addAnnotation:pointAnnotation];
@@ -261,6 +259,7 @@
         static NSString *pointReuseIndetifier = @"pointReuseIndetifier";
         
         MAPinAnnotationView *annotationView = (MAPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndetifier];
+        [annotationView setSelected:YES];
         if (annotationView == nil)
         {
             annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndetifier];
@@ -291,7 +290,14 @@
 //围栏颜色和围栏填充颜色
 - (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id <MAOverlay>)overlay
 {
-    if ([overlay isKindOfClass:[MACircle class]])
+    if ([overlay isKindOfClass:[MAPolygon class]]) {
+        MAPolygonRenderer *polylineRenderer = [[MAPolygonRenderer alloc] initWithPolygon:overlay];
+        polylineRenderer.lineWidth = 3.0f;
+        polylineRenderer.strokeColor = [UIColor redColor];
+        polylineRenderer.fillColor = [UIColor clearColor];
+        
+        return polylineRenderer;
+    } else if ([overlay isKindOfClass:[MACircle class]])
     {
         MACircleRenderer *circleRenderer = [[MACircleRenderer alloc] initWithCircle:overlay];
         circleRenderer.lineWidth    = 5.f;
@@ -364,7 +370,62 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)createPolygonArea
+{
+    NSInteger count = 10;
+    CLLocationCoordinate2D *coorArr = malloc(sizeof(CLLocationCoordinate2D) * count);
+    
+    coorArr[0] = CLLocationCoordinate2DMake(40.283155,116.668493);
+    
+    coorArr[1] = CLLocationCoordinate2DMake(40.28307,116.6699);
+    
+    coorArr[2] = CLLocationCoordinate2DMake(40.282361,116.670448);
+    
+    coorArr[3] = CLLocationCoordinate2DMake(40.282418,116.672755);
+    
+    coorArr[4] = CLLocationCoordinate2DMake(40.284137,116.67268);
+    
+    coorArr[5] = CLLocationCoordinate2DMake(40.284141,116.672183);
+    
+    coorArr[6] = CLLocationCoordinate2DMake(40.284898,116.672177);
+    
+    coorArr[7] = CLLocationCoordinate2DMake(40.284974,116.671196);
+    
+    coorArr[8] = CLLocationCoordinate2DMake(40.286489,116.671174);
+    
+    coorArr[9] = CLLocationCoordinate2DMake(40.286502,116.670378);
+    
+    coorArr[10] = CLLocationCoordinate2DMake(40.287352,116.670389);
+    
+    coorArr[11] = CLLocationCoordinate2DMake(40.287388,116.668431);
+    
+    coorArr[12] = CLLocationCoordinate2DMake(40.283155,116.668493);
+    
+    [self.geoFenceManager addPolygonRegionForMonitoringWithCoordinates:coorArr count:count customID:@"polygon_one"];
+    
+    free(coorArr);
+    coorArr = NULL;
+}
+//地图上显示多边形
+- (MAPolygon *)showPolygonInMap:(CLLocationCoordinate2D *)coordinates count:(NSInteger)count {
+    MAPolygon *polygonOverlay = [MAPolygon polygonWithCoordinates:coordinates count:count];
+    [self.mapView addOverlay:polygonOverlay];
+    return polygonOverlay;
+}
+//添加地理围栏完成后的回调，成功与失败都会调用
+- (void)amapGeoFenceManager:(AMapGeoFenceManager *)manager didAddRegionForMonitoringFinished:(NSArray<AMapGeoFenceRegion *> *)regions customID:(NSString *)customID error:(NSError *)error {
+    
+    if ([customID isEqualToString:@"polygon_one"]) {
+        if (error) {
+            NSLog(@"=======polygon error %@",error);
+        } else {
+            AMapGeoFencePolygonRegion *polygonRegion = (AMapGeoFencePolygonRegion *)regions.firstObject;
+            MAPolygon *polygonOverlay = [self showPolygonInMap:polygonRegion.coordinates count:polygonRegion.count];
+            [self.mapView setVisibleMapRect:polygonOverlay.boundingMapRect edgePadding:UIEdgeInsetsMake(20, 20, 20, 20) animated:YES];
+        }
+    
+    }
+}
 /*
 #pragma mark - Navigation
 

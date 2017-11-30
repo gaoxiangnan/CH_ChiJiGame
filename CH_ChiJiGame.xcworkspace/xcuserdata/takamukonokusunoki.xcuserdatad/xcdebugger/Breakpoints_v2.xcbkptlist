@@ -25,133 +25,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CH_ChiJiGame/CH_GameShowViewController.m"
-            timestampString = "533682041.918615"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "-safetyCircleUpdate"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CH_ChiJiGame/CH_GameShowViewController.m"
-            timestampString = "533689176.866209"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "334"
-            endingLineNumber = "334"
-            landmarkName = "-amapLocationManager:didExitRegion:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CH_ChiJiGame/CH_GameShowViewController.m"
-            timestampString = "533689176.866209"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
-            landmarkName = "-amapLocationManager:didEnterRegion:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CH_ChiJiGame/CH_GameShowViewController.m"
-            timestampString = "533689176.866209"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "347"
-            endingLineNumber = "347"
-            landmarkName = "-amapLocationManager:didExitRegion:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__63-[CH_GameShowViewController amapLocationManager:didExitRegion:]_block_invoke_2"
-                  moduleName = "CH_ChiJiGame"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/takamukonokusunoki/Documents/iOS-ChiJi/appleapp/CH_ChiJiGame/CH_ChiJiGame/CH_GameShowViewController.m"
-                  timestampString = "533721056.63656"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "348"
-                  endingLineNumber = "348"
-                  offsetFromSymbolStart = "589">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_.317"
-                  moduleName = "CH_ChiJiGame"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/takamukonokusunoki/Documents/iOS-ChiJi/appleapp/CH_ChiJiGame/CH_ChiJiGame/CH_GameShowViewController.m"
-                  timestampString = "533721056.639476"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "348"
-                  endingLineNumber = "348"
-                  offsetFromSymbolStart = "51">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.318"
-                  moduleName = "CH_ChiJiGame"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/takamukonokusunoki/Documents/iOS-ChiJi/appleapp/CH_ChiJiGame/CH_ChiJiGame/CH_GameShowViewController.m"
-                  timestampString = "533721056.642435"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "348"
-                  endingLineNumber = "348"
-                  offsetFromSymbolStart = "29">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CH_ChiJiGame/CH_GameShowViewController.m"
-            timestampString = "533689176.866209"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
-            landmarkName = "-amapLocationManager:didUpdateLocation:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "CH_ChiJiGame/CH_MemberMessView.m"
             timestampString = "533691167.180483"
             startingColumnNumber = "9223372036854775807"
@@ -163,18 +36,49 @@
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CH_ChiJiGame/CH_TeamCreatViewController.m"
-            timestampString = "533693988.669457"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "objc_exception_throw"
+            moduleName = "">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "objc_exception_throw"
+                  moduleName = "libobjc.A.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  offsetFromSymbolStart = "0">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CH_ChiJiGame/CH_GameShowViewController.m"
+            timestampString = "533751912.202069"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
-            landmarkName = "-TimerAction:"
+            startingLineNumber = "294"
+            endingLineNumber = "294"
+            landmarkName = "-mapView:rendererForOverlay:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -184,29 +88,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CH_ChiJiGame/CH_TeamCreatViewController.m"
-            timestampString = "533720421.870768"
+            filePath = "CH_ChiJiGame/Model/UserModel.m"
+            timestampString = "533751330.334655"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
-            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "-initWithDic:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CH_ChiJiGame/CH_TeamCreatViewController.m"
-            timestampString = "533720869.382564"
+            filePath = "CH_ChiJiGame/CH_GameShowViewController.m"
+            timestampString = "533751588.537819"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
-            landmarkName = "-setRoom"
+            startingLineNumber = "418"
+            endingLineNumber = "418"
+            landmarkName = "-amapGeoFenceManager:didAddRegionForMonitoringFinished:customID:error:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

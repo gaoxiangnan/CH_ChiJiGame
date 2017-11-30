@@ -91,13 +91,11 @@ static NSString * const reuseIdentifier = @"cell";
     });
     
     // 开启定时器
-//    dispatch_resume(_timer);
+    dispatch_resume(_timer);
 }
 
 - (void)updateNetData
 {
-    
-    //    [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:@{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:Token] } success:^(NSDictionary *data) {
     [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:@{@"token":[NSString md5:Token]} success:^(NSDictionary *data) {
         [self relodDataUpdate:data];
     } failure:^(NSError *error) {
@@ -153,43 +151,57 @@ static NSString * const reuseIdentifier = @"cell";
     NSString *str_second = [NSString stringWithFormat:@"%02ld",CountDown%60];
     NSString *format_time = [NSString stringWithFormat:@"%@:%@:%@",str_hour,str_minute,str_second];
     //修改倒计时标签现实内容
-    _CountDowLabel.text=[NSString stringWithFormat:@"倒计时   %@",format_time];
-    
-    //当倒计时到0时，做需要的操作，比如验证码过期不能提交
+    if (CountDown >= 0) {
+        _CountDowLabel.text=[NSString stringWithFormat:@"倒计时   %@",format_time];
+    }
+    if (CountDown < 5){
+        [self startWaitGameBegin];
+    }
     if (CountDown == 0) {
-        
-    [CountDownTimer invalidate];
-        
-        [CH_NetWorkManager getWithURLString:@"plan/lun_match_start" parameters:nil success:^(NSDictionary *data) {
-            if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
-                
-                UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"start_game"]];
-                img.frame = self.view.frame;
-                img.backgroundColor = [UIColor colorWithRed:16/225.0f green:16/225.0f blue:16/225.0f alpha:.6f];
-                [self.view addSubview:img];
-                
-                for (NSDictionary *dic in [[data objectForKey:@"data"] objectForKey:@"circle"]) {
-                    PointModel *model = [[PointModel alloc]initWithDic:dic];
-                    [_circleArr addObject:model];
-                }
-                [self doTimer];
-            }else if ([[data objectForKey:@"code"] isEqualToString:@"201"]){
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:[data objectForKey:@"message"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alertView show];
-            }
-        } failure:^(NSError *error) {
-            
-        }];
-    
-    
+        [CountDownTimer invalidate];
     }
     
 }
-
+- (void)startWaitGameBegin
+{
+//    [self doTimer];
+    // GCD定时器
+    static dispatch_source_t _timer;
+    NSTimeInterval period = 1.0; //设置时间间隔
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), period * NSEC_PER_SEC, 0); //每秒执行
+    // 事件回调
+    dispatch_source_set_event_handler(_timer, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [CH_NetWorkManager getWithURLString:@"plan/lun_match_start" parameters:nil success:^(NSDictionary *data) {
+                NPrintLog(@"%@",data);
+                if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
+                    dispatch_source_cancel(_timer);
+                    UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"start_game"]];
+                    img.frame = self.view.frame;
+                    img.backgroundColor = [UIColor colorWithRed:16/225.0f green:16/225.0f blue:16/225.0f alpha:.6f];
+                    [self.view addSubview:img];
+                    
+                    for (NSDictionary *dic in [[data objectForKey:@"data"] objectForKey:@"circle"]) {
+                        PointModel *model = [[PointModel alloc]initWithDic:dic];
+                        [_circleArr addObject:model];
+                    }
+                    [self doTimer];
+                }else if ([[data objectForKey:@"code"] isEqualToString:@"201"]){
+                    //游戏未开始
+                }
+            } failure:^(NSError *error) {
+                
+            }];
+        });
+    });
+    
+    // 开启定时器
+    dispatch_resume(_timer);
+}
 -(void)doTimer
 {
-//    dispatch_source_cancel(_timer);
-    
     CH_GameShowViewController *vc = [[CH_GameShowViewController alloc]init];
     vc.pointArr = [NSArray arrayWithArray:_circleArr];
     [self.navigationController pushViewController:vc animated:YES];
@@ -239,29 +251,9 @@ static NSString * const reuseIdentifier = @"cell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-
     if ((indexPath.row == _teamArr.count - 1)) {
-        NPrintLog(@"点击最后一个cell，执行添加操作");
-        
-//        //初始化一个新的cell模型；
-//        TeamModel *model = [[TeamModel alloc] init];
-//        model.name = @"林更新";
-//        model.id = [NSString stringWithFormat:@"%ld",_teamArr.count - 1];
-//        model.userlist = [NSArray array];
-//        
-//        
-//        //把新创建的cell插入到最后一个之前；
-//        [_teamArr insertObject:model atIndex:_teamArr.count - 1];
-//        
-//        
-//        //更新UI；
-//        [_collectionView reloadData];
-        
+        NPrintLog(@"点击最后一个cell，执行添加操作")
         [self setRoom];
-        
-        
-        
     }else{
         NSLog(@"第%ld个section,点击图片%ld",indexPath.section,indexPath.row);
     }  
@@ -269,9 +261,7 @@ static NSString * const reuseIdentifier = @"cell";
 }
 - (void)setRoom
 {
-//    dispatch_source_cancel(_timer);
     [CH_NetWorkManager getWithURLString:@"setRoom" parameters:@{@"token":[NSString md5:Token]} success:^(NSDictionary *data) {
-//        dispatch_resume(_timer);
         [self relodDataUpdate:data];
         
     } failure:^(NSError *error) {
@@ -280,7 +270,7 @@ static NSString * const reuseIdentifier = @"cell";
 }
 - (void)relodDataUpdate:(NSDictionary *)dic
 {
-    NPrintLog(@"%@",dic);
+//    NPrintLog(@"%@",dic);
     if ([[dic objectForKey:@"code"] isEqualToString:@"200"]) {
         [_teamArr removeAllObjects];
         NSArray *dataArr = [dic objectForKey:@"data"];

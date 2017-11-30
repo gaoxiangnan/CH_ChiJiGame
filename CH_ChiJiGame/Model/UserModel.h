@@ -14,6 +14,8 @@
 @property (nonatomic, copy) NSString *team;
 @property (nonatomic, copy) NSString *uid;
 @property (nonatomic, copy) NSString *uname;
+@property (nonatomic, copy) NSString *is_you;
+@property (nonatomic, copy) NSString *is_cai;
 
 
 - (instancetype)initWithDic:(NSDictionary *)dic;

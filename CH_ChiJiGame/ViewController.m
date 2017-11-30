@@ -131,6 +131,7 @@
         _IDtext = [[UITextField alloc]init];
         _IDtext.keyboardType = UIKeyboardTypePhonePad;
         //_IDtext.backgroundColor = [UIColor redColor];
+        _IDtext.text = @"18210238706";
         _IDtext.textColor = [UIColor colorWithRed:225/225.0f green:190/225.0f blue:34/225.0f alpha:1];
         _IDtext.font = [UIFont fontWithName:@"Helvetica-Bold" size:15];
         _IDtext.userInteractionEnabled = YES;
@@ -160,6 +161,7 @@
     if (!_PassWordtext) {
         _PassWordtext = [[UITextField alloc]init];
         _PassWordtext.keyboardType = UIKeyboardTypePhonePad;
+        _PassWordtext.text = @"6666";
         _PassWordtext.textColor = [UIColor colorWithRed:225/225.0f green:190/225.0f blue:34/225.0f alpha:1];
         _PassWordtext.font = [UIFont fontWithName:@"Helvetica-Bold" size:15];
         _PassWordtext.userInteractionEnabled = YES;

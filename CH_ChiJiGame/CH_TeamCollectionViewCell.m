@@ -168,9 +168,6 @@
         memberBtn.frame = CGRectMake(5+45*(i%5), 0+(i/5)*45, 40, 40);
         [_memberViewBg addSubview:memberBtn];
     }
-    
-    
-    
 }
 - (void)onCreateTeamClick
 {
