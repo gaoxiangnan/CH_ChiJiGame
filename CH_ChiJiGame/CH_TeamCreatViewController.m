@@ -96,7 +96,8 @@ static NSString * const reuseIdentifier = @"cell";
 
 - (void)updateNetData
 {
-    [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:@{@"token":[NSString md5:Token]} success:^(NSDictionary *data) {
+    UserModel *model = [[NSUserDefaults standardUserDefaults] objectForKey:UserMessage];
+    [CH_NetWorkManager getWithURLString:@"waitRoomList" parameters:@{@"token":model.token} success:^(NSDictionary *data) {
         [self relodDataUpdate:data];
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
@@ -215,7 +216,8 @@ static NSString * const reuseIdentifier = @"cell";
     
     CH_TeamCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.changeTeam = ^(NSString *teamId) {
-        [CH_NetWorkManager getWithURLString:@"changeTeam" parameters:@{@"token":[NSString md5:Token],@"team":teamId} success:^(NSDictionary *data) {
+        UserModel *model = [[NSUserDefaults standardUserDefaults] objectForKey:UserMessage];
+        [CH_NetWorkManager getWithURLString:@"changeTeam" parameters:@{@"token":model.token,@"team":teamId} success:^(NSDictionary *data) {
             NPrintLog(@"%@",data);
             [self relodDataUpdate:data];
             
@@ -253,7 +255,8 @@ static NSString * const reuseIdentifier = @"cell";
 }
 - (void)setRoom
 {
-    [CH_NetWorkManager getWithURLString:@"setRoom" parameters:@{@"token":[NSString md5:Token]} success:^(NSDictionary *data) {
+    UserModel *model = [[NSUserDefaults standardUserDefaults] objectForKey:UserMessage];
+    [CH_NetWorkManager getWithURLString:@"setRoom" parameters:@{@"token":model.token} success:^(NSDictionary *data) {
         [self relodDataUpdate:data];
         
     } failure:^(NSError *error) {

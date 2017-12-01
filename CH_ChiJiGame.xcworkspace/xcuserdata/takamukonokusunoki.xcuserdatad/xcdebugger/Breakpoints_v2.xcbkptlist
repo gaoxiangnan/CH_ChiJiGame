@@ -72,13 +72,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CH_ChiJiGame/CH_GameShowViewController.m"
-            timestampString = "533792117.250572"
+            filePath = "CH_ChiJiGame/OpenSource/OpenSDK1.8.1_WithoutPay/MyManager.m"
+            timestampString = "533793223.256006"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "341"
-            endingLineNumber = "341"
-            landmarkName = "-amapLocationManager:didExitRegion:"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "-httpCallBack:Response:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

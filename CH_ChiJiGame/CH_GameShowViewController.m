@@ -211,7 +211,8 @@
 }
 -(void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location{
     //输出的是模拟器的坐标
-    [CH_NetWorkManager postWithURLString:@"plan/setCoordinate" parameters:@{@"token":[NSString md5:Token],@"lng":[NSString stringWithFormat:@"%f",location.coordinate.longitude],@"lat":[NSString stringWithFormat:@"%f",location.coordinate.latitude]} success:^(NSDictionary *data) {
+    UserModel *model = [[NSUserDefaults standardUserDefaults] objectForKey:UserMessage];
+    [CH_NetWorkManager postWithURLString:@"plan/setCoordinate" parameters:@{@"token":model.token,@"lng":[NSString stringWithFormat:@"%f",location.coordinate.longitude],@"lat":[NSString stringWithFormat:@"%f",location.coordinate.latitude]} success:^(NSDictionary *data) {
         [_memberMes updateMemberData:data];
         CLLocationCoordinate2D coordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
         _currentCoordinate = coordinate2D;
@@ -344,27 +345,33 @@
 }
 - (void)endGame
 {
-    [CH_NetWorkManager getWithURLString:@"/admin/match/endGame" parameters:@{@"token":[NSString md5:Token]} success:^(NSDictionary *data) {
-        if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
-            //出圈死亡
-            
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"游戏结束" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *ac = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *  action) {
-                
-                UIImageView *vwww = [[UIImageView alloc]initWithFrame:self.view.frame];
-                vwww.image = [UIImage imageNamed:@"失败"];
-                vwww.backgroundColor = [UIColor colorWithRed:16/225.0f green:16/225.0f blue:16/225.0f alpha:.6f];
-                [self.view addSubview:vwww];
-                
-            }];
-            
-            [alert addAction:ac];
-            [self presentViewController:alert animated:YES completion:nil];
-            
-        }
-    } failure:^(NSError *error) {
+    UserModel *model = [[NSUserDefaults standardUserDefaults] objectForKey:UserMessage];
+    if ([model.is_you isEqualToString:@"1"]) {
         
-    }];
+    }else{
+        [CH_NetWorkManager getWithURLString:@"/admin/match/endGame" parameters:@{@"token":model.token} success:^(NSDictionary *data) {
+            if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
+                //出圈死亡
+                
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"游戏结束" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *ac = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *  action) {
+                    
+                    UIImageView *vwww = [[UIImageView alloc]initWithFrame:self.view.frame];
+                    vwww.image = [UIImage imageNamed:@"失败"];
+                    vwww.backgroundColor = [UIColor colorWithRed:16/225.0f green:16/225.0f blue:16/225.0f alpha:.6f];
+                    [self.view addSubview:vwww];
+                    
+                }];
+                
+                [alert addAction:ac];
+                [self presentViewController:alert animated:YES completion:nil];
+                
+            }
+        } failure:^(NSError *error) {
+            
+        }];
+    }
+    
 }
 - (void)amapLocationManager:(AMapLocationManager *)manager didStartMonitoringForRegion:(AMapLocationRegion *)region
 {

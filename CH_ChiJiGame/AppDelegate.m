@@ -34,7 +34,10 @@
     if ([UserHelper isLogin]) {
         
         NSLog(@"登录成功回来");
+        CH_TeamCreatViewController *vcc = [[CH_TeamCreatViewController alloc]init];
         
+        self.window.rootViewController = vcc;
+
         
     }
     

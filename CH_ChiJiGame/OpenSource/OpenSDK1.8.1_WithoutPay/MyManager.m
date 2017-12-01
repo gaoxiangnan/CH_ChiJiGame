@@ -11,6 +11,8 @@
 #import "AppDelegate.h"
 #import "UserInfo.h"
 #import "UserHelper.h"
+#import "CH_TeamCreatViewController.h"
+#import "UserModel.h"
 @implementation MyManager
 #pragma mark - LifeCycle
 
@@ -117,14 +119,29 @@
         [UserHelper saveUserInfo:userInfo];
         
         
+        
         AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         
-//
-//        MainViewController *mainVC = [[MainViewController alloc] init];
-//
-//        UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:mainVC];
-//
-//        delegate.window.rootViewController = navi;
+        
+        [CH_NetWorkManager getWithURLString:@"weixin_login" parameters:@{@"open_id":userInfo.openid,@"uname":userInfo.nickname,@"picurl":userInfo.headimgurl} success:^(NSDictionary *data) {
+            if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
+                UserModel *model = [[UserModel alloc]initWithDic:[data objectForKey:@"data"]];
+                
+                [[NSUserDefaults standardUserDefaults] setObject:model forKey:UserMessage];
+                CH_TeamCreatViewController *mainVC = [[CH_TeamCreatViewController alloc] init];
+                
+                UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:mainVC];
+                
+                delegate.window.rootViewController = navi;
+            }
+            
+        } failure:^(NSError *error) {
+            
+            NPrintLog(@"%@",error);
+            
+        }];
+        
+        
 
         
     }

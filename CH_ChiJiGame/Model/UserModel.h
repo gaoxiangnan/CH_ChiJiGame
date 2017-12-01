@@ -16,6 +16,9 @@
 @property (nonatomic, copy) NSString *uname;
 @property (nonatomic, copy) NSString *is_you;
 @property (nonatomic, copy) NSString *is_cai;
+@property (nonatomic, copy) NSString *is_person;
+@property (nonatomic, copy) NSString *health;
+@property (nonatomic, copy) NSString *token;
 
 
 - (instancetype)initWithDic:(NSDictionary *)dic;
