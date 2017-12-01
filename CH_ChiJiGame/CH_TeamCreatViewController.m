@@ -164,7 +164,7 @@ static NSString * const reuseIdentifier = @"cell";
 }
 - (void)startWaitGameBegin
 {
-    [self doTimer];
+//    [self doTimer];
     // GCD定时器
     static dispatch_source_t _timer;
     NSTimeInterval period = 1.0; //设置时间间隔
@@ -178,16 +178,13 @@ static NSString * const reuseIdentifier = @"cell";
                 NPrintLog(@"%@",data);
                 if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
                     dispatch_source_cancel(_timer);
-                    UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"start_game"]];
-                    img.frame = self.view.frame;
-                    img.backgroundColor = [UIColor colorWithRed:16/225.0f green:16/225.0f blue:16/225.0f alpha:.6f];
-                    [self.view addSubview:img];
-                    
+                    [_circleArr removeAllObjects];
                     for (NSDictionary *dic in [[data objectForKey:@"data"] objectForKey:@"circle"]) {
                         PointModel *model = [[PointModel alloc]initWithDic:dic];
                         [_circleArr addObject:model];
                     }
                     [self doTimer];
+                    
                 }else if ([[data objectForKey:@"code"] isEqualToString:@"201"]){
                     //游戏未开始
                 }
@@ -205,7 +202,7 @@ static NSString * const reuseIdentifier = @"cell";
     CH_GameShowViewController *vc = [[CH_GameShowViewController alloc]init];
     vc.pointArr = [NSArray arrayWithArray:_circleArr];
     [self.navigationController pushViewController:vc animated:YES];
-    [CountDownTimer invalidate];
+//    [CountDownTimer invalidate];
 }
 -(void)adap
 {
@@ -219,6 +216,7 @@ static NSString * const reuseIdentifier = @"cell";
     CH_TeamCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.changeTeam = ^(NSString *teamId) {
         [CH_NetWorkManager getWithURLString:@"changeTeam" parameters:@{@"token":[NSString md5:Token],@"team":teamId} success:^(NSDictionary *data) {
+            NPrintLog(@"%@",data);
             [self relodDataUpdate:data];
             
         } failure:^(NSError *error) {
@@ -271,9 +269,7 @@ static NSString * const reuseIdentifier = @"cell";
             TeamModel *teamModel = [[TeamModel alloc]initWithDic:dic];
             [_teamArr addObject:teamModel];
         }
-        
         [_collectionView reloadData];
-        
     }
 }
 - (CGSize)sizeForChildContentContainer:(nonnull id<UIContentContainer>)container withParentContainerSize:(CGSize)parentSize

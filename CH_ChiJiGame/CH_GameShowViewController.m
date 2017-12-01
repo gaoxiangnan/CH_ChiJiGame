@@ -20,6 +20,7 @@
 {
     NSInteger _touchCount;
     NSTimer *Timer;
+    MACoordinateRegion _boundary;
 }
 
 @property (strong,nonatomic) MAMapView *mapView;
@@ -65,6 +66,13 @@
     ///把地图添加至view
     [self.view addSubview:_mapView];
     
+    [self.mapView setLimitRegion:_boundary];
+    
+//    MACoordinateRegion boundary =  MACoordinateRegionMake(CLLocationCoordinate2DMake(40, 116), MACoordinateSpanMake(2, 2));
+//    MAMapRect mapRect = MAMapRectForCoordinateRegion(boundary);
+//    [_mapView setLimitMapRect:mapRect];
+
+    
     self.geoFenceManager = [[AMapGeoFenceManager alloc] init];
     self.geoFenceManager.delegate = self;
 //    self.geoFenceManager.activeAction = AMapGeoFenceActiveActionInside | AMapGeoFenceActiveActionOutside | AMapGeoFenceActiveActionStayed; //进入，离开，停留都要进行通知
@@ -83,10 +91,10 @@
     _memberMes.alpha = 0.5;
     [self.view addSubview:_memberMes];
 //地图下的View
-//    __weak typeof(self) weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     _teamMes = [[CH_TeamMesView alloc]initWithFrame:CGRectMake(0, kWindowH - (kWindowH*85/375), kWindowW, (kWindowH*85/375))];
     _teamMes.sleuthBlock = ^(){
-        
+         [weakSelf endGame];
     };
     [self.view addSubview:_teamMes];
     
@@ -131,9 +139,7 @@
             img.frame = self.view.frame;
             img.backgroundColor = [UIColor colorWithRed:16/225.0f green:16/225.0f blue:16/225.0f alpha:.6f];
             [self.view addSubview:img];
-            
-//            Timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(doTimer) userInfo:nil repeats:NO];
-            
+                        
             
             
             
@@ -297,10 +303,10 @@
         circleRenderer.lineWidth    = 5.f;
         if ([overlay.title isEqualToString:@"currentSafety"]) {
             circleRenderer.strokeColor  = [UIColor redColor];//圈的颜色
-            circleRenderer.fillColor    = [UIColor colorWithRed:0 green:0 blue:0.0 alpha:0.3];//填充颜色
+            circleRenderer.fillColor    = [UIColor colorWithRed:251 green:0 blue:8.0 alpha:0.3];//填充颜色
         }else{
             circleRenderer.strokeColor  = [UIColor greenColor];//圈的颜色
-            circleRenderer.fillColor    = [UIColor colorWithRed:0 green:0 blue:0.0 alpha:0.3];//填充颜色
+            circleRenderer.fillColor    = [UIColor colorWithRed:32 green:123 blue:26.0 alpha:0.3];//填充颜色
         }
         return circleRenderer;
     }
@@ -332,29 +338,33 @@
 - (void)amapLocationManager:(AMapLocationManager *)manager didExitRegion:(AMapLocationRegion *)region
 {
     if ([region.identifier isEqualToString:@"circleRegion200"]) {
-        [CH_NetWorkManager getWithURLString:@"/admin/match/endGame" parameters:@{@"token":[NSString md5:Token]} success:^(NSDictionary *data) {
-            if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
-                //出圈死亡
-                
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"游戏结束" preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *ac = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *  action) {
-                    
-                    UIImageView *vwww = [[UIImageView alloc]initWithFrame:self.view.frame];
-                    vwww.image = [UIImage imageNamed:@"失败"];
-                    vwww.backgroundColor = [UIColor colorWithRed:16/225.0f green:16/225.0f blue:16/225.0f alpha:.6f];
-                    [self.view addSubview:vwww];
-                    
-                }];
-                
-                [alert addAction:ac];
-                [self presentViewController:alert animated:YES completion:nil];
-                         
-            }
-        } failure:^(NSError *error) {
-            
-        }];
+        [self endGame];
     }
     NSLog(@"走出围栏:%@", region);
+}
+- (void)endGame
+{
+    [CH_NetWorkManager getWithURLString:@"/admin/match/endGame" parameters:@{@"token":[NSString md5:Token]} success:^(NSDictionary *data) {
+        if ([[data objectForKey:@"code"] isEqualToString:@"200"]) {
+            //出圈死亡
+            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"游戏结束" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *ac = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *  action) {
+                
+                UIImageView *vwww = [[UIImageView alloc]initWithFrame:self.view.frame];
+                vwww.image = [UIImage imageNamed:@"失败"];
+                vwww.backgroundColor = [UIColor colorWithRed:16/225.0f green:16/225.0f blue:16/225.0f alpha:.6f];
+                [self.view addSubview:vwww];
+                
+            }];
+            
+            [alert addAction:ac];
+            [self presentViewController:alert animated:YES completion:nil];
+            
+        }
+    } failure:^(NSError *error) {
+        
+    }];
 }
 - (void)amapLocationManager:(AMapLocationManager *)manager didStartMonitoringForRegion:(AMapLocationRegion *)region
 {

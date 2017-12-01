@@ -69,32 +69,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CH_ChiJiGame/CH_GameShowViewController.m"
-            timestampString = "533757091.659894"
+            timestampString = "533787984.094361"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "297"
-            endingLineNumber = "297"
-            landmarkName = "-mapView:rendererForOverlay:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CH_ChiJiGame/CH_GameShowViewController.m"
-            timestampString = "533757091.662439"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "421"
-            endingLineNumber = "421"
-            landmarkName = "-amapGeoFenceManager:didAddRegionForMonitoringFinished:customID:error:"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
+            landmarkName = "-amapLocationManager:didExitRegion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

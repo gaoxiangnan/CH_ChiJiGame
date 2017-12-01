@@ -642,7 +642,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LIBTOOLFLAGS = "-all_load";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.CH-ChiJiGame.demo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.thetech.ailinyi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "39c30c7f-6ed2-4211-8c4a-ec72e9d63038";
 				PROVISIONING_PROFILE_SPECIFIER = AiLinYiDev;
@@ -662,7 +662,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LIBTOOLFLAGS = "-all_load";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.CH-ChiJiGame.demo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.thetech.ailinyi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "39c30c7f-6ed2-4211-8c4a-ec72e9d63038";
 				PROVISIONING_PROFILE_SPECIFIER = AiLinYiDev;

@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserModel.h"
 
 @interface CH_GameShowViewController : UIViewController
 
 @property (nonatomic,strong) NSArray *pointArr;
+@property (nonatomic, strong )UserModel *userModel;
 
 @end
