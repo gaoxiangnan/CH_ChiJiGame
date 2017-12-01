@@ -32,6 +32,24 @@
 		FE7D937B1FC27971008BA8CF /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7D937A1FC27971008BA8CF /* BaseViewController.m */; };
 		FE7D937E1FC27A17008BA8CF /* CH_TeamCreatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7D937D1FC27A17008BA8CF /* CH_TeamCreatViewController.m */; };
 		FE7D93851FC2D1E3008BA8CF /* CH_TeamCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7D93841FC2D1E3008BA8CF /* CH_TeamCollectionViewCell.m */; };
+		FEB8EEB31FD1013B006DD415 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FEB8EE8F1FD1013A006DD415 /* libWeChatSDK.a */; };
+		FEB8EEB41FD1013B006DD415 /* MyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB8EE911FD1013A006DD415 /* MyManager.m */; };
+		FEB8EEB51FD1013B006DD415 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = FEB8EE921FD1013A006DD415 /* README.txt */; };
+		FEB8EEB61FD1013B006DD415 /* HttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB8EE981FD1013A006DD415 /* HttpUtil.m */; };
+		FEB8EEB71FD1013B006DD415 /* MMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB8EE9B1FD1013B006DD415 /* MMHud.m */; };
+		FEB8EEB81FD1013B006DD415 /* MMProgressHUD+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB8EE9D1FD1013B006DD415 /* MMProgressHUD+Animations.m */; };
+		FEB8EEB91FD1013B006DD415 /* MMProgressHUD+Class.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB8EE9E1FD1013B006DD415 /* MMProgressHUD+Class.m */; };
+		FEB8EEBA1FD1013B006DD415 /* MMProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB8EEA01FD1013B006DD415 /* MMProgressHUD.m */; };
+		FEB8EEBB1FD1013B006DD415 /* MMProgressHUDOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB8EEA21FD1013B006DD415 /* MMProgressHUDOverlayView.m */; };
+		FEB8EEBC1FD1013B006DD415 /* MMProgressHUDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB8EEA41FD1013B006DD415 /* MMProgressHUDViewController.m */; };
+		FEB8EEBD1FD1013B006DD415 /* MMProgressHUDWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB8EEA61FD1013B006DD415 /* MMProgressHUDWindow.m */; };
+		FEB8EEBE1FD1013B006DD415 /* MMRadialProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB8EEA81FD1013B006DD415 /* MMRadialProgressView.m */; };
+		FEB8EEBF1FD1013B006DD415 /* MMVectorImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB8EEAA1FD1013B006DD415 /* MMVectorImage.m */; };
+		FEB8EEC01FD1013B006DD415 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB8EEAC1FD1013B006DD415 /* NSString+URLEncoding.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FEB8EEC11FD1013B006DD415 /* UserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB8EEAE1FD1013B006DD415 /* UserHelper.m */; };
+		FEB8EEC21FD1013B006DD415 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB8EEB01FD1013B006DD415 /* UserInfo.m */; };
+		FEB8EEC31FD1013B006DD415 /* ViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB8EEB21FD1013B006DD415 /* ViewUtil.m */; };
+		FEB8EEC51FD1027F006DD415 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FEB8EEC41FD1027F006DD415 /* libsqlite3.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +123,41 @@
 		FE7D937F1FC286C1008BA8CF /* CH_ChiJiCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CH_ChiJiCommon.h; sourceTree = "<group>"; };
 		FE7D93831FC2D1E3008BA8CF /* CH_TeamCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CH_TeamCollectionViewCell.h; sourceTree = "<group>"; };
 		FE7D93841FC2D1E3008BA8CF /* CH_TeamCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CH_TeamCollectionViewCell.m; sourceTree = "<group>"; };
+		FEB8EE8F1FD1013A006DD415 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		FEB8EE901FD1013A006DD415 /* MyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyManager.h; sourceTree = "<group>"; };
+		FEB8EE911FD1013A006DD415 /* MyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyManager.m; sourceTree = "<group>"; };
+		FEB8EE921FD1013A006DD415 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		FEB8EE931FD1013A006DD415 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		FEB8EE941FD1013A006DD415 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		FEB8EE951FD1013A006DD415 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		FEB8EE971FD1013A006DD415 /* HttpUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpUtil.h; sourceTree = "<group>"; };
+		FEB8EE981FD1013A006DD415 /* HttpUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpUtil.m; sourceTree = "<group>"; };
+		FEB8EE9A1FD1013B006DD415 /* MMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMHud.h; sourceTree = "<group>"; };
+		FEB8EE9B1FD1013B006DD415 /* MMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMHud.m; sourceTree = "<group>"; };
+		FEB8EE9C1FD1013B006DD415 /* MMProgressHUD+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMProgressHUD+Animations.h"; sourceTree = "<group>"; };
+		FEB8EE9D1FD1013B006DD415 /* MMProgressHUD+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMProgressHUD+Animations.m"; sourceTree = "<group>"; };
+		FEB8EE9E1FD1013B006DD415 /* MMProgressHUD+Class.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMProgressHUD+Class.m"; sourceTree = "<group>"; };
+		FEB8EE9F1FD1013B006DD415 /* MMProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProgressHUD.h; sourceTree = "<group>"; };
+		FEB8EEA01FD1013B006DD415 /* MMProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMProgressHUD.m; sourceTree = "<group>"; };
+		FEB8EEA11FD1013B006DD415 /* MMProgressHUDOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProgressHUDOverlayView.h; sourceTree = "<group>"; };
+		FEB8EEA21FD1013B006DD415 /* MMProgressHUDOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMProgressHUDOverlayView.m; sourceTree = "<group>"; };
+		FEB8EEA31FD1013B006DD415 /* MMProgressHUDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProgressHUDViewController.h; sourceTree = "<group>"; };
+		FEB8EEA41FD1013B006DD415 /* MMProgressHUDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMProgressHUDViewController.m; sourceTree = "<group>"; };
+		FEB8EEA51FD1013B006DD415 /* MMProgressHUDWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProgressHUDWindow.h; sourceTree = "<group>"; };
+		FEB8EEA61FD1013B006DD415 /* MMProgressHUDWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMProgressHUDWindow.m; sourceTree = "<group>"; };
+		FEB8EEA71FD1013B006DD415 /* MMRadialProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRadialProgressView.h; sourceTree = "<group>"; };
+		FEB8EEA81FD1013B006DD415 /* MMRadialProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRadialProgressView.m; sourceTree = "<group>"; };
+		FEB8EEA91FD1013B006DD415 /* MMVectorImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMVectorImage.h; sourceTree = "<group>"; };
+		FEB8EEAA1FD1013B006DD415 /* MMVectorImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMVectorImage.m; sourceTree = "<group>"; };
+		FEB8EEAB1FD1013B006DD415 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
+		FEB8EEAC1FD1013B006DD415 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
+		FEB8EEAD1FD1013B006DD415 /* UserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHelper.h; sourceTree = "<group>"; };
+		FEB8EEAE1FD1013B006DD415 /* UserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHelper.m; sourceTree = "<group>"; };
+		FEB8EEAF1FD1013B006DD415 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		FEB8EEB01FD1013B006DD415 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		FEB8EEB11FD1013B006DD415 /* ViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewUtil.h; sourceTree = "<group>"; };
+		FEB8EEB21FD1013B006DD415 /* ViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewUtil.m; sourceTree = "<group>"; };
+		FEB8EEC41FD1027F006DD415 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +165,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEB8EEC51FD1027F006DD415 /* libsqlite3.tbd in Frameworks */,
+				FEB8EEB31FD1013B006DD415 /* libWeChatSDK.a in Frameworks */,
 				5E2B9391B527CDF59393760E /* libPods-CH_ChiJiGame.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,6 +191,7 @@
 		D6EFB360436DF60AC259D5E4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FEB8EEC41FD1027F006DD415 /* libsqlite3.tbd */,
 				FE647A5C1FC40EC20016F3E4 /* CoreLocation.framework */,
 				8FECBE975B799F972FF34D76 /* libPods-CH_ChiJiGame.a */,
 			);
@@ -258,6 +314,8 @@
 		FE7D936E1FBEFE47008BA8CF /* OpenSource */ = {
 			isa = PBXGroup;
 			children = (
+				FEB8EE961FD1013A006DD415 /* network */,
+				FEB8EE8E1FD1013A006DD415 /* OpenSDK1.8.1_WithoutPay */,
 				FE7D93751FC275E2008BA8CF /* JSONKit */,
 			);
 			path = OpenSource;
@@ -270,6 +328,62 @@
 				FE7D93771FC275E2008BA8CF /* JSONKit.m */,
 			);
 			path = JSONKit;
+			sourceTree = "<group>";
+		};
+		FEB8EE8E1FD1013A006DD415 /* OpenSDK1.8.1_WithoutPay */ = {
+			isa = PBXGroup;
+			children = (
+				FEB8EE8F1FD1013A006DD415 /* libWeChatSDK.a */,
+				FEB8EE901FD1013A006DD415 /* MyManager.h */,
+				FEB8EE911FD1013A006DD415 /* MyManager.m */,
+				FEB8EE921FD1013A006DD415 /* README.txt */,
+				FEB8EE931FD1013A006DD415 /* WechatAuthSDK.h */,
+				FEB8EE941FD1013A006DD415 /* WXApi.h */,
+				FEB8EE951FD1013A006DD415 /* WXApiObject.h */,
+			);
+			path = OpenSDK1.8.1_WithoutPay;
+			sourceTree = "<group>";
+		};
+		FEB8EE961FD1013A006DD415 /* network */ = {
+			isa = PBXGroup;
+			children = (
+				FEB8EE971FD1013A006DD415 /* HttpUtil.h */,
+				FEB8EE981FD1013A006DD415 /* HttpUtil.m */,
+				FEB8EE991FD1013A006DD415 /* MMProgressHUD */,
+				FEB8EEAB1FD1013B006DD415 /* NSString+URLEncoding.h */,
+				FEB8EEAC1FD1013B006DD415 /* NSString+URLEncoding.m */,
+				FEB8EEAD1FD1013B006DD415 /* UserHelper.h */,
+				FEB8EEAE1FD1013B006DD415 /* UserHelper.m */,
+				FEB8EEAF1FD1013B006DD415 /* UserInfo.h */,
+				FEB8EEB01FD1013B006DD415 /* UserInfo.m */,
+				FEB8EEB11FD1013B006DD415 /* ViewUtil.h */,
+				FEB8EEB21FD1013B006DD415 /* ViewUtil.m */,
+			);
+			path = network;
+			sourceTree = "<group>";
+		};
+		FEB8EE991FD1013A006DD415 /* MMProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				FEB8EE9A1FD1013B006DD415 /* MMHud.h */,
+				FEB8EE9B1FD1013B006DD415 /* MMHud.m */,
+				FEB8EE9C1FD1013B006DD415 /* MMProgressHUD+Animations.h */,
+				FEB8EE9D1FD1013B006DD415 /* MMProgressHUD+Animations.m */,
+				FEB8EE9E1FD1013B006DD415 /* MMProgressHUD+Class.m */,
+				FEB8EE9F1FD1013B006DD415 /* MMProgressHUD.h */,
+				FEB8EEA01FD1013B006DD415 /* MMProgressHUD.m */,
+				FEB8EEA11FD1013B006DD415 /* MMProgressHUDOverlayView.h */,
+				FEB8EEA21FD1013B006DD415 /* MMProgressHUDOverlayView.m */,
+				FEB8EEA31FD1013B006DD415 /* MMProgressHUDViewController.h */,
+				FEB8EEA41FD1013B006DD415 /* MMProgressHUDViewController.m */,
+				FEB8EEA51FD1013B006DD415 /* MMProgressHUDWindow.h */,
+				FEB8EEA61FD1013B006DD415 /* MMProgressHUDWindow.m */,
+				FEB8EEA71FD1013B006DD415 /* MMRadialProgressView.h */,
+				FEB8EEA81FD1013B006DD415 /* MMRadialProgressView.m */,
+				FEB8EEA91FD1013B006DD415 /* MMVectorImage.h */,
+				FEB8EEAA1FD1013B006DD415 /* MMVectorImage.m */,
+			);
+			path = MMProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -386,6 +500,7 @@
 				FE7D93441FBEFB6A008BA8CF /* Assets.xcassets in Resources */,
 				FE647A621FC545500016F3E4 /* mystyle_sdk_1511329093_0100.data in Resources */,
 				FE7D93421FBEFB6A008BA8CF /* Main.storyboard in Resources */,
+				FEB8EEB51FD1013B006DD415 /* README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +581,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEB8EEC01FD1013B006DD415 /* NSString+URLEncoding.m in Sources */,
+				FEB8EEB91FD1013B006DD415 /* MMProgressHUD+Class.m in Sources */,
 				FE7D937E1FC27A17008BA8CF /* CH_TeamCreatViewController.m in Sources */,
 				FE7D933F1FBEFB6A008BA8CF /* ViewController.m in Sources */,
 				FE647A5B1FC3FA640016F3E4 /* CH_GameShowViewController.m in Sources */,
@@ -475,15 +592,28 @@
 				FE2CEFD01FCC10250078CE32 /* UserModel.m in Sources */,
 				FE7D93781FC275E2008BA8CF /* JSONKit.m in Sources */,
 				FE7D93851FC2D1E3008BA8CF /* CH_TeamCollectionViewCell.m in Sources */,
+				FEB8EEB71FD1013B006DD415 /* MMHud.m in Sources */,
+				FEB8EEC11FD1013B006DD415 /* UserHelper.m in Sources */,
 				FE647A6E1FC6EAC20016F3E4 /* CH_VictoryViewController.m in Sources */,
 				FE2CEFD31FCC143C0078CE32 /* TeamModel.m in Sources */,
 				FE2CEFD91FCECF930078CE32 /* PointModel.m in Sources */,
+				FEB8EEC21FD1013B006DD415 /* UserInfo.m in Sources */,
 				FE647A651FC5528B0016F3E4 /* CH_TeamMesView.m in Sources */,
+				FEB8EEBC1FD1013B006DD415 /* MMProgressHUDViewController.m in Sources */,
+				FEB8EEB41FD1013B006DD415 /* MyManager.m in Sources */,
 				FE2CEFD61FCEC9DD0078CE32 /* LocationModel.m in Sources */,
 				FE7D93391FBEFB6A008BA8CF /* main.m in Sources */,
+				FEB8EEBA1FD1013B006DD415 /* MMProgressHUD.m in Sources */,
+				FEB8EEBE1FD1013B006DD415 /* MMRadialProgressView.m in Sources */,
 				FE2CEFC01FCBE09C0078CE32 /* CH_NetWorkManager.m in Sources */,
+				FEB8EEC31FD1013B006DD415 /* ViewUtil.m in Sources */,
 				FE2CEFDC1FCF1A7A0078CE32 /* PlayerModel.m in Sources */,
+				FEB8EEB81FD1013B006DD415 /* MMProgressHUD+Animations.m in Sources */,
 				FE2CEFCC1FCC09D90078CE32 /* NSString+Option.m in Sources */,
+				FEB8EEB61FD1013B006DD415 /* HttpUtil.m in Sources */,
+				FEB8EEBB1FD1013B006DD415 /* MMProgressHUDOverlayView.m in Sources */,
+				FEB8EEBD1FD1013B006DD415 /* MMProgressHUDWindow.m in Sources */,
+				FEB8EEBF1FD1013B006DD415 /* MMVectorImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,6 +771,10 @@
 				INFOPLIST_FILE = CH_ChiJiGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CH_ChiJiGame/OpenSource/OpenSDK1.8.1_WithoutPay",
+				);
 				OTHER_LIBTOOLFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thetech.ailinyi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -661,6 +795,10 @@
 				INFOPLIST_FILE = CH_ChiJiGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CH_ChiJiGame/OpenSource/OpenSDK1.8.1_WithoutPay",
+				);
 				OTHER_LIBTOOLFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thetech.ailinyi;
 				PRODUCT_NAME = "$(TARGET_NAME)";

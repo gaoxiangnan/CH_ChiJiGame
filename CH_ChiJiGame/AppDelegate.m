@@ -10,6 +10,11 @@
 #import "ViewController.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
 
+#import "WXApi.h"
+#import "UserHelper.h"
+#import "CH_TeamCreatViewController.h"
+#import "MyManager.h"
+
 @interface AppDelegate ()
 
 @end
@@ -26,7 +31,23 @@
     navigationController.navigationBarHidden = YES;
     self.window.rootViewController = navigationController;
     
+    if ([UserHelper isLogin]) {
+        
+        NSLog(@"登录成功回来");
+        
+        
+    }
     
+    
+    //向微信注册
+    
+    [WXApi registerApp:@"wxcb29b0e6880c62fa" enableMTA:YES];
+    
+    
+    //向微信注册支持的文件类型
+    UInt64 typeFlag = MMAPP_SUPPORT_TEXT | MMAPP_SUPPORT_PICTURE | MMAPP_SUPPORT_LOCATION | MMAPP_SUPPORT_VIDEO |MMAPP_SUPPORT_AUDIO | MMAPP_SUPPORT_WEBPAGE | MMAPP_SUPPORT_DOC | MMAPP_SUPPORT_DOCX | MMAPP_SUPPORT_PPT | MMAPP_SUPPORT_PPTX | MMAPP_SUPPORT_XLS | MMAPP_SUPPORT_XLSX | MMAPP_SUPPORT_PDF;
+    
+    [WXApi registerAppSupportContentFlag:typeFlag];
     
     // Override point for customization after application launch.
     return YES;
@@ -35,16 +56,17 @@
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(nullable UIWindow *)window
 
 {
+    return UIInterfaceOrientationMaskLandscapeRight;
     
-    if (_allowRtation == YES) {
-        
-        return UIInterfaceOrientationMaskLandscapeRight;
-        
-    }else{
-        
-        return (UIInterfaceOrientationMaskPortrait);
-        
-    }
+//    if (_allowRtation == YES) {
+//
+//        return UIInterfaceOrientationMaskLandscapeRight;
+//
+//    }else{
+//
+//        return (UIInterfaceOrientationMaskPortrait);
+//
+//    }
     
 }
 
@@ -74,5 +96,29 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    
+    [WXApi handleOpenURL:url delegate:[MyManager sharedManager]];
+    
+    
+    return YES;
+}
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    
+    [WXApi handleOpenURL:url delegate:[MyManager sharedManager]];
+    
+    
+    return YES;
+}
+
+
+-(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
+    
+    [WXApi handleOpenURL:url delegate:[MyManager sharedManager]];
+    
+    
+    return YES;
+    
+}
 @end

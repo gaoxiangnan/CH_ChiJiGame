@@ -10,6 +10,7 @@
 #import "CH_TeamCreatViewController.h"
 #import "UIView+SDAutoLayout.h"
 #import "AppDelegate.h"
+#import "MyManager.h"
 
 @interface ViewController ()<UITextFieldDelegate>
 {
@@ -78,7 +79,7 @@
 -(UIImageView *)backgroundimg{
     
     if (self==[super init]) {
-        _backgroundimg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.height, self.view.frame.size.width)];
+        _backgroundimg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         _backgroundimg.image = [UIImage imageNamed:@"login_background"];
         _backgroundimg.userInteractionEnabled = YES;
     }
@@ -318,8 +319,7 @@
 -(UIButton *)LoginBtn{
     if (!_LoginBtn) {
         _LoginBtn = [[UIButton alloc]init];
-        [_LoginBtn setTitle:@"登  陆" forState:UIControlStateNormal];
-        [_LoginBtn setTitleColor:[UIColor colorWithRed:225/225.0f green:190/225.0f blue:34/225.0f alpha:1] forState:UIControlStateNormal];
+        [_LoginBtn setBackgroundImage:[UIImage imageNamed:@""]  forState:UIControlStateNormal];
         _LoginBtn.titleLabel.font = [UIFont systemFontOfSize:20 weight:5];
         _LoginBtn.userInteractionEnabled = YES;
         [_LoginBtn addTarget:self action:@selector(LoginBtnAction) forControlEvents:UIControlEventTouchUpInside];
@@ -331,61 +331,61 @@
 
 -(void)LoginBtnAction
 {
-    if (_IDtext.text.length ==0) {
-        [self creatAlert:@"登录失败，输入手机号"];
-    }else
-    {
-//        NSString *string = [NSString stringWithFormat:@"miganchuanmei%@",_IDtext.text];
-//        
-//        [[NSUserDefaults standardUserDefaults] setObject:string forKey:Token];
-        
-        [CH_NetWorkManager getWithURLString:@"checkCode" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",_IDtext.text]],@"code":_PassWordtext.text} success:^(NSDictionary *data) {
-            if ([[data objectForKey:@"code"]isEqualToString:@"200"]) {
-                
-                
-                [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"miganchuanmei%@",_IDtext.text] forKey:@"token"];
-                
-                //获取当前时间戳
-                NSDate *date = [NSDate date];
-                NSString *string = [NSString stringWithFormat:@"%ld",(long)[date timeIntervalSince1970]];
-                NSString *endTimestamp = [NSString stringWithFormat:@"%@",[[data objectForKey:@"data"]objectForKey:@"match_start_time"]];
-                
-                
-                NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-                [formatter setDateStyle:NSDateFormatterMediumStyle];
-                [formatter setTimeStyle:NSDateFormatterShortStyle];
-                [formatter setDateFormat:@"yyyy-MM-dd-HH:MM:ss"];//@"yyyy-MM-dd-HHMMss"
-                
-                NSDate* beginDate = [NSDate dateWithTimeIntervalSince1970:[string doubleValue]];
-                NSString *dateString = [formatter stringFromDate:beginDate];
-                NSLog(@"开始时间: %@", dateString);
-                
-                NSDate *endDate = [NSDate dateWithTimeIntervalSince1970:[endTimestamp doubleValue]];
-                NSString *dateString2 = [formatter stringFromDate:endDate];
-                NSLog(@"结束时间: %@", dateString2);
-                
-                seconds = [endDate timeIntervalSinceDate:date];
-                NSLog(@"两个时间相隔：%ld", (long)seconds);
-                
-                CH_TeamCreatViewController *chVC = [[CH_TeamCreatViewController alloc]init];
-                chVC.piontSecond = seconds;
-                [self.navigationController pushViewController:chVC animated:YES];
-                
-                NSLog(@"%@",[data objectForKey:@"message"]);
-                NSLog(@"%@",Token);
-            }else
-            {
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:[data objectForKey:@"message"] preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                }];
-                [alert addAction:action];
-                [self presentViewController:alert animated:YES completion:nil];
-            }
-        } failure:^(NSError *error) {
-            
-        }];
-    }
-    
+//    if (_IDtext.text.length ==0) {
+//        [self creatAlert:@"登录失败，输入手机号"];
+//    }else
+//    {
+////        NSString *string = [NSString stringWithFormat:@"miganchuanmei%@",_IDtext.text];
+////
+////        [[NSUserDefaults standardUserDefaults] setObject:string forKey:Token];
+//
+//        [CH_NetWorkManager getWithURLString:@"checkCode" parameters:@{@"token":[NSString md5:[NSString stringWithFormat:@"miganchuanmei%@",_IDtext.text]],@"code":_PassWordtext.text} success:^(NSDictionary *data) {
+//            if ([[data objectForKey:@"code"]isEqualToString:@"200"]) {
+//
+//
+//                [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"miganchuanmei%@",_IDtext.text] forKey:@"token"];
+//
+//                //获取当前时间戳
+//                NSDate *date = [NSDate date];
+//                NSString *string = [NSString stringWithFormat:@"%ld",(long)[date timeIntervalSince1970]];
+//                NSString *endTimestamp = [NSString stringWithFormat:@"%@",[[data objectForKey:@"data"]objectForKey:@"match_start_time"]];
+//
+//
+//                NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+//                [formatter setDateStyle:NSDateFormatterMediumStyle];
+//                [formatter setTimeStyle:NSDateFormatterShortStyle];
+//                [formatter setDateFormat:@"yyyy-MM-dd-HH:MM:ss"];//@"yyyy-MM-dd-HHMMss"
+//
+//                NSDate* beginDate = [NSDate dateWithTimeIntervalSince1970:[string doubleValue]];
+//                NSString *dateString = [formatter stringFromDate:beginDate];
+//                NSLog(@"开始时间: %@", dateString);
+//
+//                NSDate *endDate = [NSDate dateWithTimeIntervalSince1970:[endTimestamp doubleValue]];
+//                NSString *dateString2 = [formatter stringFromDate:endDate];
+//                NSLog(@"结束时间: %@", dateString2);
+//
+//                seconds = [endDate timeIntervalSinceDate:date];
+//                NSLog(@"两个时间相隔：%ld", (long)seconds);
+//
+//                CH_TeamCreatViewController *chVC = [[CH_TeamCreatViewController alloc]init];
+//                chVC.piontSecond = seconds;
+//                [self.navigationController pushViewController:chVC animated:YES];
+//
+//                NSLog(@"%@",[data objectForKey:@"message"]);
+//                NSLog(@"%@",Token);
+//            }else
+//            {
+//                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:[data objectForKey:@"message"] preferredStyle:UIAlertControllerStyleAlert];
+//                UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                }];
+//                [alert addAction:action];
+//                [self presentViewController:alert animated:YES completion:nil];
+//            }
+//        } failure:^(NSError *error) {
+//
+//        }];
+//    }
+    [MyManager sendAuthRequest];
 //    CH_TeamCreatViewController *chVC = [[CH_TeamCreatViewController alloc]init];
 //    [self.navigationController pushViewController:chVC animated:YES];
     
@@ -433,22 +433,7 @@
 -(void)adaptation
 {
     _iconimg.sd_layout.leftSpaceToView(self.view, 35).rightSpaceToView(self.view, 35).topSpaceToView(self.view, 20).heightIs(210);
-    
-    _IDtext.sd_layout.rightEqualToView(_img).topSpaceToView(_img,0).heightIs(50).widthIs(220);
-    
-    _IDLabel.sd_layout.leftEqualToView(_img).topSpaceToView(_img, 0).heightIs(50).widthIs(100);
-    
-    _icodeimg.sd_layout.leftEqualToView(_img).topSpaceToView(self.view, 227).heightIs(50).widthIs(200);
-    
-    _PassWordtext.sd_layout.rightEqualToView(_icodeimg).topEqualToView(_icodeimg).heightIs(50).widthIs(120);
-    
-    _PassWordLabel.sd_layout.leftEqualToView(_icodeimg).topEqualToView(_icodeimg).heightIs(50).widthIs(100);
-    
-    _buttonimg.sd_layout.rightEqualToView(_img).topEqualToView(_icodeimg).heightIs(50).widthIs(100);
-    
-    _icodeBtn.sd_layout.rightEqualToView(_buttonimg).topEqualToView(_buttonimg).heightIs(50).widthIs(100);
-    
-    _LoginBtn.sd_layout.rightEqualToView(_Loginimg).topEqualToView(_Loginimg).heightIs(50).widthIs(200);
+    _LoginBtn.sd_layout.rightSpaceToView(self.view, 200).leftSpaceToView(self.view, 200).topSpaceToView(self.view, 230  ).heightIs(50);
     
 }
 
