@@ -19,6 +19,7 @@
 @property (nonatomic, copy) NSString *is_person;
 @property (nonatomic, copy) NSString *health;
 @property (nonatomic, copy) NSString *token;
+@property (nonatomic, copy) NSString *ctime;
 
 
 - (instancetype)initWithDic:(NSDictionary *)dic;
